@@ -1,0 +1,14 @@
+/* intro.css - 인트로 애니메이션용 스타일 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Canvas는 page.tsx에서 inline style로 제어 */

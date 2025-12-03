@@ -1,0 +1,92 @@
+.wrapper {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #ffe5ec 0%, #fff0f5 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 140px 40px 80px;
+}
+
+.grid {
+  width: 100%;
+  max-width: 920px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.2rem;
+}
+
+.card {
+  background: #ffffff;
+  padding: 38px 30px 50px;
+  border-radius: 24px;
+  text-align: center;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 12px 35px rgba(255, 150, 175, 0.35);
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 18px 45px rgba(255, 150, 175, 0.45);
+  border-color: rgba(255, 182, 193, 0.7);
+}
+
+.icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  transition: all 0.3s ease;
+}
+
+.texts {
+  margin-bottom: 10px;
+}
+
+.cardTitle {
+  font-family: var(--font-poppins);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.subtitle {
+  margin-top: 12px;
+  font-family: var(--font-poppins);
+  font-size: 0.95rem;
+  color: #f5a1b3;
+  font-weight: 600;
+}
+
+.desc {
+  margin-top: 6px;
+  font-family: "Quicksand";
+  font-size: 1rem;
+  color: #777;
+  font-weight: 500;
+}
+
+.arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 850px) {
+  .wrapper {
+    padding: 120px 20px 60px;
+  }
+  
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+}
