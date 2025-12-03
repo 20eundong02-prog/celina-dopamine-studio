@@ -37,7 +37,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="ko" className={`${poppins.variable} ${montserrat.variable}`}>
-      {/* 🚨 여기가 핵심! 에러 방지 코드 추가됨 */}
+      <head>
+        <title>Celina's Dopamine Studio</title>
+        <meta name="description" content="Research & Life Portfolio - Finding dopamine in every moment" />
+        <meta name="theme-color" content="#FF6B9D" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/icon.png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="Celina Studio" />
+      </head>
       <body suppressHydrationWarning={true}>
         <nav
           style={{
