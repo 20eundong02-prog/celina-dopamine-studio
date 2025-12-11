@@ -279,7 +279,15 @@ export default function ProgrammingPage() {
             </div>
 
             <div style={codePlaceholderStyle}>
-              <pre style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", color: "#4ECDC4", textAlign: "left", lineHeight: "1.5", overflowX: "auto" }}>
+              <pre style={{ 
+                fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", 
+                color: "#4ECDC4", 
+                textAlign: "left", 
+                lineHeight: "1.5", 
+                overflowX: "auto",
+                width: "100%",
+                margin: 0,
+              }}>
 {`# NIST SP 800-90B Implementation
 from PIL import Image
 import numpy as np
@@ -374,7 +382,15 @@ for i in range(10):
             </div>
 
             <div style={codePlaceholderStyle}>
-              <pre style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", color: "#95E1D3", textAlign: "left", lineHeight: "1.5", overflowX: "auto" }}>
+              <pre style={{ 
+                fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", 
+                color: "#95E1D3", 
+                textAlign: "left", 
+                lineHeight: "1.5", 
+                overflowX: "auto",
+                width: "100%",
+                margin: 0,
+              }}>
 {`# RSoft Data Automation Pipeline
 import os
 import re
@@ -468,7 +484,15 @@ all_data.to_excel('merged_results.xlsx')`}
             </div>
 
             <div style={codePlaceholderStyle}>
-              <pre style={{ fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", color: "#F38181", textAlign: "left", lineHeight: "1.5", overflowX: "auto" }}>
+              <pre style={{ 
+                fontSize: "clamp(0.7rem, 1.5vw, 0.8rem)", 
+                color: "#F38181", 
+                textAlign: "left", 
+                lineHeight: "1.5", 
+                overflowX: "auto",
+                width: "100%",
+                margin: 0,
+              }}>
 {`# SEM Image Particle Analysis
 import cv2
 import numpy as np
@@ -678,7 +702,7 @@ plt.hist(particle_sizes, bins=50)`}
   );
 }
 
-/* ================= COMPONENT & STYLES (Existing) ================= */
+/* ================= COMPONENT & STYLES ================= */
 
 function SkillBadge({ children }: any) {
   return (
@@ -733,6 +757,7 @@ const contentBoxStyle: React.CSSProperties = {
   display: "flex",
   gap: "clamp(20px, 5vw, 40px)",
   flexWrap: "wrap",
+  alignItems: "flex-start",
 };
 
 const headingStyle: React.CSSProperties = {
@@ -759,19 +784,22 @@ const listStyle: React.CSSProperties = {
   fontSize: "clamp(0.9rem, 2vw, 1rem)",
 };
 
+// 🎯 핵심 수정: 코드 박스 고정 크기 + 스크롤
 const codePlaceholderStyle: React.CSSProperties = {
-  flex: "1 1 min(100%, 320px)",
+  flex: "0 0 min(380px, 100%)",     // 최대 380px, 모바일에서는 100%
+  maxWidth: "380px",                 // PC에서 절대 380px 넘지 않음!
   background: "linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)",
   borderRadius: "15px",
   padding: "clamp(15px, 4vw, 25px)",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
+  justifyContent: "flex-start",      // 위쪽 정렬
   alignItems: "center",
   boxShadow: "0 8px 24px rgba(0, 0, 0, 0.3)",
+  minHeight: "280px",
+  maxHeight: "400px",                // 최대 높이 제한
+  overflow: "auto",                  // 내부 스크롤 가능
   width: "100%",
-  minHeight: "200px",
-  overflow: "auto",
 };
 
 const primaryBtnStyle: React.CSSProperties = {
