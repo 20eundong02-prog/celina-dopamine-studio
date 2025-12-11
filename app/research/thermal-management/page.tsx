@@ -1,301 +1,697 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image"; // Next.js 이미지 컴포넌트 import
 
-export default function ThermalManagement() {
+export default function ThermalManagementPage() {
+  const [activeProject, setActiveProject] = useState<string>("smartglass");
+
+  const scrollToSection = (id: string) => {
+    setActiveProject(id);
+    document.getElementById(`project-${id}`)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <div
       style={{
-        fontFamily: "'Baloo 2', sans-serif",
+        fontFamily: "'Baloo 2', 'Pretendard', sans-serif",
         background: "#FFE8F1",
         minHeight: "100vh",
-        padding: "60px 20px",
+        padding: "100px 20px 60px",
+        color: "#444",
       }}
     >
-      {/* ---------------- Title Section ---------------- */}
-      <header
-        style={{
-          textAlign: "center",
-          marginBottom: "50px",
-        }}
-      >
+      {/* ---------------- Header Section ---------------- */}
+      <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
-            marginBottom: "10px",
             fontWeight: 800,
-            fontFamily: "'Fredoka One', cursive",
+            marginBottom: "15px",
+            fontFamily: "'Montserrat', 'Fredoka One', sans-serif",
+            letterSpacing: "1px",
+            textShadow: "2px 2px 0px #FFF",
           }}
         >
-          Thermal Management Research
+          Thermal Management
         </h1>
-
         <p
           style={{
             fontSize: "1.2rem",
-            color: "#666",
+            color: "#7A7A7A",
             fontWeight: 600,
+            maxWidth: "650px",
+            margin: "0 auto",
+            lineHeight: "1.6",
           }}
         >
-          Ag Dewetting · APTM Multilayer · Thermal / Radiative Control
+          <b>Cooling</b> without Energy, <b>Insulation</b> with Transparency.<br />
+          전력 소모 없는 복사 냉각 기술과 스마트 윈도우용 광학 소재 연구.
         </p>
       </header>
 
-      {/* ---------------- Summary Table ---------------- */}
-      <section
-        style={{
-          maxWidth: "1000px",
-          margin: "0 auto 60px auto",
-          background: "white",
-          padding: "25px",
-          borderRadius: "20px",
-          boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "1.8rem",
-            color: "#FF6B9D",
-            marginBottom: "20px",
-            fontWeight: 700,
-          }}
-        >
-          Summary of Experiments
-        </h2>
+      {/* ---------------- Timeline Section (Simplified) ---------------- */}
+      <div style={{ maxWidth: "600px", margin: "0 auto 60px" }}>
+        <div style={{ position: "relative", padding: "0 20px" }}>
+          {/* Timeline Line */}
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "200px", 
+              height: "3px",
+              background: "linear-gradient(to right, rgba(255, 107, 157, 0.1), #FF6B9D, rgba(255, 107, 157, 0.1))",
+              borderRadius: "2px",
+            }}
+          />
+         
+          {/* Timeline Points */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            {/* 2024-2025 Single Node */}
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  borderRadius: "50%",
+                  background: "#FF6B9D",
+                  border: "3px solid #FF6B9D",
+                  boxShadow: "0 0 0 4px rgba(255, 107, 157, 0.15)",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: "#FF6B9D",
+                  marginTop: "15px",
+                }}
+              >
+                2024 - 2025
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            borderRadius: "10px",
-            overflow: "hidden",
-          }}
-        >
-          <thead>
-            <tr style={{ background: "#FFD6E5", color: "#444" }}>
-              <th style={thStyle}>기간</th>
-              <th style={thStyle}>장소</th>
-              <th style={thStyle}>프로젝트명</th>
-              <th style={thStyle}>핵심 기술</th>
-              <th style={thStyle}>보기</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {/* Row 1 */}
-            <tr>
-              <td style={tdStyle}>2024</td>
-              <td style={tdStyle}>KICET</td>
-              <td style={tdStyle}>APTM 열관리 소재 개발</td>
-              <td style={tdStyle}>Ag Dewetting, APTM, IR emissivity</td>
-              <td style={tdStyle}>
-                <a href="#tm1" style={anchorBtn}>이동</a>
-              </td>
-            </tr>
-
-            {/* Row 2 */}
-            <tr>
-              <td style={tdStyle}>2024</td>
-              <td style={tdStyle}>KICET</td>
-              <td style={tdStyle}>Thermal Switching (APPH ↔ APRC)</td>
-              <td style={tdStyle}>Morphology Control</td>
-              <td style={tdStyle}>
-                <a href="#tm2" style={anchorBtn}>이동</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      {/* ---------------- Detailed Sections ---------------- */}
-
-      {/* Section 1 */}
-      <SectionBlock
-        id="tm1"
-        title="1. Ag-TiO₂-Ag (APTM) 기반 열관리 소재 연구"
-        summary="E-beam 기반 Ag 박막에 열처리를 가해 morphology를 제어하여 발열/방열 기능 조절"
-        method={`• E-beam 증착 (Ag–TiO₂–Ag 3-layer)
-• Ag 10–20 nm / TiO₂ 30–80 nm
-• 200–500°C thermal annealing
-• FT-IR / UV-Vis / SEM morphology 분석`}
-        results={`• Ag 연속막 → island 구조로 전환
-• Optical resonance 변화 → IR emissivity 증가
-• Visible transparency 변화 최소화`}
-        interpretation="광학 + 열관리 이중 기능을 가진 소재 플랫폼으로 발전 가능."
-      />
-
-      {/* Section 2 */}
-      <SectionBlock
-        id="tm2"
-        title="2. Thermal Switching (APPH ↔ APRC)"
-        summary="하나의 APTM 구조로 photothermal heating ↔ radiative cooling 모드 전환"
-        method={`• 낮은 온도 annealing → High absorption (APPH)
-• 높은 온도 annealing → High emissivity (APRC)
-• Morphology–optical–thermal 상관성 분석`}
-        results={`• APPH: 50–70°C까지 빠른 온도 상승
-• APRC: IR 영역에서 상대적 방사능 증가
-• Outdoor test에서 ΔT modulation 확인`}
-        interpretation="단일 구조에서 상황에 따라 열차단/방열 전환 가능 — 차세대 디스플레이/웨어러블에 적용성 큼."
-      />
-
-      {/* ---------------- Skill Map ---------------- */}
-      <section
-        style={{
-          maxWidth: "1000px",
-          margin: "40px auto",
-          background: "white",
-          padding: "30px",
-          borderRadius: "20px",
-          boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "1.8rem",
-            color: "#FF6B9D",
-            fontWeight: 700,
-            marginBottom: "20px",
-          }}
-        >
-          Thermal Management → Display R&D Skill Map
-        </h2>
-
-        <ul style={{ lineHeight: "1.9", color: "#555", fontWeight: 600 }}>
-          <li>IR Emissivity 조절 → 디스플레이 발열 문제 해결</li>
-          <li>Nanoparticle morphology control → µLED / 나노패터닝 기반 가능</li>
-          <li>APTM 구조 → Encapsulation·Optical filter 설계와 연관</li>
-          <li>Photothermal ↔ Radiative switching → 차세대 열관리 기술 요소</li>
-        </ul>
-      </section>
-
-      {/* ---------------- Navigation Buttons ---------------- */}
+      {/* ---------------- Quick Overview Section ---------------- */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
+          maxWidth: "1100px",
+          margin: "0 auto 60px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
-          marginTop: "40px",
         }}
       >
-        <a href="/research" style={navBtn}>
-          ← Back to Research
-        </a>
-        <a href="/research/programming" style={navBtn}>
-          Next: Programming →
-        </a>
+        {/* Card 1: Smart Glass */}
+        <div
+          onClick={() => scrollToSection('smartglass')}
+          style={{
+            ...overviewCardStyle,
+            background: "rgba(255, 255, 255, 0.6)",
+            backdropFilter: "blur(10px)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-5px)";
+            e.currentTarget.style.boxShadow = "0 8px 20px rgba(255, 193, 7, 0.3)";
+            e.currentTarget.style.borderColor = "#FFC107";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.9)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.6)";
+          }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "10px" }}>☀️</div>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#333", marginBottom: "8px" }}>
+            Smart Glass
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
+            투명 단열 & 복사 냉각<br />Ag Dewetting 기술
+          </p>
+        </div>
+
+        {/* Card 2: Color Cooling */}
+        <div
+          onClick={() => scrollToSection('cooling')}
+          style={{
+            ...overviewCardStyle,
+            background: "rgba(255, 255, 255, 0.6)",
+            backdropFilter: "blur(10px)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-5px)";
+            e.currentTarget.style.boxShadow = "0 8px 20px rgba(33, 150, 243, 0.3)";
+            e.currentTarget.style.borderColor = "#2196F3";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.9)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.6)";
+          }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "10px" }}>❄️</div>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#333", marginBottom: "8px" }}>
+            Color Cooling
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
+            컬러 구현 복사 냉각<br />Fabry-Perot 필터
+          </p>
+        </div>
+
+        {/* Card 3: Optical Analysis (Semi-transparent) */}
+        <div
+          onClick={() => scrollToSection('optical')}
+          style={{
+            ...overviewCardStyle,
+            background: "rgba(255, 255, 255, 0.4)",
+            backdropFilter: "blur(10px)",
+            borderColor: "#E1BEE7",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-5px)";
+            e.currentTarget.style.boxShadow = "0 8px 20px rgba(156, 39, 176, 0.3)";
+            e.currentTarget.style.borderColor = "#9C27B0";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.8)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            e.currentTarget.style.borderColor = "#E1BEE7";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.4)";
+          }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "10px" }}>🔬</div>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#333", marginBottom: "8px" }}>
+            Optical Analysis
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
+            적분구 분광 분석<br />UV-vis-NIR & FT-IR
+          </p>
+        </div>
+      </div>
+
+      {/* ---------------- Main Content ---------------- */}
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "60px",
+        }}
+      >
+        {/* === Project 1: Smart Glass (the1) === */}
+        <section id="project-smartglass" style={projectSectionStyle}>
+          <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>☀️</span>
+            <div style={{ flex: 1 }}>
+              <h2 style={titleStyle}>Smart Glass for Thermal Management</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }}>
+                  2024 - 2025 | KICET
+                </p>
+                <span style={publicationBadgeStyle}>
+                  📄 Published in Advanced Science
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* 박스 정렬 수정: alignItems를 flex-start로 변경하여 높이를 내용물에 맞춤 */}
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+            <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Research Focus</h3>
+              <p style={paragraphStyle}>
+                소다라임 글라스 위에 Ag 기반 다층 박막을 형성하여, 열처리 온도 조절을 통해 
+                투명도를 유지하면서 외부 열 차단(Photothermal Heating) 또는 내부 열 방출(Radiative Cooling) 
+                기능을 선택적으로 구현하는 스마트 윈도우 개발.
+              </p>
+
+              <h3 style={headingStyle}>Key Engineering</h3>
+              <ul style={listStyle}>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Phase Change Control:</strong> 
+                  {" "}E-beam으로 증착된 Ag/TiO₂/Ag 박막을 RTP(Rapid Thermal Processing)로 열처리하여 
+                  Ag 입자의 <b>Dewetting(비젖음)</b> 및 나노 입자화 유도.
+                </li>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Anti-fogging:</strong> 
+                  {" "}Ag 나노 입자의 발열 특성을 이용해 온도 차이에 의한 수분 응결(김서림) 방지 기능 구현.
+                </li>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Optical Analysis:</strong> 
+                  {" "}<b>적분구(Integrating Sphere)</b>를 장착한 UV-vis-NIR 분광광도계를 사용하여 
+                  산란된 빛까지 포함한 정확한 반사/투과 스펙트럼 분석 수행.
+                </li>
+              </ul>
+
+              <div
+                style={{
+                  background: "#FFF8E1",
+                  padding: "15px 20px",
+                  borderRadius: "10px",
+                  borderLeft: "4px solid #FFC107",
+                  marginTop: "30px",
+                  marginBottom: "25px"
+                }}
+              >
+                <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#F57F17" }}>🚀 Impact</h4>
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                  ✓ Advanced Science 저널 게재 (Impact Factor 14.3, 2025 기준)<br />
+                  ✓ 투명도 유지하며 이중 기능(단열 + 냉각) 선택적 구현<br />
+                  ✓ Anti-fogging 부가 기능으로 실용성 향상
+                </p>
+              </div>
+
+              <div>
+                 <a href="/research/deposition" style={linkButtonStyle}>
+                   → Go to Deposition
+                 </a>
+              </div>
+            </div>
+            
+            {/* Image Gallery for the1 */}
+            <div style={imageGalleryContainerStyle}>
+              <div style={imageGridStyle}>
+                <Image 
+                  src="/research/thermal-management/the1/the1-1.jpg" 
+                  alt="Smart Glass 1"
+                  width={400} // 원본 비율에 맞게 적절히 지정
+                  height={300}
+                  style={galleryImageStyle} 
+                />
+                <Image 
+                  src="/research/thermal-management/the1/the1-2.jpg" 
+                  alt="Smart Glass 2"
+                  width={400}
+                  height={300}
+                  style={galleryImageStyle} 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* === Project 2: Radiative Cooling (the2) === */}
+        <section id="project-cooling" style={projectSectionStyle}>
+          <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>❄️</span>
+            <div>
+              <h2 style={titleStyle}>Radiative Cooling Color Filters</h2>
+              <p style={subTitleStyle}>
+                2024 - 2025 | KICET | Experimental Study
+              </p>
+            </div>
+          </div>
+
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+             <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Research Focus</h3>
+              <p style={paragraphStyle}>
+                기존의 흰색/은색 위주의 복사 냉각 소재의 심미적 한계를 극복하기 위해, 
+                다양한 색상을 구현하면서도 냉각 성능을 유지하는 PDMS 기반 컬러 필터 연구.
+              </p>
+
+              <h3 style={headingStyle}>Key Engineering</h3>
+              <ul style={listStyle}>
+                <li>
+                  <strong style={{ color: "#2196F3" }}>Fabry-Perot Resonance:</strong> 
+                  {" "}Au 기판 위에 Ge 박막 두께(5~70nm)를 조절하여 빛의 간섭 효과를 이용한 다채로운 색상 구현.
+                </li>
+                <li>
+                  <strong style={{ color: "#2196F3" }}>Performance Optimization:</strong> 
+                  {" "}PDMS 코팅을 통해 대기창(8-13μm) 영역의 방사율(Emissivity)을 극대화하여 냉각 효율 향상.
+                </li>
+                 <li>
+                  <strong style={{ color: "#2196F3" }}>Field Test:</strong> 
+                  {" "}자체 제작한 셋업과 Pyranometer, Data Logger를 활용한 <b>야외 실측(Outdoor Test)</b>으로 실제 온도 저감 효과 입증.
+                </li>
+              </ul>
+
+              <div
+                style={{
+                  background: "#E3F2FD",
+                  padding: "15px 20px",
+                  borderRadius: "10px",
+                  borderLeft: "4px solid #2196F3",
+                  marginTop: "30px",
+                  marginBottom: "25px"
+                }}
+              >
+                <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#1976D2" }}>🚀 Impact</h4>
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                  ✓ 심미성과 냉각 성능을 동시에 만족하는 컬러 필터 개발<br />
+                  ✓ 야외 실측을 통한 실제 온도 저감 효과 검증<br />
+                  ✓ 건축 외장재 등 실용화 가능성 확보
+                </p>
+              </div>
+
+              <div>
+                 <a href="/research/deposition" style={{...linkButtonStyle, color: "#2196F3", borderColor: "#2196F3"}}>
+                   → Go to Deposition
+                 </a>
+              </div>
+            </div>
+
+            {/* Image Gallery for the2 */}
+            <div style={imageGalleryContainerStyle}>
+              <div style={imageGridStyle}>
+                <Image 
+                  src="/research/thermal-management/the2/the2-1.jpg" 
+                  alt="Color Cooling 1" 
+                  width={400}
+                  height={300}
+                  style={galleryImageStyle} 
+                />
+                <Image 
+                  src="/research/thermal-management/the2/the2-2.jpg" 
+                  alt="Color Cooling 2"
+                  width={400}
+                  height={300}
+                  style={galleryImageStyle} 
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* === Section 3: Optical Analysis (the3) === */}
+        <section 
+          id="project-optical" 
+          style={{
+            ...projectSectionStyle, 
+            background: "rgba(255, 255, 255, 0.6)",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255, 255, 255, 0.5)",
+            borderLeft: "5px solid #9C27B0"
+          }}
+        >
+           <div style={{marginBottom: "20px"}}>
+              <h2 style={{...titleStyle, fontSize: "1.6rem", color: "#6A1B9A"}}>🔬 Optical Characterization Methods</h2>
+           </div>
+
+          <div style={{ marginBottom: "30px" }}>
+            <h3 style={{...headingStyle, color: "#9C27B0"}}>Analytical Equipment & Methods</h3>
+            <p style={{...paragraphStyle, fontSize: "0.95rem"}}>
+              광학 소재의 정확한 특성 분석을 위해 다양한 분광 분석 장비를 활용하여 가시광선부터 적외선 영역까지 
+              포괄적인 광학 데이터를 확보.
+            </p>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
+             {/* Equipment 1: UV-vis-NIR (the3-1) */}
+             <div>
+               <div style={equipmentImageContainerStyle}>
+                 <Image 
+                   src="/research/thermal-management/the3/the3-1.jpg" 
+                   alt="UV-vis-NIR" 
+                   width={500}
+                   height={300}
+                   style={equipmentImageStyle} 
+                 />
+               </div>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>UV-vis-NIR Spectroscopy</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+                 • 적분구(Integrating Sphere) 장착으로 산란광 포함 정확한 측정<br/>
+                 • 가시광선~근적외선 영역 (400-2500nm) 분석<br/>
+                 • 색상 및 투명도 특성 평가
+               </p>
+             </div>
+
+             {/* Equipment 2: FT-IR (the3-2) */}
+             <div>
+               <div style={equipmentImageContainerStyle}>
+                 <Image 
+                   src="/research/thermal-management/the3/the3-2.jpg" 
+                   alt="FT-IR" 
+                   width={500}
+                   height={300}
+                   style={equipmentImageStyle} 
+                 />
+               </div>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>FT-IR Spectroscopy</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+                 • 대기창(8-13μm) 영역 방사율 측정<br/>
+                 • 복사 냉각/단열 성능 평가<br/>
+                 • 온도 제어 없는 실온 측정
+               </p>
+             </div>
+
+             {/* Equipment 3: Field Testing (the3-3) */}
+             <div>
+               <div style={equipmentImageContainerStyle}>
+                 <Image 
+                   src="/research/thermal-management/the3/the3-3.jpg" 
+                   alt="Outdoor Field Test"
+                   width={500}
+                   height={300}
+                   style={equipmentImageStyle} 
+                 />
+               </div>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>Field Testing</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+                 • 태양광 복사 강도(Pyranometer) 실시간 측정<br/>
+                 • 실제 환경 온도 변화 검증<br/>
+                 • 열 카메라를 통한 표면 온도 분포 확인
+               </p>
+             </div>
+          </div>
+
+          <div style={{marginTop: "30px", background: "rgba(243, 229, 245, 0.7)", padding: "20px", borderRadius: "15px"}}>
+            <h3 style={{...headingStyle, color: "#7B1FA2"}}>Analytical Support</h3>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px" }}>
+              <div>
+                <h4 style={{fontSize: "1rem", fontWeight: 700, color: "#4A148C", marginBottom: "8px"}}>
+                  💻 RSoft Optical Simulation
+                </h4>
+                <p style={{fontSize: "0.9rem", color: "#555", lineHeight: "1.6", margin: 0}}>
+                  실제 증착 전, 다층 박막 구조의 광학적 거동 예측. 굴절률(n)과 소광계수(k) 데이터 기반 
+                  최적 두께 조건 도출로 실험 시행착오 최소화.
+                </p>
+              </div>
+
+              <div>
+                <h4 style={{fontSize: "1rem", fontWeight: 700, color: "#4A148C", marginBottom: "8px"}}>
+                  🏭 Industrial Sample Analysis
+                </h4>
+                <p style={{fontSize: "0.9rem", color: "#555", lineHeight: "1.6", margin: 0}}>
+                  외부 기업(디어스아이 등) 의뢰 샘플의 광학 특성 분석 지원. Radiative cooling cement 등 
+                  다양한 기능성 소재의 반사율, 투과율 데이터 확보 및 신뢰성 검증.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      {/* ---------------- Footer Navigation ---------------- */}
+      <div style={{ textAlign: "center", marginTop: "80px" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research/phosphor-perovskite" style={secondaryBtnStyle}>
+            ← Prev: Phosphor & Perovskite
+          </a>
+          <a href="/research/programming" style={primaryBtnStyle}>
+            Next: Programming →
+          </a>
+        </div>
       </div>
     </div>
   );
 }
 
-/* ---------------- Styles ---------------- */
+/* ================= STYLES ================= */
 
-const thStyle: React.CSSProperties = {
-  padding: "12px",
-  fontWeight: 700,
-  fontSize: "1rem",
-  borderBottom: "2px solid #F7BFD3",
+const overviewCardStyle: React.CSSProperties = {
+  padding: "25px",
+  borderRadius: "20px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  textAlign: "center",
+  border: "2px solid rgba(255, 255, 255, 0.3)",
+  cursor: "pointer",
+  transition: "all 0.2s ease",
 };
 
-const tdStyle: React.CSSProperties = {
-  padding: "12px",
-  borderBottom: "1px solid #F4C9D8",
-  textAlign: "center",
+const projectSectionStyle: React.CSSProperties = {
+  background: "white",
+  borderRadius: "25px",
+  padding: "40px",
+  boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+  border: "1px solid #FFF0F5",
+};
+
+const projectHeaderStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "20px",
+  marginBottom: "30px",
+  borderBottom: "2px solid #FFF0F5",
+  paddingBottom: "20px",
+};
+
+const titleStyle: React.CSSProperties = {
+  fontSize: "1.8rem",
+  fontWeight: 800,
+  color: "#333",
+  marginBottom: "5px",
+};
+
+const subTitleStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  color: "#888",
   fontWeight: 600,
+};
+
+const publicationBadgeStyle: React.CSSProperties = {
+  background: "#FFF9C4",
+  border: "1.5px solid #F9A825",
+  borderRadius: "6px",
+  padding: "5px 14px",
+  fontSize: "0.85rem",
+  fontWeight: 700,
+  color: "#F57F17",
+  whiteSpace: "nowrap",
+  display: "inline-block",
+};
+
+const contentBoxStyle: React.CSSProperties = {
+  display: "flex",
+  gap: "40px",
+  flexWrap: "wrap",
+  // align-items를 기본(stretch)에서 flex-start로 변경
+  // 이렇게 하면 내용물이 적을 때 박스가 억지로 늘어나지 않고 내용물 크기만큼만 잡힙니다.
+  alignItems: "flex-start", 
+};
+
+const headingStyle: React.CSSProperties = {
+  fontSize: "1.1rem",
+  fontWeight: 700,
+  color: "#FF6B9D",
+  marginTop: "0px",
+  marginBottom: "10px",
+  letterSpacing: "0.5px",
+};
+
+const paragraphStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  lineHeight: "1.7",
+  color: "#555",
+  marginBottom: "25px",
+};
+
+const listStyle: React.CSSProperties = {
+  paddingLeft: "20px",
+  lineHeight: "1.8",
   color: "#555",
 };
 
-const anchorBtn: React.CSSProperties = {
-  background: "#FF6B9D",
-  padding: "6px 14px",
-  borderRadius: "12px",
-  color: "white",
-  fontSize: "0.85rem",
-  textDecoration: "none",
-};
-
-const navBtn: React.CSSProperties = {
-  background: "#FF6B9D",
-  padding: "12px 22px",
-  borderRadius: "20px",
-  color: "white",
+const linkButtonStyle: React.CSSProperties = {
+  display: "inline-block",
+  background: "white",
+  color: "#FF6B9D",
+  padding: "10px 20px",
+  borderRadius: "25px",
+  fontSize: "0.9rem",
   fontWeight: 700,
-  fontSize: "1rem",
   textDecoration: "none",
+  border: "2px solid #FF6B9D",
+  transition: "all 0.3s ease",
+  boxShadow: "0 3px 8px rgba(255, 107, 157, 0.2)",
 };
 
-/* ---------------- Section Component ---------------- */
-function SectionBlock({ id, title, summary, method, results, interpretation }: any) {
-  return (
-    <section
-      id={id}
-      style={{
-        maxWidth: "1000px",
-        margin: "40px auto",
-        background: "white",
-        padding: "30px",
-        borderRadius: "20px",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "1.7rem",
-          color: "#FF6B9D",
-          fontWeight: 800,
-          marginBottom: "20px",
-        }}
-      >
-        {title}
-      </h2>
+const primaryBtnStyle: React.CSSProperties = {
+  background: "#FF6B9D",
+  color: "white",
+  padding: "15px 30px",
+  borderRadius: "50px",
+  fontWeight: 700,
+  textDecoration: "none",
+  boxShadow: "0 4px 15px rgba(255, 107, 157, 0.4)",
+  display: "inline-block",
+};
 
-      <SectionItem title="Summary" content={summary} />
-      <SectionItem title="Method" content={method} />
-      <SectionItem title="Results" content={results} />
-      <SectionItem title="Interpretation" content={interpretation} />
+const secondaryBtnStyle: React.CSSProperties = {
+  background: "white",
+  color: "#FF6B9D",
+  padding: "15px 30px",
+  borderRadius: "50px",
+  fontWeight: 700,
+  textDecoration: "none",
+  border: "2px solid #FF6B9D",
+  display: "inline-block",
+};
 
-      <div
-        style={{
-          border: "2px dashed #FFB6C9",
-          padding: "30px",
-          borderRadius: "20px",
-          textAlign: "center",
-          color: "#888",
-          fontSize: "1rem",
-          marginTop: "20px",
-        }}
-      >
-        (여기에 추가 사진/그래프를 넣으세요)
-      </div>
-    </section>
-  );
-}
+/* --- Image & Grid Styles --- */
 
-function SectionItem({ title, content }: any) {
-  return (
-    <div style={{ marginBottom: "20px" }}>
-      <h3
-        style={{
-          fontSize: "1.2rem",
-          fontWeight: 700,
-          color: "#FF8CB3",
-          marginBottom: "8px",
-        }}
-      >
-        {title}
-      </h3>
+const imageGalleryContainerStyle: React.CSSProperties = {
+  flex: "0 0 320px",
+  background: "#F8F9FA",
+  borderRadius: "15px",
+  padding: "15px",
+  display: "flex",
+  flexDirection: "column",
+  // justifyContent: "center"를 삭제 또는 flex-start로 변경하면 내용물 위쪽부터 채워집니다.
+  justifyContent: "flex-start",
+  alignItems: "center",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  border: "1px solid #E0E0E0",
+  width: "100%",
+  // minHeight를 삭제하거나 줄여서, 이미지가 작을 때 박스가 과도하게 커지지 않게 함
+  // minHeight: "280px", // 삭제됨
+  height: "auto", // 내용물에 맞춤
+};
 
-      <p
-        style={{
-          whiteSpace: "pre-line",
-          lineHeight: "1.8",
-          color: "#555",
-          fontWeight: 600,
-        }}
-      >
-        {content}
-      </p>
-    </div>
-  );
-}
+const imageGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: "10px",
+  width: "100%",
+};
+
+const galleryImageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "auto",
+  objectFit: "cover",
+  borderRadius: "8px",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+  transition: "transform 0.2s ease",
+  cursor: "pointer",
+};
+
+const equipmentImageContainerStyle: React.CSSProperties = {
+  width: "100%",
+  // 높이를 auto로 하거나, 이미지 비율에 맞게 조정
+  // 여기서는 균일함을 위해 고정 높이를 유지하되, 필요시 "auto"로 변경 가능
+  height: "200px", 
+  background: "white",
+  borderRadius: "15px",
+  overflow: "hidden",
+  marginBottom: "15px",
+  border: "2px solid rgba(255,255,255,0.8)",
+  boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+};
+
+const equipmentImageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "100%",
+  objectFit: "cover", // 컨테이너에 꽉 차게 (잘릴 수 있음). 다 보여주려면 "contain"
+};

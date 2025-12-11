@@ -1,292 +1,858 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 
-export default function Synthesis() {
+export default function SynthesisPage() {
+  const [activeProject, setActiveProject] = useState<string>("perovskite");
+
+  const scrollToSection = (id: string) => {
+    setActiveProject(id);
+    document.getElementById(`project-${id}`)?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <div
       style={{
-        fontFamily: "'Baloo 2', sans-serif",
+        fontFamily: "'Baloo 2', 'Pretendard', sans-serif",
         background: "#FFE8F1",
         minHeight: "100vh",
-        padding: "60px 20px",
+        padding: "100px 20px 60px",
+        color: "#444",
       }}
     >
-      {/* ---------------- Title Section ---------------- */}
-      <header
-        style={{
-          textAlign: "center",
-          marginBottom: "50px",
-        }}
-      >
+      {/* Header Section */}
+      <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
-            marginBottom: "10px",
             fontWeight: 800,
-            fontFamily: "'Fredoka One', cursive", // 귀여운 제목 폰트
+            marginBottom: "15px",
+            fontFamily: "'Montserrat', 'Fredoka One', sans-serif",
+            letterSpacing: "1px",
+            textShadow: "2px 2px 0px #FFF",
           }}
         >
           Synthesis Research
         </h1>
-
         <p
           style={{
             fontSize: "1.2rem",
-            color: "#666",
+            color: "#7A7A7A",
             fontWeight: 600,
+            maxWidth: "650px",
+            margin: "0 auto",
+            lineHeight: "1.6",
           }}
         >
-          My early journey in phosphor, battery, and solid-state synthesis
+          From <b>Powder</b> to <b>Function</b>.<br />
+          기초 무기 합성부터 차세대 발광·배터리 소재까지.
         </p>
       </header>
 
-      {/* ---------------- Summary Table ---------------- */}
-      <section
-        style={{
-          maxWidth: "1000px",
-          margin: "0 auto 60px auto",
-          background: "white",
-          padding: "25px",
-          borderRadius: "20px",
-          boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "1.8rem",
-            color: "#FF6B9D",
-            marginBottom: "20px",
-            fontWeight: 700,
-          }}
-        >
-          Summary of Experiments
-        </h2>
+      {/* Timeline Section */}
+      <div style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
+        <div style={{ position: "relative", padding: "0 20px" }}>
+          {/* Timeline Line */}
+          <div
+            style={{
+              position: "absolute",
+              top: "20px",
+              left: "20px",
+              right: "20px",
+              height: "3px",
+              background: "linear-gradient(to right, rgba(255, 107, 157, 0.3), #FF6B9D, rgba(255, 107, 157, 0.3))",
+              borderRadius: "2px",
+            }}
+          />
+         
+          {/* Timeline Points */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              position: "relative",
+              zIndex: 1,
+            }}
+          >
+            {/* 2020-2021 */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <div
+                style={{
+                  width: activeProject === 'phosphor-ldh' ? "16px" : "12px",
+                  height: activeProject === 'phosphor-ldh' ? "16px" : "12px",
+                  borderRadius: "50%",
+                  background: activeProject === 'phosphor-ldh' ? "#FF6B9D" : "white",
+                  border: "3px solid #FF6B9D",
+                  transition: "all 0.3s ease",
+                  boxShadow: activeProject === 'phosphor-ldh'
+                    ? "0 0 0 4px rgba(255, 107, 157, 0.15)"
+                    : "0 2px 4px rgba(0,0,0,0.1)",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: activeProject === 'phosphor-ldh' ? "#FF6B9D" : "#999",
+                  transition: "color 0.3s ease",
+                  marginTop: "15px",
+                  marginBottom: "20px",
+                }}
+              >
+                2020 - 2021
+              </div>
+              
+              <div
+                onClick={() => scrollToSection('phosphor-ldh')}
+                style={{
+                  fontSize: "0.9rem",
+                  color: activeProject === 'phosphor-ldh' ? "#FF6B9D" : "#666",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  padding: "8px 16px",
+                  borderRadius: "20px",
+                  background: activeProject === 'phosphor-ldh' 
+                    ? "rgba(255, 107, 157, 0.1)" 
+                    : "rgba(255, 255, 255, 0.7)",
+                  backdropFilter: "blur(10px)",
+                  border: `2px solid ${activeProject === 'phosphor-ldh' ? "#FF6B9D" : "rgba(255, 255, 255, 0.5)"}`,
+                  fontWeight: 600,
+                  transition: "all 0.2s ease",
+                  boxShadow: activeProject === 'phosphor-ldh' 
+                    ? "0 4px 12px rgba(255, 107, 157, 0.15)" 
+                    : "0 2px 8px rgba(0,0,0,0.05)",
+                  minWidth: "140px",
+                }}
+              >
+                Phosphor & LDH
+              </div>
+            </div>
 
-        <table
-          style={{
-            width: "100%",
-            borderCollapse: "collapse",
-            borderRadius: "10px",
-            overflow: "hidden",
-          }}
-        >
-          <thead>
-            <tr style={{ background: "#FFD6E5", color: "#444" }}>
-              <th style={thStyle}>기간</th>
-              <th style={thStyle}>장소</th>
-              <th style={thStyle}>프로젝트명</th>
-              <th style={thStyle}>핵심 기술</th>
-              <th style={thStyle}>보기</th>
-            </tr>
-          </thead>
+            {/* 2022-2023 */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <div
+                style={{
+                  width: activeProject === 'target' || activeProject === 'battery' ? "16px" : "12px",
+                  height: activeProject === 'target' || activeProject === 'battery' ? "16px" : "12px",
+                  borderRadius: "50%",
+                  background: activeProject === 'target' || activeProject === 'battery' ? "#FF6B9D" : "white",
+                  border: "3px solid #FF6B9D",
+                  transition: "all 0.3s ease",
+                  boxShadow: activeProject === 'target' || activeProject === 'battery'
+                    ? "0 0 0 4px rgba(255, 107, 157, 0.15)"
+                    : "0 2px 4px rgba(0,0,0,0.1)",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: activeProject === 'target' || activeProject === 'battery' ? "#FF6B9D" : "#999",
+                  transition: "color 0.3s ease",
+                  marginTop: "15px",
+                  marginBottom: "20px",
+                }}
+              >
+                2022 - 2023
+              </div>
+              
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
+                <div
+                  onClick={() => scrollToSection('target')}
+                  style={{
+                    fontSize: "0.9rem",
+                    color: activeProject === 'target' ? "#FF6B9D" : "#666",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    padding: "8px 16px",
+                    borderRadius: "20px",
+                    background: activeProject === 'target' 
+                      ? "rgba(255, 107, 157, 0.1)" 
+                      : "rgba(255, 255, 255, 0.7)",
+                    backdropFilter: "blur(10px)",
+                    border: `2px solid ${activeProject === 'target' ? "#FF6B9D" : "rgba(255, 255, 255, 0.5)"}`,
+                    fontWeight: 600,
+                    transition: "all 0.2s ease",
+                    boxShadow: activeProject === 'target' 
+                      ? "0 4px 12px rgba(255, 107, 157, 0.15)" 
+                      : "0 2px 8px rgba(0,0,0,0.05)",
+                    minWidth: "160px",
+                  }}
+                >
+                  Solid-State Phosphor
+                </div>
+                <div
+                  onClick={() => scrollToSection('battery')}
+                  style={{
+                    fontSize: "0.9rem",
+                    color: activeProject === 'battery' ? "#FF6B9D" : "#666",
+                    textAlign: "center",
+                    cursor: "pointer",
+                    padding: "8px 16px",
+                    borderRadius: "20px",
+                    background: activeProject === 'battery' 
+                      ? "rgba(255, 107, 157, 0.1)" 
+                      : "rgba(255, 255, 255, 0.7)",
+                    backdropFilter: "blur(10px)",
+                    border: `2px solid ${activeProject === 'battery' ? "#FF6B9D" : "rgba(255, 255, 255, 0.5)"}`,
+                    fontWeight: 600,
+                    transition: "all 0.2s ease",
+                    boxShadow: activeProject === 'battery' 
+                      ? "0 4px 12px rgba(255, 107, 157, 0.15)" 
+                      : "0 2px 8px rgba(0,0,0,0.05)",
+                    minWidth: "160px",
+                  }}
+                >
+                  Battery NCM
+                </div>
+              </div>
+            </div>
 
-          <tbody>
-            {/* Row 1 */}
-            <tr>
-              <td style={tdStyle}>2018</td>
-              <td style={tdStyle}>신라대학교</td>
-              <td style={tdStyle}>기초 발광 형광체 합성</td>
-              <td style={tdStyle}>Solid-state + Eu/Tb doping</td>
-              <td style={tdStyle}>
-                <a href="#syn1" style={anchorBtn}>이동</a>
-              </td>
-            </tr>
+            {/* 2024-2025 */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                flex: 1,
+              }}
+            >
+              <div
+                style={{
+                  width: activeProject === 'perovskite' ? "16px" : "12px",
+                  height: activeProject === 'perovskite' ? "16px" : "12px",
+                  borderRadius: "50%",
+                  background: activeProject === 'perovskite' ? "#FF6B9D" : "white",
+                  border: "3px solid #FF6B9D",
+                  transition: "all 0.3s ease",
+                  boxShadow: activeProject === 'perovskite'
+                    ? "0 0 0 4px rgba(255, 107, 157, 0.15)"
+                    : "0 2px 4px rgba(0,0,0,0.1)",
+                }}
+              />
+              <div
+                style={{
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: activeProject === 'perovskite' ? "#FF6B9D" : "#999",
+                  transition: "color 0.3s ease",
+                  marginTop: "15px",
+                  marginBottom: "20px",
+                }}
+              >
+                2024 - 2025
+              </div>
+              
+              <div
+                onClick={() => scrollToSection('perovskite')}
+                style={{
+                  fontSize: "0.9rem",
+                  color: activeProject === 'perovskite' ? "#FF6B9D" : "#666",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  padding: "8px 16px",
+                  borderRadius: "20px",
+                  background: activeProject === 'perovskite' 
+                    ? "rgba(255, 107, 157, 0.1)" 
+                    : "rgba(255, 255, 255, 0.7)",
+                  backdropFilter: "blur(10px)",
+                  border: `2px solid ${activeProject === 'perovskite' ? "#FF6B9D" : "rgba(255, 255, 255, 0.5)"}`,
+                  fontWeight: 600,
+                  transition: "all 0.2s ease",
+                  boxShadow: activeProject === 'perovskite' 
+                    ? "0 4px 12px rgba(255, 107, 157, 0.15)" 
+                    : "0 2px 8px rgba(0,0,0,0.05)",
+                  minWidth: "140px",
+                }}
+              >
+                Perovskite & ALD
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Row 2 */}
-            <tr>
-              <td style={tdStyle}>2020</td>
-              <td style={tdStyle}>신라대학교</td>
-              <td style={tdStyle}>고상법 발광 연구</td>
-              <td style={tdStyle}>Solid-state reaction</td>
-              <td style={tdStyle}>
-                <a href="#syn2" style={anchorBtn}>이동</a>
-              </td>
-            </tr>
-
-            {/* Row 3 */}
-            <tr>
-              <td style={tdStyle}>2021</td>
-              <td style={tdStyle}>신라대학교</td>
-              <td style={tdStyle}>Battery 재료 합성</td>
-              <td style={tdStyle}>Lithium-based synthesis</td>
-              <td style={anchorBtn}>
-                <a href="#syn3" style={anchorBtn}>이동</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      {/* ---------------- Detailed Sections ---------------- */}
-
-      {/* Section 1 */}
-      <SectionBlock
-        id="syn1"
-        title="1. Basic Phosphor Synthesis (Freshman)"
-        summary="학부 1학년 연구실 참여 — Eu/Tb 도핑 기반 형광체 기초 합성 경험"
-        method="• Solid-state mixing
-• Mortar grinding
-• 1200°C furnace firing"
-        results="• Eu/Tb 농도 변화에 따른 발광 강도 확인"
-        interpretation="초기 합성 감각을 익힌 경험으로, 이후 페로브스카이트/형광체 연구의 기반."
-      />
-
-      {/* Section 2 */}
-      <SectionBlock
-        id="syn2"
-        title="2. Solid-State Phosphor Fabrication"
-        summary="발광 파장 조절 및 결정상 변화 분석 중심 연구"
-        method="• Carbonate / oxide precursor 사용
-• Multi-step annealing
-• XRD + PL 특성 분석"
-        results="• 결정상 변화 → 발광 파장 shift 확인"
-        interpretation="세라믹 발광체 연구 방향성을 확립한 핵심 경험."
-      />
-
-      {/* Section 3 */}
-      <SectionBlock
-        id="syn3"
-        title="3. Battery Material Synthesis"
-        summary="기초적인 전극재 합성 및 구조 분석 경험"
-        method="• Li-based precursor mixing
-• Tube furnace annealing
-• SEM morphology 분석"
-        results="• 입자 크기 변화 → 전기화학적 성능 영향 확인"
-        interpretation="추후 열관리·박막 연구에서도 미세구조 분석 감각을 형성."
-      />
-
-      {/* ---------------- Navigation Buttons ---------------- */}
+      {/* Quick Overview Section */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
+          maxWidth: "1100px",
+          margin: "0 auto 60px",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
-          marginTop: "40px",
         }}
       >
-        <a href="/research" style={navBtn}>
-          ← Back to Research
-        </a>
-        <a href="/research/deposition" style={navBtn}>
-          이전: Deposition →
-        </a>
+        <OverviewCard 
+          icon="✨" title="Phosphor & LDH" 
+          desc1="Red Phosphor Synthesis" desc2="Functional Nanomaterials"
+          onClick={() => scrollToSection('phosphor-ldh')}
+          color="rgba(255, 193, 7, 0.25)" borderColor="#FFC107"
+        />
+        <OverviewCard 
+          icon="🧱" title="Solid-State Synthesis" 
+          desc1="Sputtering Target Fabrication" desc2="CaNb₂O₆:Tb³⁺ Sintering"
+          onClick={() => scrollToSection('target')}
+          color="rgba(108, 92, 231, 0.25)" borderColor="#6C5CE7"
+        />
+        <OverviewCard 
+          icon="🔋" title="NCM Cathode" 
+          desc1="Solid-State Synthesis" desc2="Li-ion Battery Materials"
+          onClick={() => scrollToSection('battery')}
+          color="rgba(0, 184, 148, 0.25)" borderColor="#00B894"
+        />
+        <OverviewCard 
+          icon="💎" title="Perovskite Engineering" 
+          desc1="Powder ALD Coating" desc2="ZIF-8 Template Synthesis"
+          onClick={() => scrollToSection('perovskite')}
+          color="rgba(255, 94, 149, 0.25)" borderColor="#FF5E95"
+        />
+      </div>
+
+      {/* Main Content: Research Projects */}
+      <div
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "60px",
+        }}
+      >
+        {/* 1. PEROVSKITE SECTION - MIXED GRID */}
+        <section id="project-perovskite" style={projectSectionStyle}>
+          <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>💎</span>
+            <div style={{ flex: 1 }}>
+              <h2 style={titleStyle}>Novel Synthesis for Perovskite Stability</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }}>
+                  2024 - 2025 | KICET
+                </p>
+                <span style={publicationBadgeStyle}>
+                  📄 Under Review in Advanced Optical Materials (P-ALD)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+            <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Objective</h3>
+              <p style={paragraphStyle}>
+                Cs₄PbBr₆ 페로브스카이트의 입자 크기를 제어하고 대기 안정성을 획기적으로 개선하기 위해
+                <b> 새로운 합성법(Sonication-assisted ZIF-8 Templating)</b>과 <b>후처리 코팅(Powder ALD)</b> 기술 개발.
+              </p>
+
+              <h3 style={headingStyle}>Synthesis Techniques</h3>
+              <ul style={listStyle}>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>ZIF-8 Templating:</strong>
+                  {" "}MOF 소재인 ZIF-8을 템플릿으로 활용하고 Sonication 에너지를 가하여 입자 크기를 제어.
+                  발광 파장을 552nm에서 520nm(Deep Green)로 이동시킴.
+                </li>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Novel Powder ALD:</strong>
+                  {" "}유동층 반응기(Fluidized-bed reactor)를 이용해 합성된 분말 표면에 Al₂O₃ 보호막을 원자 단위로 코팅.
+                  용매를 사용하지 않는 건식 공정(Solvent-free)으로 페로브스카이트 손상 최소화.
+                </li>
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Dual Perovskite System:</strong>
+                  {" "}Cs₄PbBr₆ (녹색)와 Cs₂Cu₃I₆ (청색)를 조합하여 UV 파장별 색상 구분 가능한 발광 필름 제작.
+                </li>
+              </ul>
+
+              <div style={{ marginTop: "30px", background: "#FFF0F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FF5E95" }}>
+                <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#FF5E95" }}>🚀 Impact</h4>
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                  ✓ 수분 저항성 및 UV 안정성 획기적 개선 (수분 접촉각 85° 달성)<br />
+                  ✓ 소광(Quenching) 억제를 통한 발광 효율(PLQY) <strong>23% 향상</strong><br />
+                  ✓ 백색 파우더 형태의 고효율 녹색 발광체 구현
+                </p>
+              </div>
+
+               <div style={{marginTop: "20px"}}>
+                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                   → Go to Phosphor & Perovskite
+                 </a>
+              </div>
+            </div>
+
+            <div style={imageGalleryContainerStyle}>
+              <div style={{width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
+                {/* 2-Column Grid for Vertical Images */}
+                <div style={imageGridStyle}>
+                  <img src="/research/synthesis/syn1/syn1-1.jpg" alt="Perovskite Synthesis 1" style={galleryImageStyle} />
+                  <img src="/research/synthesis/syn1/syn1-2.jpg" alt="Perovskite Synthesis 2" style={galleryImageStyle} />
+                </div>
+                {/* 1-Column Grid for Horizontal Images */}
+                <div style={oneColGridStyle}>
+                  <img src="/research/synthesis/syn1/syn1-3.jpg" alt="Perovskite Synthesis 3" style={galleryImageStyle} />
+                  <img src="/research/synthesis/syn1/syn1-4.jpg" alt="Perovskite Synthesis 4" style={galleryImageStyle} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 2. SOLID-STATE SECTION - 1 COL */}
+        <section id="project-target" style={projectSectionStyle}>
+           <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>🧱</span>
+            <div style={{ flex: 1 }}>
+              <h2 style={titleStyle}>Solid-State Synthesis for Targets</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }}>
+                  2022 - 2023 | Silla Univ
+                </p>
+                <span style={publicationBadgeStyle}>
+                  📌 Poster at GCIM 2023
+                </span>
+                <span style={publicationBadgeStyle}>
+                  📄 Published in 한국재료학회
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+             <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Target Fabrication</h3>
+              <p style={paragraphStyle}>
+                RF 마그네트론 스퍼터링 공정에 사용될 고밀도 세라믹 타겟을 제작하기 위해
+                <b> 고상 반응법(Solid-State Reaction)</b>을 최적화.
+              </p>
+
+              <h3 style={headingStyle}>Synthesis Process</h3>
+              <ul style={listStyle}>
+                <li>
+                  <strong style={{ color: "#6C5CE7" }}>Ball Milling:</strong>
+                  {" "}초기 물질 CaO, Nb₂O₅, Tb₄O₇을 정량 평량하여 균일하게 혼합 및 분쇄.
+                </li>
+                <li>
+                  <strong style={{ color: "#6C5CE7" }}>Sintering:</strong>
+                  {" "}1,100°C에서 5시간 동안 고온 소결하여 단일 상(Single Phase)의 CaNb₂O₆:Tb³⁺ 분말 합성.
+                </li>
+                <li>
+                  <strong style={{ color: "#6C5CE7" }}>Pelletizing:</strong>
+                  {" "}40 MPa 유압으로 성형하여 직경 2 인치의 스퍼터링 타겟 제조.
+                </li>
+              </ul>
+
+              <div style={{ marginTop: "30px", background: "#F3E5F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #6C5CE7" }}>
+                  <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#6C5CE7" }}>🚀 Impact</h4>
+                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                    ✓ Crack 없는 고밀도 세라믹 타겟 확보<br />
+                    ✓ 박막 증착을 위한 원천 소재 합성 기술 확립
+                 </p>
+              </div>
+
+              <div style={{marginTop: "20px", display: "flex", gap: "15px"}}>
+                 <a href="/research/deposition" style={linkButtonStyle}>
+                   → Go to Deposition Research
+                 </a>
+                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                   → Go to Phosphor & Perovskite
+                 </a>
+              </div>
+            </div>
+
+            <div style={imageGalleryContainerStyle}>
+              {/* Single Horizontal Image -> 1 Column */}
+              <div style={oneColGridStyle}>
+                <img src="/research/synthesis/syn2/syn2-1.jpg" alt="Solid-State Target" style={galleryImageStyle} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 3. BATTERY SECTION - MIXED GRID (1-COL TOP, 2-COL BOTTOM) */}
+        <section id="project-battery" style={projectSectionStyle}>
+          <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>🔋</span>
+            <div>
+              <h2 style={titleStyle}>Li-ion Battery Cathode (NCM)</h2>
+              <p style={subTitleStyle}>
+                2022 - 2023 | Silla Univ | Tiger Meow Club
+              </p>
+            </div>
+          </div>
+
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+            <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Project Overview</h3>
+              <p style={paragraphStyle}>
+                리튬 이온 배터리용 양극재(NCM523)를 <b>고상 반응법(Solid-State Synthesis)</b>을 통해 직접 합성하고,
+                전구체(Precursor)와 리튬 소스(Li₂CO₃)의 혼합 및 소성 공정을 최적화.
+              </p>
+              
+              <h3 style={headingStyle}>Synthesis Process</h3>
+              <ul style={{...listStyle, marginBottom: "20px"}}>
+                <li>
+                  <strong style={{ color: "#009688" }}>Mixing:</strong>
+                  {" "}NCM 전구체와 Li₂CO₃를 1:2 비율로 혼합 후 볼밀링으로 균일하게 분쇄.
+                </li>
+                <li>
+                  <strong style={{ color: "#009688" }}>Calcination:</strong>
+                  {" "}800~1000°C에서 소결(Sintering)하여 NCM523 양극재 합성.
+                </li>
+                <li>
+                  <strong style={{ color: "#009688" }}>Optimization:</strong>
+                  {" "}소성 온도를 900°C(10h)에서 1000°C로 상향하여 입자 결정성 및 크기 증가 확인 (SEM 분석).
+                </li>
+                <li>
+                  <strong style={{ color: "#009688" }}>Electrode Fabrication:</strong>
+                  {" "}합성된 NCM 분말과 Super P, PVDF를 혼합하여 슬러리 제조 후 Al 집전체에 코팅.
+                </li>
+              </ul>
+
+              <div style={{ marginTop: "30px", background: "#E0F2F1", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #009688" }}>
+                <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#009688" }}>🚀 Impact</h4>
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                   ✓ 양극 활물질 전구체 합성부터 슬러리 코팅까지 전 공정 수행<br />
+                   ✓ 소성 온도(Calcination Temp.)에 따른 결정 성장 메커니즘 규명<br />
+                   ✓ 고상 반응법을 통한 NCM 양극재 합성 기술 확립
+                </p>
+              </div>
+            </div>
+
+            <div style={imageGalleryContainerStyle}>
+              <div style={{width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
+                {/* First image (syn3-1) -> 1 Column */}
+                <div style={oneColGridStyle}>
+                  <img src="/research/synthesis/syn3/syn3-1.jpg" alt="NCM Battery 1" style={galleryImageStyle} />
+                </div>
+                {/* Remaining images -> 2 Columns */}
+                <div style={imageGridStyle}>
+                  <img src="/research/synthesis/syn3/syn3-2.jpg" alt="NCM Battery 2" style={galleryImageStyle} />
+                  <img src="/research/synthesis/syn3/syn3-3.jpg" alt="NCM Battery 3" style={galleryImageStyle} />
+                  <img src="/research/synthesis/syn3/syn3-4.jpg" alt="NCM Battery 4" style={galleryImageStyle} />
+                  <img src="/research/synthesis/syn3/syn3-5.jpg" alt="NCM Battery 5" style={galleryImageStyle} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. PHOSPHOR & LDH SECTION - 2 COL */}
+        <section id="project-phosphor-ldh" style={projectSectionStyle}>
+          <div style={projectHeaderStyle}>
+            <span style={{ fontSize: "2.5rem" }}>✨</span>
+            <div style={{ flex: 1 }}>
+              <h2 style={titleStyle}>Functional Phosphors & LDH Nanomaterials</h2>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }}>
+                  2020 - 2021 | Silla Univ
+                </p>
+                <span style={publicationBadgeStyle}>
+                  📌 Poster at 제129회 대한화학회 (Project 2)
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div style={contentBoxStyle}>
+            <div style={{ flex: 1 }}>
+              <h3 style={headingStyle}>Project 1: Phosphor (MgAl-LDH:Eu/Tb)</h3>
+              <p style={paragraphStyle}>
+                <b>공침법/수열합성</b>을 통한 적색 형광체 제조 및 실리카 코팅을 통한 내구성 향상 연구.
+              </p>
+              <ul style={{...listStyle, marginBottom: "20px"}}>
+                <li>
+                  <strong style={{ color: "#FFC107" }}>Phase Control:</strong>
+                  {" "}Mg:Al 비율 최적화(1:3)로 안정한 LDH 단일상 확보.
+                </li>
+                <li>
+                  <strong style={{ color: "#FFC107" }}>Doping Optimization:</strong>
+                  {" "}Eu³⁺, Tb³⁺ 도핑을 통한 적색/녹색 발광 효율 극대화. Eu³⁺의 경우 <sup>5</sup>D<sub>0</sub> → <sup>7</sup>F<sub>2</sub> 전이를 통한 적색 발광 구현.
+                </li>
+                <li>
+                  <strong style={{ color: "#FFC107" }}>Thermal Treatment:</strong>
+                  {" "}900~1300°C 소성으로 Spinel(MgAl₂O₄) 구조 형성.
+                </li>
+                <li>
+                  <strong style={{ color: "#FFC107" }}>Silica Coating:</strong>
+                  {" "}역마이크로에멀젼법으로 SiO₂ 보호막 코팅, 화학적 안정성 확보.
+                </li>
+              </ul>
+
+              <div style={{marginTop: "20px", marginBottom: "30px"}}>
+                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                   → Go to Phosphor & Perovskite
+                 </a>
+              </div>
+
+              <h3 style={headingStyle}>Project 2: Functional LDH & mRGO</h3>
+              <ul style={listStyle}>
+                <li>
+                  <b>Hydrothermal Synthesis:</b> Mg-Al, Zn-Al, Ni-Fe LDH를 수열합성법으로 제조하여 육각형 나노시트 확보.
+                </li>
+                <li>
+                  <b>Mercapto-reduced Graphene Oxide (mRGO) Synthesis:</b> Silica Monoliths로의 제작, Molybdenum 도핑 등의 활용. 수열 합성법을 통해 고비표면적 구조 확보.
+                </li>
+                <li>
+                  <b>Heavy Metal Removal Application:</b> mRGO를 필터로 사용하여 중금속 제거 효율 검증.
+                </li>
+              </ul>
+
+              <div style={{ marginTop: "30px", background: "#FFF9C4", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FFC107" }}>
+                <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#F57F17" }}>🚀 Impact</h4>
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                   ✓ 합성 조건(pH, 온도, 시간)에 따른 결정 형상 제어 메커니즘 규명<br />
+                   ✓ 대량 합성(Scale-up) 공정 확립 및 재현성 확보<br />
+                   ✓ 환경 정화 응용을 위한 기능성 나노소재 플랫폼 구축
+                </p>
+              </div>
+            </div>
+
+            <div style={imageGalleryContainerStyle}>
+              <div style={imageGridStyle}>
+                <img src="/research/synthesis/syn4/syn4-1.jpg" alt="Phosphor LDH 1" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-2.jpg" alt="Phosphor LDH 2" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-3.png" alt="Phosphor LDH 3" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-4.jpg" alt="Phosphor LDH 4" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-5.jpg" alt="Phosphor LDH 5" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-6.jpg" alt="Phosphor LDH 6" style={galleryImageStyle} />
+                <img src="/research/synthesis/syn4/syn4-7.jpg" alt="Phosphor LDH 7" style={galleryImageStyle} />
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      {/* Footer Navigation */}
+      <div style={{ textAlign: "center", marginTop: "80px" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research" style={primaryBtnStyle}>
+            Back to Research
+          </a>
+          <a href="/research/deposition" style={secondaryBtnStyle}>
+            Next: Deposition →
+          </a>
+        </div>
       </div>
     </div>
   );
 }
 
-/* ---------------- Styles ---------------- */
+/* ================= STYLES ================= */
 
-const thStyle: React.CSSProperties = {
-  padding: "12px",
-  fontWeight: 700,
-  fontSize: "1rem",
-  borderBottom: "2px solid #F7BFD3",
+const overviewCardStyle: React.CSSProperties = {
+  padding: "25px",
+  borderRadius: "20px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  textAlign: "center",
+  border: "2px solid rgba(255, 255, 255, 0.3)",
+  cursor: "pointer",
+  transition: "all 0.2s ease",
 };
 
-const tdStyle: React.CSSProperties = {
-  padding: "12px",
-  borderBottom: "1px solid #F4C9D8",
-  textAlign: "center",
+interface OverviewCardProps {
+  icon: string;
+  title: string;
+  desc1: string;
+  desc2: string;
+  onClick: () => void;
+  color: string;
+  borderColor: string;
+}
+
+function OverviewCard({ icon, title, desc1, desc2, onClick, color, borderColor }: OverviewCardProps) {
+    const [isHovered, setIsHovered] = React.useState(false);
+    return (
+        <div
+          onClick={onClick}
+          style={{
+            ...overviewCardStyle,
+            background: "rgba(255, 255, 255, 0.6)",
+            backdropFilter: "blur(10px)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-5px)";
+            e.currentTarget.style.boxShadow = `0 8px 20px ${color}`;
+            e.currentTarget.style.borderColor = borderColor;
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.9)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.6)";
+          }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "10px" }}>{icon}</div>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#333", marginBottom: "8px" }}>
+            {title}
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
+            {desc1}<br />{desc2}
+          </p>
+        </div>
+    );
+}
+
+const projectSectionStyle: React.CSSProperties = {
+  background: "white",
+  borderRadius: "25px",
+  padding: "40px",
+  boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+  border: "1px solid #FFF0F5",
+};
+
+const projectHeaderStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: "20px",
+  marginBottom: "30px",
+  borderBottom: "2px solid #FFF0F5",
+  paddingBottom: "20px",
+};
+
+const titleStyle: React.CSSProperties = {
+  fontSize: "1.8rem",
+  fontWeight: 800,
+  color: "#333",
+  marginBottom: "5px",
+};
+
+const subTitleStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  color: "#888",
   fontWeight: 600,
+};
+
+const publicationBadgeStyle: React.CSSProperties = {
+  background: "#FFF9C4",
+  border: "1.5px solid #F9A825",
+  borderRadius: "6px",
+  padding: "5px 14px",
+  fontSize: "0.85rem",
+  fontWeight: 700,
+  color: "#F57F17",
+  whiteSpace: "nowrap",
+  display: "inline-block",
+};
+
+const contentBoxStyle: React.CSSProperties = {
+  display: "flex",
+  gap: "40px",
+  flexWrap: "wrap",
+  alignItems: "flex-start", // **Shrink fix applied here**
+};
+
+const headingStyle: React.CSSProperties = {
+  fontSize: "1.1rem",
+  fontWeight: 700,
+  color: "#FF6B9D",
+  marginTop: "0px",
+  marginBottom: "10px",
+  letterSpacing: "0.5px",
+};
+
+const paragraphStyle: React.CSSProperties = {
+  fontSize: "1rem",
+  lineHeight: "1.7",
+  color: "#555",
+  marginBottom: "25px",
+};
+
+const listStyle: React.CSSProperties = {
+  paddingLeft: "20px",
+  lineHeight: "1.8",
   color: "#555",
 };
 
-const anchorBtn: React.CSSProperties = {
-  background: "#FF6B9D",
-  padding: "6px 14px",
-  borderRadius: "12px",
-  color: "white",
-  fontSize: "0.85rem",
-  textDecoration: "none",
-};
-
-/* Navigation */
-const navBtn: React.CSSProperties = {
-  background: "#FF6B9D",
-  padding: "12px 22px",
-  borderRadius: "20px",
-  color: "white",
+const linkButtonStyle: React.CSSProperties = {
+  display: "inline-block",
+  background: "white",
+  color: "#FF6B9D",
+  padding: "10px 20px",
+  borderRadius: "25px",
+  fontSize: "0.9rem",
   fontWeight: 700,
-  fontSize: "1rem",
   textDecoration: "none",
+  border: "2px solid #FF6B9D",
+  transition: "all 0.3s ease",
+  boxShadow: "0 3px 8px rgba(255, 107, 157, 0.2)",
 };
 
-/* ---------------- Section Component ---------------- */
-function SectionBlock({ id, title, summary, method, results, interpretation }: any) {
-  return (
-    <section
-      id={id}
-      style={{
-        maxWidth: "1000px",
-        margin: "40px auto",
-        background: "white",
-        padding: "30px",
-        borderRadius: "20px",
-        boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-      }}
-    >
-      <h2
-        style={{
-          fontSize: "1.7rem",
-          color: "#FF6B9D",
-          fontWeight: 800,
-          marginBottom: "20px",
-        }}
-      >
-        {title}
-      </h2>
+const primaryBtnStyle: React.CSSProperties = {
+  background: "#FF6B9D",
+  color: "white",
+  padding: "15px 30px",
+  borderRadius: "50px",
+  fontWeight: 700,
+  textDecoration: "none",
+  boxShadow: "0 4px 15px rgba(255, 107, 157, 0.4)",
+  display: "inline-block",
+};
 
-      <SectionItem title="Summary" content={summary} />
-      <SectionItem title="Method" content={method} />
-      <SectionItem title="Results" content={results} />
-      <SectionItem title="Interpretation" content={interpretation} />
+const secondaryBtnStyle: React.CSSProperties = {
+  background: "white",
+  color: "#FF6B9D",
+  padding: "15px 30px",
+  borderRadius: "50px",
+  fontWeight: 700,
+  textDecoration: "none",
+  border: "2px solid #FF6B9D",
+  display: "inline-block",
+};
 
-      {/* Image Placeholder */}
-      <div
-        style={{
-          border: "2px dashed #FFB6C9",
-          padding: "30px",
-          borderRadius: "20px",
-          textAlign: "center",
-          color: "#888",
-          fontSize: "1rem",
-          marginTop: "20px",
-        }}
-      >
-        (여기에 이후에 그래프 또는 사진을 넣으세요)
-      </div>
-    </section>
-  );
-}
+const imageGalleryContainerStyle: React.CSSProperties = {
+  flex: "0 0 320px",
+  background: "#F8F9FA",
+  borderRadius: "15px",
+  padding: "15px",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start", // **Shrink fix**
+  alignItems: "center",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  border: "1px solid #E0E0E0",
+  width: "100%",
+  height: "auto", // **Shrink fix**
+};
 
-function SectionItem({ title, content }: any) {
-  return (
-    <div style={{ marginBottom: "20px" }}>
-      <h3
-        style={{
-          fontSize: "1.2rem",
-          fontWeight: 700,
-          color: "#FF8CB3",
-          marginBottom: "8px",
-        }}
-      >
-        {title}
-      </h3>
+// 2 Columns for Vertical/Many images
+const imageGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr", 
+  gap: "10px",
+  width: "100%",
+};
 
-      <p
-        style={{
-          whiteSpace: "pre-line",
-          lineHeight: "1.8",
-          color: "#555",
-          fontWeight: 600,
-        }}
-      >
-        {content}
-      </p>
-    </div>
-  );
-}
+// 1 Column for Horizontal images
+const oneColGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1fr",
+  gap: "10px",
+  width: "100%",
+};
 
+const galleryImageStyle: React.CSSProperties = {
+  width: "100%",
+  height: "auto",
+  objectFit: "cover",
+  borderRadius: "8px",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+  transition: "transform 0.2s ease",
+  cursor: "pointer",
+};
