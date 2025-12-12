@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 export default function DepositionPage() {
-  const [activeProject, setActiveProject] = useState<string>("cvd");
+  const [activeProject, setActiveProject] = useState<string>("");
 
   const scrollToSection = (id: string) => {
     setActiveProject(id);
@@ -26,6 +26,7 @@ export default function DepositionPage() {
       {/* Header */}
       <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
+          className="page-title"
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
@@ -39,6 +40,7 @@ export default function DepositionPage() {
           Deposition Research
         </h1>
         <p
+          className="page-subtitle"
           style={{
             fontSize: "1.2rem",
             color: "#7A7A7A",
@@ -54,7 +56,7 @@ export default function DepositionPage() {
       </header>
 
       {/* Timeline Section */}
-      <div style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
+      <div className="timeline-section" style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
         <div style={{ position: "relative", padding: "0 20px" }}>
           <div
             style={{
@@ -182,6 +184,7 @@ export default function DepositionPage() {
 
       {/* Quick Overview - 4 Cards */}
       <div
+        className="overview-grid"
         style={{
           maxWidth: "1100px",
           margin: "0 auto 60px",
@@ -244,36 +247,36 @@ export default function DepositionPage() {
         }}
       >
         {/* === 1. E-beam Evaporator (2024-2025) === */}
-        <section id="project-ebeam" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-ebeam" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>✨</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>E-beam Evaporator</h2>
+              <h2 style={titleStyle} className="section-title">E-beam Evaporator</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Published in Advanced Science (Ag–TiO₂–Ag Stacked Layers)
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Objective</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Objective</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 전자빔 증착(E-beam Evaporation)을 통해 <b>Metal-Insulator-Metal (MIM) 다층 구조</b>를 정밀 제어하고,
                 색 조절 가능한 열관리 유리 제작을 위한 초기 박막 설계 및 증착 공정 최적화.
               </p>
 
-              <h3 style={headingStyle}>Multi-layer Thin Film Deposition (MIM Structure)</h3>
+              <h3 style={headingStyle} className="content-heading">Multi-layer Thin Film Deposition (MIM Structure)</h3>
               
-              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginBottom: "10px"}}>
+              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginBottom: "10px"}} className="content-paragraph">
                 Ag–TiO₂–Ag Cavity Structure
               </p>
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#555" }}>Layer Configuration:</strong>
                   {" "}Glass / 하부 Ag (3~20 nm) / TiO₂ (50~150 nm) / 상부 Ag (3~20 nm) 순차 증착
@@ -292,10 +295,10 @@ export default function DepositionPage() {
                 </li>
               </ul>
 
-              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}}>
+              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}} className="content-paragraph">
                 Large-area Uniformity & Reproducibility
               </p>
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   Substrate Temperature RT~150°C 제어, 2-inch 이상 기판에서 두께 편차 &lt;5% 달성
                 </li>
@@ -304,36 +307,36 @@ export default function DepositionPage() {
                 </li>
               </ul>
 
-              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}}>
+              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}} className="content-paragraph">
                 Annealing for Nanostructure Formation
               </p>
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   400~1000°C 어닐링을 통한 Ag 나노입자 형성, 초기 필름 품질이 후속 나노구조에 직접 영향
                 </li>
               </ul>
 
               <div style={{marginTop: "22px", marginBottom: "25px"}}>
-                <a href="/research/thermal-management" style={linkButtonStyle}>
+                <a href="/research/thermal-management" style={linkButtonStyle} className="link-button">
                   → Go to Thermal Management Research
                 </a>
               </div>
 
-              <h3 style={headingStyle}>Complex Metal Structure & Troubleshooting</h3>
+              <h3 style={headingStyle} className="content-heading">Complex Metal Structure & Troubleshooting</h3>
               
-              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginBottom: "10px"}}>
+              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginBottom: "10px"}} className="content-paragraph">
                 Ti–Ag–Cu Multi-layer System
               </p>
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   Ti (접합층) / Ag / Cu 복합 구조 증착, 600~900°C 어닐링 후 Ag-Cu 계면 확산 분석
                 </li>
               </ul>
 
-              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}}>
+              <p style={{...paragraphStyle, fontWeight: 600, color: "#333", marginTop: "18px", marginBottom: "10px"}} className="content-paragraph">
                 Equipment Troubleshooting
               </p>
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#555" }}>Problem:</strong>
                   {" "}Emission current 인가 시 고전압 drop (7.6 kV → 6.x kV) 발생
@@ -344,7 +347,7 @@ export default function DepositionPage() {
                 </li>
               </ul>
 
-              <div style={{ ...impactBoxStyle, background: "#FFF0F5", borderLeft: "4px solid #FF6B9D", marginTop: "20px" }}>
+              <div style={{ ...impactBoxStyle, background: "#FFF0F5", borderLeft: "4px solid #FF6B9D", marginTop: "20px" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#FF6B9D" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ MIM 다층 구조 정밀 증착 및 3~20 nm급 두께 제어<br />
@@ -354,7 +357,7 @@ export default function DepositionPage() {
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={{...imageGridStyle, gridTemplateColumns: "1fr", gap: "12px"}}>
                 <img src="/research/deposition/dep1/dep1-1.jpg" alt="E-beam MIM" style={galleryImageStyle} />
                 <img src="/research/deposition/dep1/dep1-2.jpg" alt="E-beam Structure" style={galleryImageStyle} />
@@ -366,12 +369,12 @@ export default function DepositionPage() {
         </section>
 
         {/* === 2. Sputtering (Two Separate Sections in One Box) === */}
-        <section id="project-phosphor-sputtering" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-phosphor-sputtering" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>⚙️</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>RF Magnetron Sputtering</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">RF Magnetron Sputtering</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 Phosphor & Semiconductor Thin Film Deposition
               </p>
             </div>
@@ -379,35 +382,35 @@ export default function DepositionPage() {
 
           {/* PART 1: Phosphor Sputtering */}
           <div style={{marginBottom: "50px"}}>
-            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}}>
+            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header">
               <span style={{ fontSize: "2rem" }}>🔶</span>
               <div style={{ flex: 1 }}>
-                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}}>Phosphor Sputtering</h3>
+                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Phosphor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
+                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}} className="section-subtitle">
                     2022 - 2023 | Silla Univ
                   </span>
-                  <span style={publicationBadgeStyle}>
+                  <span style={publicationBadgeStyle} className="publication-badge">
                     📌 Poster at GCIM 2023
                   </span>
-                  <span style={publicationBadgeStyle}>
+                  <span style={publicationBadgeStyle} className="publication-badge">
                     📄 Published in Korean Journal of Materials Research
                   </span>
                 </div>
               </div>
             </div>
 
-            <div style={contentBoxStyle}>
+            <div style={contentBoxStyle} className="content-box">
               <div style={{ flex: 1 }}>
-                <h3 style={{...headingStyle, color: "#F9A825"}}>Objective</h3>
-                <p style={paragraphStyle}>
+                <h3 style={{...headingStyle, color: "#F9A825"}} className="content-heading">Objective</h3>
+                <p style={paragraphStyle} className="content-paragraph">
                   자체 제작한 CaNb₂O₆:Tb³⁺ 세라믹 타겟을 사용하여 <b>산화물 형광체 박막</b>을 RF 마그네트론 스퍼터링으로 증착.
                   공정 파라미터 최적화를 통해 고품질 녹색 발광 박막 확보.
                 </p>
 
-                <h3 style={{...headingStyle, color: "#F9A825"}}>RF Sputtering Process</h3>
+                <h3 style={{...headingStyle, color: "#F9A825"}} className="content-heading">RF Sputtering Process</h3>
                 
-                <ul style={listStyle}>
+                <ul style={listStyle} className="content-list">
                   <li>
                     <strong style={{ color: "#555" }}>RF Power & Rate:</strong>
                     {" "}40 W, 증착 속도 제어를 통한 균일한 박막 형성
@@ -430,14 +433,14 @@ export default function DepositionPage() {
                   </li>
                 </ul>
 
-                <h3 style={{...headingStyle, color: "#F9A825", marginTop: "18px"}}>Film Characterization</h3>
-                <ul style={listStyle}>
+                <h3 style={{...headingStyle, color: "#F9A825", marginTop: "18px"}} className="content-heading">Film Characterization</h3>
+                <ul style={listStyle} className="content-list">
                   <li>XRD: CaNb₂O₆ 단일 상 형성, 결정 입자 크기 19~23 nm</li>
                   <li>SEM: 40~90 nm 조약돌 형상, 수직 기둥 구조</li>
                   <li>PL: 251 nm 여기 시 546 nm 녹색 발광, ⁵D₄ → ⁷F₅ 자기 쌍극자 전이</li>
                 </ul>
 
-                <div style={{ ...impactBoxStyle, background: "#FFF9C4", borderLeft: "4px solid #F9A825", marginTop: "18px" }}>
+                <div style={{ ...impactBoxStyle, background: "#FFF9C4", borderLeft: "4px solid #F9A825", marginTop: "18px" }} className="impact-box">
                   <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#F57F17" }}>🚀 Impact</h4>
                   <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                     ✓ RF 스퍼터링 공정 최적화 (파워, 온도, 압력 제어)<br />
@@ -447,16 +450,16 @@ export default function DepositionPage() {
                 </div>
 
                 <div style={{marginTop: "20px", display: "flex", gap: "15px", flexWrap: "wrap"}}>
-                  <a href="/research/synthesis" style={linkButtonStyle}>
+                  <a href="/research/synthesis" style={linkButtonStyle} className="link-button">
                     → Go to Synthesis (Target Fabrication)
                   </a>
-                  <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                  <a href="/research/phosphor-perovskite" style={linkButtonStyle} className="link-button">
                     → Go to Phosphor & Perovskite
                   </a>
                 </div>
               </div>
 
-              <div style={imageGalleryContainerStyle}>
+              <div style={imageGalleryContainerStyle} className="image-gallery">
                 <div style={imageGridStyle}>
                   <img src="/research/deposition/dep2/dep2-1.jpg" alt="Phosphor Film 1" style={galleryImageStyle} />
                   <img src="/research/deposition/dep2/dep2-2.jpg" alt="Phosphor Film 2" style={galleryImageStyle} />
@@ -477,28 +480,28 @@ export default function DepositionPage() {
 
           {/* PART 2: Semiconductor Sputtering */}
           <div id="project-semiconductor">
-            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}}>
+            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header">
               <span style={{ fontSize: "2rem" }}>💠</span>
               <div style={{ flex: 1 }}>
-                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}}>Semiconductor Sputtering</h3>
+                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Semiconductor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
+                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}} className="section-subtitle">
                     2023 - 2024 | Korea Univ
                   </span>
                 </div>
               </div>
             </div>
 
-            <div style={contentBoxStyle}>
+            <div style={contentBoxStyle} className="content-box">
               <div style={{ flex: 1 }}>
-                <h3 style={{...headingStyle, color: "#7B1FA2"}}>Objective</h3>
-                <p style={paragraphStyle}>
+                <h3 style={{...headingStyle, color: "#7B1FA2"}} className="content-heading">Objective</h3>
+                <p style={paragraphStyle} className="content-paragraph">
                   RF 마그네트론 스퍼터링을 활용한 <b>저온 반도체 박막 성장</b> 및 <b>TSV 접합층 증착</b> 수행.
                   공정 파라미터 최적화를 통한 박막 품질 향상 및 3D 집적 공정 기술 습득.
                 </p>
 
-                <h3 style={{...headingStyle, color: "#7B1FA2"}}>Low-Temperature GaN Growth (Team Project)</h3>
-                <ul style={listStyle}>
+                <h3 style={{...headingStyle, color: "#7B1FA2"}} className="content-heading">Low-Temperature GaN Growth (Team Project)</h3>
+                <ul style={listStyle} className="content-list">
                   <li>
                     <strong style={{ color: "#555" }}>Process:</strong>
                     {" "}&lt;400°C 저온 조건에서 RF 스퍼터링을 통한 GaN 박막 성장
@@ -509,9 +512,9 @@ export default function DepositionPage() {
                   </li>
                 </ul>
 
-                <h3 style={{...headingStyle, color: "#7B1FA2", marginTop: "18px"}}>TSV Bonding Layer (Individual Project)</h3>
+                <h3 style={{...headingStyle, color: "#7B1FA2", marginTop: "18px"}} className="content-heading">TSV Bonding Layer (Individual Project)</h3>
                 
-                <ul style={listStyle}>
+                <ul style={listStyle} className="content-list">
                   <li>
                     <strong style={{ color: "#555" }}>Multi-layer Stack:</strong>
                     {" "}Cu, Ti, TiN 다층 금속 접합층 순차 증착
@@ -529,7 +532,7 @@ export default function DepositionPage() {
                   </li>
                 </ul>
 
-                <div style={{ ...impactBoxStyle, background: "#F3E5F5", borderLeft: "4px solid #7B1FA2", marginTop: "18px" }}>
+                <div style={{ ...impactBoxStyle, background: "#F3E5F5", borderLeft: "4px solid #7B1FA2", marginTop: "18px" }} className="impact-box">
                   <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#7B1FA2" }}>🚀 Impact</h4>
                   <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                     ✓ 저온 반도체 박막 성장 및 다층 금속 증착 경험<br />
@@ -539,7 +542,7 @@ export default function DepositionPage() {
                 </div>
               </div>
 
-              <div style={imageGalleryContainerStyle}>
+              <div style={imageGalleryContainerStyle} className="image-gallery">
                 <div style={imageGridStyle}>
                   <img src="/research/deposition/dep3/dep3-1.jpg" alt="Semiconductor Film 1" style={galleryImageStyle} />
                   <img src="/research/deposition/dep3/dep3-2.jpg" alt="Semiconductor Film 2" style={galleryImageStyle} />
@@ -553,27 +556,27 @@ export default function DepositionPage() {
         </section>
 
         {/* === 3. CVD === */}
-        <section id="project-cvd" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-cvd" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>🔥</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Chemical Vapor Deposition (CVD)</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Chemical Vapor Deposition (CVD)</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 2022 - 2023 | Silla Univ
               </p>
             </div>
           </div>
 
-          <div style={contentBoxStyle}>
+          <div style={contentBoxStyle} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Objective</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Objective</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 <b>Thermal CVD</b>를 통해 Carbon Microcoil(CMC) 성장 메커니즘 규명 및
                 C₂H₂/SF₆ 조성 제어를 통한 고품질 CMC 합성 조건 확립.
               </p>
 
-              <h3 style={headingStyle}>Process Optimization (80+ Experiments)</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Process Optimization (80+ Experiments)</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#555" }}>Gas Control:</strong>
                   {" "}C₂H₂ 500 sccm 고정, SF₆ 5-60 sccm 가변, 650°C, 100 Torr, Ni catalyst 사용
@@ -592,21 +595,21 @@ export default function DepositionPage() {
                 </li>
               </ul>
 
-              <h3 style={headingStyle}>Growth Mechanism (4-Stage Model)</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Growth Mechanism (4-Stage Model)</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 FESEM 분석을 통해 4단계 성장 메커니즘 규명:
                 (1) 가느다란 CMC 초기 발생 → (2) 굵은 CMC 형성 → (3) Carbon lump 표면 형성 → (4) 새로운 CMC 재성장
               </p>
 
-              <h3 style={headingStyle}>Process Control</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Process Control</h3>
+              <ul style={listStyle} className="content-list">
                 <li><strong>Pressure Stability:</strong> 초기 진공 설정 및 101 Torr 이하 유지</li>
                 <li><strong>MFC Calibration:</strong> SF₆ ON/OFF cycling 실험, MFC 제어 정밀도 개선</li>
                 <li><strong>Reproducibility:</strong> 온도/습도/배기 밸브가 결과에 미치는 영향 분석</li>
                 <li><strong>Quantitative Analysis:</strong> 생성물 무게 측정(ΔWeight)을 통한 growth rate 정량화</li>
               </ul>
 
-              <div style={{ ...impactBoxStyle, background: "#E0F2F1", borderLeft: "4px solid #009688" }}>
+              <div style={{ ...impactBoxStyle, background: "#E0F2F1", borderLeft: "4px solid #009688" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#009688" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ 80+ 실험을 통한 CVD 공정 매트릭스 설계 및 최적화<br />
@@ -616,7 +619,7 @@ export default function DepositionPage() {
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={{...imageGridStyle, gridTemplateColumns: "1fr", gap: "12px"}}>
                 <img src="/research/deposition/dep4/dep4-1.jpg" alt="CVD CMC 1" style={galleryImageStyle} />
                 <img src="/research/deposition/dep4/dep4-2.jpg" alt="CVD CMC 2" style={galleryImageStyle} />
@@ -628,31 +631,31 @@ export default function DepositionPage() {
         </section>
 
         {/* === 4. P-ALD (Dashed Box) === */}
-        <section id="project-pald" style={{...projectSectionStyle, border: "2px dashed #BDBDBD"}}>
-          <div style={projectHeaderStyle}>
+        <section id="project-pald" style={{...projectSectionStyle, border: "2px dashed #BDBDBD"}} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>⚛️</span>
             <div style={{ flex: 1 }}>
-              <h2 style={{...titleStyle, color: "#757575"}}>Powder ALD (P-ALD)</h2>
+              <h2 style={{...titleStyle, color: "#757575"}} className="section-title">Powder ALD (P-ALD)</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET | Collaboration
                 </p>
-                <span style={grayPublicationBadgeStyle}>
+                <span style={grayPublicationBadgeStyle} className="publication-badge">
                   📄 Under Review in Advanced Optical Materials
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{...contentBoxStyle, flexDirection: "column"}}>
+          <div style={{...contentBoxStyle, flexDirection: "column"}} className="content-box">
             <div>
-              <h3 style={{...headingStyle, color: "#757575"}}>Project Overview</h3>
-              <p style={paragraphStyle}>
+              <h3 style={{...headingStyle, color: "#757575"}} className="content-heading">Project Overview</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 유동층 반응기(Fluidized-bed Reactor)를 이용한 Powder ALD 공정에 협업 참여.
                 페로브스카이트 분말 표면에 Al₂O₃ 보호막을 원자층 단위로 코팅하여 대기 안정성 개선.
               </p>
 
-              <ul style={listStyle}>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#555" }}>Process Understanding:</strong>
                   {" "}Fluidized-bed ALD 공정 원리 및 solvent-free 코팅 메커니즘 분석
@@ -663,7 +666,7 @@ export default function DepositionPage() {
                 </li>
               </ul>
 
-              <div style={{ ...impactBoxStyle, background: "#F5F5F5", borderLeft: "4px solid #9E9E9E" }}>
+              <div style={{ ...impactBoxStyle, background: "#F5F5F5", borderLeft: "4px solid #9E9E9E" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#757575" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ Powder ALD 공정 및 원자층 코팅 메커니즘 경험<br />
@@ -672,7 +675,7 @@ export default function DepositionPage() {
               </div>
 
               <div style={{marginTop: "20px"}}>
-                <a href="/research/phosphor-perovskite" style={{...linkButtonStyle, color: "#757575", borderColor: "#9E9E9E"}}>
+                <a href="/research/phosphor-perovskite" style={{...linkButtonStyle, color: "#757575", borderColor: "#9E9E9E"}} className="link-button">
                   → Go to Phosphor & Perovskite
                 </a>
               </div>
@@ -683,15 +686,151 @@ export default function DepositionPage() {
 
       {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
-          <a href="/research/synthesis" style={secondaryBtnStyle}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
+          <a href="/research/synthesis" style={secondaryBtnStyle} className="footer-btn">
             ← Prev: Synthesis
           </a>
-          <a href="/research/thermal-management" style={primaryBtnStyle}>
+          <a href="/research/thermal-management" style={primaryBtnStyle} className="footer-btn">
             Next: Thermal Management →
           </a>
         </div>
       </div>
+
+      {/* Mobile Responsive Styles */}
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 2rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 1rem !important;
+            padding: 0 10px;
+          }
+
+          .timeline-section {
+            display: none !important;
+          }
+
+          .overview-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+            padding: 0 10px;
+          }
+
+          .project-section {
+            padding: 25px 20px !important;
+            border-radius: 20px !important;
+          }
+
+          .project-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 15px !important;
+            padding-bottom: 15px !important;
+            margin-bottom: 15px !important;
+          }
+
+          .project-header span {
+            font-size: 2rem !important;
+          }
+
+          .section-title {
+            font-size: 1.4rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .publication-badge {
+            font-size: 0.75rem !important;
+            padding: 4px 10px !important;
+          }
+
+          .content-box {
+            flex-direction: column !important;
+            gap: 25px !important;
+          }
+
+          .content-heading {
+            font-size: 1rem !important;
+            margin-top: 20px !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+
+          .content-list {
+            font-size: 0.9rem !important;
+            padding-left: 15px !important;
+          }
+
+          .image-gallery {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            padding: 12px !important;
+          }
+
+          .impact-box {
+            padding: 12px 15px !important;
+            margin-top: 20px !important;
+          }
+
+          .impact-box h4 {
+            font-size: 0.95rem !important;
+          }
+
+          .impact-box p {
+            font-size: 0.85rem !important;
+          }
+
+          .link-button {
+            font-size: 0.85rem !important;
+            padding: 8px 16px !important;
+          }
+
+          .footer-buttons {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 0 20px;
+          }
+
+          .footer-btn {
+            width: 100% !important;
+            text-align: center !important;
+            padding: 12px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.6rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .project-section {
+            padding: 20px 15px !important;
+          }
+
+          .section-title {
+            font-size: 1.2rem !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.9rem !important;
+          }
+
+          .content-list {
+            font-size: 0.85rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -839,7 +978,7 @@ const contentBoxStyle: React.CSSProperties = {
   display: "flex",
   gap: "40px",
   flexWrap: "wrap",
-  alignItems: "flex-start", // This makes the flex items shrink to their content height
+  alignItems: "flex-start",
 };
 
 const headingStyle: React.CSSProperties = {
@@ -865,22 +1004,6 @@ const listStyle: React.CSSProperties = {
   marginBottom: "20px",
 };
 
-const imagePlaceholderStyle: React.CSSProperties = {
-  flex: "0 0 320px",
-  background: "#F8F9FA",
-  borderRadius: "15px",
-  padding: "25px",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "center",
-  alignItems: "center",
-  boxShadow: "inset 0 0 20px rgba(0,0,0,0.05)",
-  border: "2px dashed #E0E0E0",
-  textAlign: "center",
-  width: "100%",
-  minHeight: "280px",
-};
-
 const imageGalleryContainerStyle: React.CSSProperties = {
   flex: "0 0 320px",
   background: "#F8F9FA",
@@ -893,7 +1016,7 @@ const imageGalleryContainerStyle: React.CSSProperties = {
   boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   border: "1px solid #E0E0E0",
   width: "100%",
-  height: "auto", // Allows box to shrink
+  height: "auto",
 };
 
 const imageGridStyle: React.CSSProperties = {
@@ -931,19 +1054,6 @@ const linkButtonStyle: React.CSSProperties = {
   border: "2px solid #FF6B9D",
   transition: "all 0.3s ease",
   boxShadow: "0 3px 8px rgba(255, 107, 157, 0.2)",
-};
-
-const secondaryLinkButtonStyle: React.CSSProperties = {
-  display: "inline-block",
-  background: "rgba(255, 107, 157, 0.05)",
-  color: "#FF6B9D",
-  padding: "10px 20px",
-  borderRadius: "15px",
-  fontSize: "0.9rem",
-  fontWeight: 600,
-  textDecoration: "none",
-  border: "1px solid rgba(255, 107, 157, 0.3)",
-  transition: "all 0.3s ease",
 };
 
 const primaryBtnStyle: React.CSSProperties = {

@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 export default function SynthesisPage() {
-  const [activeProject, setActiveProject] = useState<string>("perovskite");
+  const [activeProject, setActiveProject] = useState<string>("");
 
   const scrollToSection = (id: string) => {
     setActiveProject(id);
@@ -26,6 +26,7 @@ export default function SynthesisPage() {
       {/* Header Section */}
       <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
+          className="page-title"
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
@@ -39,6 +40,7 @@ export default function SynthesisPage() {
           Synthesis Research
         </h1>
         <p
+          className="page-subtitle"
           style={{
             fontSize: "1.2rem",
             color: "#7A7A7A",
@@ -54,7 +56,7 @@ export default function SynthesisPage() {
       </header>
 
       {/* Timeline Section */}
-      <div style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
+      <div className="timeline-section" style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
         <div style={{ position: "relative", padding: "0 20px" }}>
           {/* Timeline Line */}
           <div
@@ -68,7 +70,7 @@ export default function SynthesisPage() {
               borderRadius: "2px",
             }}
           />
-         
+          
           {/* Timeline Points */}
           <div
             style={{
@@ -292,6 +294,7 @@ export default function SynthesisPage() {
 
       {/* Quick Overview Section */}
       <div
+        className="overview-grid"
         style={{
           maxWidth: "1100px",
           margin: "0 auto 60px",
@@ -336,33 +339,33 @@ export default function SynthesisPage() {
           gap: "60px",
         }}
       >
-        {/* 1. PEROVSKITE SECTION - MIXED GRID */}
-        <section id="project-perovskite" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        {/* 1. PEROVSKITE SECTION */}
+        <section id="project-perovskite" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>💎</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Novel Synthesis for Perovskite Stability</h2>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+              <h2 style={titleStyle} className="section-title">Novel Synthesis for Perovskite Stability</h2>
+              <div className="publication-container" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Under Review in Advanced Optical Materials (P-ALD)
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Objective</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Objective</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 Cs₄PbBr₆ 페로브스카이트의 입자 크기를 제어하고 대기 안정성을 획기적으로 개선하기 위해
                 <b> 새로운 합성법(Sonication-assisted ZIF-8 Templating)</b>과 <b>후처리 코팅(Powder ALD)</b> 기술 개발.
               </p>
 
-              <h3 style={headingStyle}>Synthesis Techniques</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Synthesis Techniques</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#FF6B9D" }}>ZIF-8 Templating:</strong>
                   {" "}MOF 소재인 ZIF-8을 템플릿으로 활용하고 Sonication 에너지를 가하여 입자 크기를 제어.
@@ -379,7 +382,7 @@ export default function SynthesisPage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#FFF0F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FF5E95" }}>
+              <div className="impact-box" style={{ marginTop: "30px", background: "#FFF0F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FF5E95" }}>
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#FF5E95" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ 수분 저항성 및 UV 안정성 획기적 개선 (수분 접촉각 85° 달성)<br />
@@ -388,21 +391,19 @@ export default function SynthesisPage() {
                 </p>
               </div>
 
-               <div style={{marginTop: "20px"}}>
-                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
-                   → Go to Phosphor & Perovskite
-                 </a>
+              <div style={{marginTop: "20px"}}>
+                <a href="/research/phosphor-perovskite" style={linkButtonStyle} className="link-button">
+                  → Go to Phosphor & Perovskite
+                </a>
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={{width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
-                {/* 2-Column Grid for Vertical Images */}
                 <div style={imageGridStyle}>
                   <img src="/research/synthesis/syn1/syn1-1.jpg" alt="Perovskite Synthesis 1" style={galleryImageStyle} />
                   <img src="/research/synthesis/syn1/syn1-2.jpg" alt="Perovskite Synthesis 2" style={galleryImageStyle} />
                 </div>
-                {/* 1-Column Grid for Horizontal Images */}
                 <div style={oneColGridStyle}>
                   <img src="/research/synthesis/syn1/syn1-3.jpg" alt="Perovskite Synthesis 3" style={galleryImageStyle} />
                   <img src="/research/synthesis/syn1/syn1-4.jpg" alt="Perovskite Synthesis 4" style={galleryImageStyle} />
@@ -412,36 +413,36 @@ export default function SynthesisPage() {
           </div>
         </section>
 
-        {/* 2. SOLID-STATE SECTION - 1 COL */}
-        <section id="project-target" style={projectSectionStyle}>
-           <div style={projectHeaderStyle}>
+        {/* 2. SOLID-STATE SECTION */}
+        <section id="project-target" style={projectSectionStyle} className="project-section">
+           <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>🧱</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Solid-State Synthesis for Targets</h2>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+              <h2 style={titleStyle} className="section-title">Solid-State Synthesis for Targets</h2>
+              <div className="publication-container" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2022 - 2023 | Silla Univ
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📌 Poster at GCIM 2023
                 </span>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Published in 한국재료학회
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
              <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Target Fabrication</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Target Fabrication</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 RF 마그네트론 스퍼터링 공정에 사용될 고밀도 세라믹 타겟을 제작하기 위해
                 <b> 고상 반응법(Solid-State Reaction)</b>을 최적화.
               </p>
 
-              <h3 style={headingStyle}>Synthesis Process</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Synthesis Process</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#6C5CE7" }}>Ball Milling:</strong>
                   {" "}초기 물질 CaO, Nb₂O₅, Tb₄O₇을 정량 평량하여 균일하게 혼합 및 분쇄.
@@ -456,7 +457,7 @@ export default function SynthesisPage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#F3E5F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #6C5CE7" }}>
+              <div className="impact-box" style={{ marginTop: "30px", background: "#F3E5F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #6C5CE7" }}>
                   <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#6C5CE7" }}>🚀 Impact</h4>
                  <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                     ✓ Crack 없는 고밀도 세라믹 타겟 확보<br />
@@ -464,18 +465,17 @@ export default function SynthesisPage() {
                  </p>
               </div>
 
-              <div style={{marginTop: "20px", display: "flex", gap: "15px"}}>
-                 <a href="/research/deposition" style={linkButtonStyle}>
+              <div className="link-buttons" style={{marginTop: "20px", display: "flex", gap: "15px", flexWrap: "wrap"}}>
+                 <a href="/research/deposition" style={linkButtonStyle} className="link-button">
                    → Go to Deposition Research
                  </a>
-                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                 <a href="/research/phosphor-perovskite" style={linkButtonStyle} className="link-button">
                    → Go to Phosphor & Perovskite
                  </a>
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
-              {/* Single Horizontal Image -> 1 Column */}
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={oneColGridStyle}>
                 <img src="/research/synthesis/syn2/syn2-1.jpg" alt="Solid-State Target" style={galleryImageStyle} />
               </div>
@@ -483,28 +483,28 @@ export default function SynthesisPage() {
           </div>
         </section>
 
-        {/* 3. BATTERY SECTION - MIXED GRID (1-COL TOP, 2-COL BOTTOM) */}
-        <section id="project-battery" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        {/* 3. BATTERY SECTION */}
+        <section id="project-battery" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>🔋</span>
             <div>
-              <h2 style={titleStyle}>Li-ion Battery Cathode (NCM)</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Li-ion Battery Cathode (NCM)</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 2022 - 2023 | Silla Univ | Tiger Meow Club
               </p>
             </div>
           </div>
 
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Project Overview</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Project Overview</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 리튬 이온 배터리용 양극재(NCM523)를 <b>고상 반응법(Solid-State Synthesis)</b>을 통해 직접 합성하고,
                 전구체(Precursor)와 리튬 소스(Li₂CO₃)의 혼합 및 소성 공정을 최적화.
               </p>
               
-              <h3 style={headingStyle}>Synthesis Process</h3>
-              <ul style={{...listStyle, marginBottom: "20px"}}>
+              <h3 style={headingStyle} className="content-heading">Synthesis Process</h3>
+              <ul style={{...listStyle, marginBottom: "20px"}} className="content-list">
                 <li>
                   <strong style={{ color: "#009688" }}>Mixing:</strong>
                   {" "}NCM 전구체와 Li₂CO₃를 1:2 비율로 혼합 후 볼밀링으로 균일하게 분쇄.
@@ -523,7 +523,7 @@ export default function SynthesisPage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#E0F2F1", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #009688" }}>
+              <div className="impact-box" style={{ marginTop: "30px", background: "#E0F2F1", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #009688" }}>
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#009688" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                    ✓ 양극 활물질 전구체 합성부터 슬러리 코팅까지 전 공정 수행<br />
@@ -533,13 +533,11 @@ export default function SynthesisPage() {
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={{width: "100%", display: "flex", flexDirection: "column", gap: "10px"}}>
-                {/* First image (syn3-1) -> 1 Column */}
                 <div style={oneColGridStyle}>
                   <img src="/research/synthesis/syn3/syn3-1.jpg" alt="NCM Battery 1" style={galleryImageStyle} />
                 </div>
-                {/* Remaining images -> 2 Columns */}
                 <div style={imageGridStyle}>
                   <img src="/research/synthesis/syn3/syn3-2.jpg" alt="NCM Battery 2" style={galleryImageStyle} />
                   <img src="/research/synthesis/syn3/syn3-3.jpg" alt="NCM Battery 3" style={galleryImageStyle} />
@@ -551,30 +549,30 @@ export default function SynthesisPage() {
           </div>
         </section>
 
-        {/* 4. PHOSPHOR & LDH SECTION - 2 COL */}
-        <section id="project-phosphor-ldh" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        {/* 4. PHOSPHOR & LDH SECTION */}
+        <section id="project-phosphor-ldh" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>✨</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Functional Phosphors & LDH Nanomaterials</h2>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+              <h2 style={titleStyle} className="section-title">Functional Phosphors & LDH Nanomaterials</h2>
+              <div className="publication-container" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2020 - 2021 | Silla Univ
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📌 Poster at 제129회 대한화학회 (Project 2)
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={contentBoxStyle}>
+          <div style={contentBoxStyle} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Project 1: Phosphor (MgAl-LDH:Eu/Tb)</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Project 1: Phosphor (MgAl-LDH:Eu/Tb)</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 <b>공침법/수열합성</b>을 통한 적색 형광체 제조 및 실리카 코팅을 통한 내구성 향상 연구.
               </p>
-              <ul style={{...listStyle, marginBottom: "20px"}}>
+              <ul style={{...listStyle, marginBottom: "20px"}} className="content-list">
                 <li>
                   <strong style={{ color: "#FFC107" }}>Phase Control:</strong>
                   {" "}Mg:Al 비율 최적화(1:3)로 안정한 LDH 단일상 확보.
@@ -594,13 +592,13 @@ export default function SynthesisPage() {
               </ul>
 
               <div style={{marginTop: "20px", marginBottom: "30px"}}>
-                 <a href="/research/phosphor-perovskite" style={linkButtonStyle}>
+                 <a href="/research/phosphor-perovskite" style={linkButtonStyle} className="link-button">
                    → Go to Phosphor & Perovskite
                  </a>
               </div>
 
-              <h3 style={headingStyle}>Project 2: Functional LDH & mRGO</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Project 2: Functional LDH & mRGO</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <b>Hydrothermal Synthesis:</b> Mg-Al, Zn-Al, Ni-Fe LDH를 수열합성법으로 제조하여 육각형 나노시트 확보.
                 </li>
@@ -612,7 +610,7 @@ export default function SynthesisPage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#FFF9C4", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FFC107" }}>
+              <div className="impact-box" style={{ marginTop: "30px", background: "#FFF9C4", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FFC107" }}>
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#F57F17" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                    ✓ 합성 조건(pH, 온도, 시간)에 따른 결정 형상 제어 메커니즘 규명<br />
@@ -622,7 +620,7 @@ export default function SynthesisPage() {
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={imageGridStyle}>
                 <img src="/research/synthesis/syn4/syn4-1.jpg" alt="Phosphor LDH 1" style={galleryImageStyle} />
                 <img src="/research/synthesis/syn4/syn4-2.jpg" alt="Phosphor LDH 2" style={galleryImageStyle} />
@@ -640,15 +638,159 @@ export default function SynthesisPage() {
 
       {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-          <a href="/research" style={primaryBtnStyle}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research" style={primaryBtnStyle} className="footer-btn">
             Back to Research
           </a>
-          <a href="/research/deposition" style={secondaryBtnStyle}>
+          <a href="/research/deposition" style={secondaryBtnStyle} className="footer-btn">
             Next: Deposition →
           </a>
         </div>
       </div>
+
+      {/* Mobile Responsive Styles */}
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 2rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 1rem !important;
+            padding: 0 15px;
+          }
+
+          .timeline-section {
+            display: none !important;
+          }
+
+          .overview-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+            padding: 0 10px;
+          }
+
+          .project-section {
+            padding: 25px 20px !important;
+            border-radius: 20px !important;
+          }
+
+          .project-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 15px !important;
+            padding-bottom: 15px !important;
+          }
+
+          .project-header span {
+            font-size: 2rem !important;
+          }
+
+          .section-title {
+            font-size: 1.4rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .publication-container {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+
+          .publication-badge {
+            font-size: 0.75rem !important;
+            padding: 4px 10px !important;
+          }
+
+          .content-box {
+            flex-direction: column !important;
+            gap: 25px !important;
+          }
+
+          .content-heading {
+            font-size: 1rem !important;
+            margin-top: 20px !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+
+          .content-list {
+            font-size: 0.9rem !important;
+            padding-left: 15px !important;
+          }
+
+          .image-gallery {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            padding: 12px !important;
+          }
+
+          .impact-box {
+            padding: 12px 15px !important;
+          }
+
+          .impact-box p {
+            font-size: 0.85rem !important;
+          }
+
+          .link-button {
+            font-size: 0.85rem !important;
+            padding: 8px 16px !important;
+            display: inline-block !important;
+          }
+
+          .link-buttons {
+            flex-direction: column !important;
+          }
+
+          .footer-buttons {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 0 20px;
+          }
+
+          .footer-btn {
+            width: 100% !important;
+            text-align: center !important;
+            padding: 12px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.6rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .project-section {
+            padding: 20px 15px !important;
+          }
+
+          .section-title {
+            font-size: 1.2rem !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.9rem !important;
+          }
+
+          .content-list {
+            font-size: 0.85rem !important;
+          }
+
+          .publication-badge {
+            font-size: 0.7rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -676,7 +818,6 @@ interface OverviewCardProps {
 }
 
 function OverviewCard({ icon, title, desc1, desc2, onClick, color, borderColor }: OverviewCardProps) {
-    const [isHovered, setIsHovered] = React.useState(false);
     return (
         <div
           onClick={onClick}
@@ -755,7 +896,7 @@ const contentBoxStyle: React.CSSProperties = {
   display: "flex",
   gap: "40px",
   flexWrap: "wrap",
-  alignItems: "flex-start", // **Shrink fix applied here**
+  alignItems: "flex-start",
 };
 
 const headingStyle: React.CSSProperties = {
@@ -823,15 +964,14 @@ const imageGalleryContainerStyle: React.CSSProperties = {
   padding: "15px",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "flex-start", // **Shrink fix**
+  justifyContent: "flex-start",
   alignItems: "center",
   boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   border: "1px solid #E0E0E0",
   width: "100%",
-  height: "auto", // **Shrink fix**
+  height: "auto",
 };
 
-// 2 Columns for Vertical/Many images
 const imageGridStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr", 
@@ -839,7 +979,6 @@ const imageGridStyle: React.CSSProperties = {
   width: "100%",
 };
 
-// 1 Column for Horizontal images
 const oneColGridStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "1fr",

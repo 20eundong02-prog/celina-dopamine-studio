@@ -26,10 +26,11 @@ export default function About() {
           }}
         >
           {/* Profile Image */}
-          <div style={{ flex: "0 0 250px" }}>
+          <div style={{ flex: "0 0 auto", minWidth: "200px", maxWidth: "250px", width: "100%" }}>
             <div
               style={{
-                width: "250px",
+                width: "100%",
+                maxWidth: "250px",
                 borderRadius: "20px",
                 overflow: "hidden",
                 boxShadow: "0 8px 24px rgba(255, 107, 157, 0.3)",
@@ -48,7 +49,7 @@ export default function About() {
           </div>
 
           {/* Name and Dopamine Studio Description */}
-          <div style={{ flex: "1 1 500px" }}>
+          <div style={{ flex: "1 1 300px", minWidth: "280px" }}>
             <h2
               style={{
                 fontFamily: "'Fredoka', 'Poppins', sans-serif",
@@ -72,8 +73,9 @@ export default function About() {
               Materials Science & Engineering Researcher
             </p>
 
-            {/* Dopamine Studio Description - Right Aligned */}
+            {/* Dopamine Studio Description - Right Aligned on Desktop */}
             <div
+              className="dopamine-studio-section"
               style={{
                 textAlign: "right",
               }}
@@ -131,7 +133,7 @@ export default function About() {
           </h2>
 
           {/* Timeline */}
-          <div style={{ position: "relative", paddingLeft: "2rem", maxWidth: "1100px", margin: "0 auto" }}>
+          <div style={{ position: "relative", paddingLeft: "2rem", maxWidth: "1100px", margin: "0 auto", overflowX: "hidden" }}>
             {/* Vertical Line */}
             <div
               style={{
@@ -295,6 +297,13 @@ export default function About() {
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+          .dopamine-studio-section {
+            text-align: left !important;
+          }
+        }
       `}</style>
     </div>
   );
@@ -340,6 +349,7 @@ function MainTimelineItem({
 
       {/* Main White Box */}
       <div
+        className="timeline-item-box"
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.9)",
           backdropFilter: "blur(10px)",
@@ -432,6 +442,15 @@ function MainTimelineItem({
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .timeline-item-box {
+            padding: 1.5rem !important;
+            margin-left: 0.5rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

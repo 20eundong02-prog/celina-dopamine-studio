@@ -16,12 +16,13 @@ export default function OthersPage() {
       {/* ---------------- Header Section ---------------- */}
       <header style={{ textAlign: "center", marginBottom: "80px" }}>
         <h1
+          className="page-title"
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
             fontWeight: 800,
             marginBottom: "15px",
-            fontFamily: "'Montserrat', 'Pretendard', sans-serif",
+            fontFamily: "'Montserrat', 'Fredoka One', sans-serif",
             letterSpacing: "1px",
             textShadow: "2px 2px 0px #FFF",
           }}
@@ -29,6 +30,7 @@ export default function OthersPage() {
           Beyond the Lab
         </h1>
         <p
+          className="page-subtitle"
           style={{
             fontSize: "1.2rem",
             color: "#7A7A7A",
@@ -45,8 +47,9 @@ export default function OthersPage() {
 
       {/* ---------------- Quick Overview Section ---------------- */}
       <div
+        className="overview-grid"
         style={{
-          maxWidth: "1000px",
+          maxWidth: "1100px",
           margin: "0 auto 60px",
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -55,6 +58,7 @@ export default function OthersPage() {
       >
         {/* Overview Card 1 */}
         <div
+          className="overview-card"
           onClick={() => document.getElementById('section-ai')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
           style={{
             background: "white",
@@ -88,6 +92,7 @@ export default function OthersPage() {
 
         {/* Overview Card 2 */}
         <div
+          className="overview-card"
           onClick={() => document.getElementById('section-entrepreneur')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
           style={{
             background: "white",
@@ -121,6 +126,7 @@ export default function OthersPage() {
 
         {/* Overview Card 3 */}
         <div
+          className="overview-card"
           onClick={() => document.getElementById('section-leadership')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
           style={{
             background: "white",
@@ -154,6 +160,7 @@ export default function OthersPage() {
 
         {/* Overview Card 4 */}
         <div
+          className="overview-card"
           onClick={() => document.getElementById('section-social')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
           style={{
             background: "white",
@@ -189,26 +196,26 @@ export default function OthersPage() {
       {/* ---------------- Main Content ---------------- */}
       <div
         style={{
-          maxWidth: "1000px",
+          maxWidth: "1100px",
           margin: "0 auto",
           display: "flex",
           flexDirection: "column",
           gap: "60px",
         }}
       >
-        {/* === Section 1: Data & AI Competency (Highlight) === */}
-        <section id="section-ai" style={sectionStyle}>
-          <div style={headerRowStyle}>
+        {/* === Section 1: Data & AI Competency === */}
+        <section id="section-ai" style={sectionStyle} className="content-section">
+          <div style={headerRowStyle} className="section-header">
             <span style={{ fontSize: "2.5rem" }}>🤖</span>
             <div>
-              <h2 style={titleStyle}>Data Science & AI Competency</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Data Science & AI Competency</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 Smart Factory & Yield Management를 위한 데이터 역량 강화
               </p>
             </div>
           </div>
 
-          <div style={gridStyle}>
+          <div style={gridStyle} className="cert-grid">
              {/* Card 1: Letuin Edu */}
              <CertCard 
                 title="AI 활용 디스플레이 공정 데이터 분석"
@@ -228,9 +235,9 @@ export default function OthersPage() {
              />
 
              {/* Card 3: Azure Certifications */}
-             <div style={{...cardStyle, borderLeft: "4px solid #0078D4"}}>
-                <h3 style={cardTitleStyle}>Microsoft Azure Certifications</h3>
-                <ul style={{ paddingLeft: "20px", lineHeight: "1.8", color: "#555", fontSize: "0.95rem" }}>
+             <div style={{...cardStyle, borderLeft: "4px solid #0078D4"}} className="cert-card">
+                <h3 style={cardTitleStyle} className="card-title">Microsoft Azure Certifications</h3>
+                <ul style={{ paddingLeft: "20px", lineHeight: "1.8", color: "#555", fontSize: "0.95rem" }} className="cert-list">
                     <li>
                         <b>Azure AI Fundamentals (AI-900)</b> <br/>
                         <span style={{color:"#888"}}>(2025.11.06 취득)</span>
@@ -239,7 +246,7 @@ export default function OthersPage() {
                         <b>Azure Fundamentals (AZ-900)</b> <br/>
                         <span style={{color:"#888"}}>(2025.11.22 취득)</span>
                     </li>
-                     <li>
+                      <li>
                         <b>Azure Data Fundamentals (DP-900)</b> <br/>
                         <span style={{color:"#FF6B9D", fontWeight:700}}>(2025.12.23 취득 예정)</span>
                     </li>
@@ -247,12 +254,12 @@ export default function OthersPage() {
              </div>
 
              {/* Card 4: Future Plan */}
-             <div style={{...cardStyle, background: "#FFF0F6", border: "2px dashed #FF6B9D"}}>
-                <h3 style={cardTitleStyle}>Upcoming Challenge 🚀</h3>
+             <div style={{...cardStyle, background: "#FFF0F6", border: "2px dashed #FF6B9D"}} className="cert-card">
+                <h3 style={cardTitleStyle} className="card-title">Upcoming Challenge 🚀</h3>
                 <p style={{ margin: "10px 0", fontWeight: 700, color: "#333" }}>
                     데이터 기반 반도체 수율 관리 및 최적화
                 </p>
-                <p style={{ fontSize: "0.9rem", color: "#666" }}>
+                <p style={{ fontSize: "0.9rem", color: "#666" }} className="card-desc">
                     2026.01 수료 예정<br/>
                     공정 데이터 분석 심화 과정을 통해 현업 데이터 해결 능력 배양 목표.
                 </p>
@@ -261,12 +268,12 @@ export default function OthersPage() {
         </section>
 
         {/* === Section 2: Entrepreneurship & Creativity === */}
-        <section id="section-entrepreneur" style={sectionStyle}>
-          <div style={headerRowStyle}>
+        <section id="section-entrepreneur" style={sectionStyle} className="content-section">
+          <div style={headerRowStyle} className="section-header">
             <span style={{ fontSize: "2.5rem" }}>💡</span>
             <div>
-              <h2 style={titleStyle}>Entrepreneurship & Creative Projects</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Entrepreneurship & Creative Projects</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 아이디어 제안부터 제품화까지, 비즈니스 마인드와 실행력
               </p>
             </div>
@@ -293,13 +300,13 @@ export default function OthersPage() {
           </div>
         </section>
 
-        {/* === Section 3: Leadership & Research Communities === */}
-        <section id="section-leadership" style={sectionStyle}>
-          <div style={headerRowStyle}>
+        {/* === Section 3: Leadership & Communities === */}
+        <section id="section-leadership" style={sectionStyle} className="content-section">
+          <div style={headerRowStyle} className="section-header">
             <span style={{ fontSize: "2.5rem" }}>🤝</span>
             <div>
-              <h2 style={titleStyle}>Leadership & Communities</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Leadership & Communities</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 조직을 이끄는 리더십과 지식 나눔
               </p>
             </div>
@@ -334,12 +341,12 @@ export default function OthersPage() {
         </section>
 
         {/* === Section 4: Social Impact === */}
-        <section id="section-social" style={sectionStyle}>
-          <div style={headerRowStyle}>
+        <section id="section-social" style={sectionStyle} className="content-section">
+          <div style={headerRowStyle} className="section-header">
             <span style={{ fontSize: "2.5rem" }}>🌱</span>
             <div>
-              <h2 style={titleStyle}>Social Contribution</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Social Contribution</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 교육과 멘토링을 통한 사회 공헌
               </p>
             </div>
@@ -366,18 +373,18 @@ export default function OthersPage() {
         </section>
 
         {/* === Section 5: Engineering Tools === */}
-        <section style={sectionStyle}>
-             <div style={headerRowStyle}>
+        <section style={sectionStyle} className="content-section">
+             <div style={headerRowStyle} className="section-header">
             <span style={{ fontSize: "2.5rem" }}>🛠️</span>
             <div>
-              <h2 style={titleStyle}>Engineering & Design Tools</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Engineering & Design Tools</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 다양한 툴 활용 능력 (Multi-disciplinary Skills)
               </p>
             </div>
           </div>
           
-          <div style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
+          <div className="tool-badges" style={{ display: "flex", gap: "15px", flexWrap: "wrap" }}>
              <ToolBadge name="AutoCAD (ATC 1급)" desc="도면 설계 및 해독 능력" />
              <ToolBadge name="Arduino" desc="기초 회로 구성 및 센서 제어" />
              <ToolBadge name="3D Printing" desc="시제품 제작 및 모델링 교육 이수" />
@@ -389,15 +396,169 @@ export default function OthersPage() {
 
       {/* ---------------- Footer Navigation ---------------- */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-          <a href="/research/programming" style={secondaryBtnStyle}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research/programming" style={secondaryBtnStyle} className="footer-btn">
             ← Prev: Programming
           </a>
-          <a href="/research" style={primaryBtnStyle}>
+          <a href="/research" style={primaryBtnStyle} className="footer-btn">
              Back to Research
           </a>
         </div>
       </div>
+
+      {/* Mobile Responsive Styles */}
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 2rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 1rem !important;
+            padding: 0 15px;
+          }
+
+          .overview-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+            padding: 0 10px;
+          }
+
+          .overview-card {
+            padding: 20px !important;
+          }
+
+          .content-section {
+            padding: 25px 20px !important;
+            border-radius: 20px !important;
+          }
+
+          .section-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 15px !important;
+            padding-bottom: 15px !important;
+          }
+
+          .section-header span {
+            font-size: 2rem !important;
+          }
+
+          .section-title {
+            font-size: 1.4rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .cert-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+          }
+
+          .cert-card {
+            padding: 15px !important;
+          }
+
+          .card-title {
+            font-size: 1rem !important;
+          }
+
+          .card-desc {
+            font-size: 0.85rem !important;
+          }
+
+          .cert-list {
+            font-size: 0.85rem !important;
+            padding-left: 15px !important;
+          }
+
+          .activity-row {
+            flex-direction: column !important;
+            padding: 15px !important;
+          }
+
+          .activity-row-period {
+            border-right: none !important;
+            border-bottom: 2px solid #FFF0F5 !important;
+            padding-right: 0 !important;
+            padding-bottom: 15px !important;
+            margin-bottom: 15px !important;
+          }
+
+          .activity-row-content {
+            padding-left: 0 !important;
+          }
+
+          .activity-row-title {
+            font-size: 1.1rem !important;
+          }
+
+          .activity-row-desc {
+            font-size: 0.85rem !important;
+          }
+
+          .award-badge {
+            font-size: 0.75rem !important;
+            padding: 3px 8px !important;
+          }
+
+          .tool-badges {
+            justify-content: center !important;
+          }
+
+          .tool-badge {
+            padding: 12px 15px !important;
+          }
+
+          .tool-badge-name {
+            font-size: 1rem !important;
+          }
+
+          .tool-badge-desc {
+            font-size: 0.8rem !important;
+          }
+
+          .footer-buttons {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 0 20px;
+          }
+
+          .footer-btn {
+            width: 100% !important;
+            text-align: center !important;
+            padding: 12px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.6rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .section-title {
+            font-size: 1.2rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.85rem !important;
+          }
+
+          .card-title {
+            font-size: 0.95rem !important;
+          }
+
+          .activity-row-title {
+            font-size: 1rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -406,13 +567,13 @@ export default function OthersPage() {
 
 function CertCard({ title, issuer, date, desc, tags }: any) {
     return (
-        <div style={cardStyle}>
+        <div style={cardStyle} className="cert-card">
             <div style={{ marginBottom: "10px" }}>
                 <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#AAA", textTransform: "uppercase" }}>{date}</span>
             </div>
-            <h3 style={cardTitleStyle}>{title}</h3>
+            <h3 style={cardTitleStyle} className="card-title">{title}</h3>
             <p style={{ fontSize: "0.9rem", color: "#666", marginBottom: "5px", fontWeight: 600 }}>{issuer}</p>
-            <p style={{ fontSize: "0.95rem", color: "#555", lineHeight: "1.6", marginBottom: "15px" }}>{desc}</p>
+            <p style={{ fontSize: "0.95rem", color: "#555", lineHeight: "1.6", marginBottom: "15px" }} className="card-desc">{desc}</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
                 {tags && tags.map((t: string, i: number) => (
                     <span key={i} style={tagStyle}>#{t}</span>
@@ -424,23 +585,23 @@ function CertCard({ title, issuer, date, desc, tags }: any) {
 
 function ActivityRow({ title, role, period, awards, desc }: any) {
     return (
-        <div style={rowStyle}>
-            <div style={{ flex: "0 0 150px", borderRight: "2px solid #FFF0F5", paddingRight: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <div style={rowStyle} className="activity-row">
+            <div className="activity-row-period" style={{ flex: "0 0 150px", borderRight: "2px solid #FFF0F5", paddingRight: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <span style={{ fontWeight: 700, color: "#FF6B9D" }}>{period}</span>
                 <span style={{ fontSize: "0.9rem", color: "#888", marginTop: "5px" }}>{role}</span>
             </div>
-            <div style={{ flex: 1, paddingLeft: "20px" }}>
-                <h3 style={{ fontSize: "1.2rem", fontWeight: 700, color: "#333", marginBottom: "10px" }}>
+            <div className="activity-row-content" style={{ flex: 1, paddingLeft: "20px" }}>
+                <h3 className="activity-row-title" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#333", marginBottom: "10px" }}>
                     {title}
                 </h3>
                 {awards && awards.length > 0 && (
                     <div style={{ marginBottom: "10px" }}>
                         {awards.map((award: string, i: number) => (
-                            <span key={i} style={awardBadgeStyle}>🏆 {award}</span>
+                            <span key={i} style={awardBadgeStyle} className="award-badge">🏆 {award}</span>
                         ))}
                     </div>
                 )}
-                <p style={{ whiteSpace: "pre-line", lineHeight: "1.7", color: "#555", fontSize: "0.95rem" }}>
+                <p className="activity-row-desc" style={{ whiteSpace: "pre-line", lineHeight: "1.7", color: "#555", fontSize: "0.95rem" }}>
                     {desc}
                 </p>
             </div>
@@ -450,7 +611,7 @@ function ActivityRow({ title, role, period, awards, desc }: any) {
 
 function ToolBadge({ name, desc }: any) {
     return (
-        <div style={{ 
+        <div className="tool-badge" style={{ 
             background: "white", 
             border: "1px solid #FFD1E0", 
             padding: "15px 20px", 
@@ -461,8 +622,8 @@ function ToolBadge({ name, desc }: any) {
             gap: "5px",
             boxShadow: "0 4px 10px rgba(0,0,0,0.03)"
         }}>
-            <strong style={{ color: "#FF6B9D", fontSize: "1.1rem" }}>{name}</strong>
-            <span style={{ fontSize: "0.85rem", color: "#666" }}>{desc}</span>
+            <strong className="tool-badge-name" style={{ color: "#FF6B9D", fontSize: "1.1rem" }}>{name}</strong>
+            <span className="tool-badge-desc" style={{ fontSize: "0.85rem", color: "#666" }}>{desc}</span>
         </div>
     )
 }
@@ -501,7 +662,7 @@ const cardStyle: React.CSSProperties = {
 
 const rowStyle: React.CSSProperties = {
     display: "flex",
-    flexWrap: "wrap", // 모바일 대응
+    flexWrap: "wrap",
     background: "#FAFAFA",
     padding: "20px",
     borderRadius: "15px",
@@ -539,7 +700,7 @@ const tagStyle: React.CSSProperties = {
 
 const awardBadgeStyle: React.CSSProperties = {
     display: "inline-block",
-    background: "#FFF0B3", // 금색 느낌
+    background: "#FFF0B3",
     color: "#8A6D3B",
     padding: "4px 10px",
     borderRadius: "8px",

@@ -20,6 +20,19 @@ export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showText, setShowText] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // 모바일 감지
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,7 +59,8 @@ export default function Home() {
     ];
 
     const particles: Particle[] = [];
-    const particleCount = 8;
+    // 모바일에서 파티클 수 감소
+    const particleCount = window.innerWidth <= 768 ? 6 : 8;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
@@ -54,12 +68,16 @@ export default function Home() {
       const angle = (Math.PI * 2 * i) / particleCount;
       const distance = Math.min(canvas.width, canvas.height) * 0.35;
       
+      // 모바일에서 파티클 크기 감소
+      const baseRadius = window.innerWidth <= 768 ? 30 : 40;
+      const randomRadius = window.innerWidth <= 768 ? 40 : 60;
+      
       particles.push({
         x: centerX + Math.cos(angle) * distance,
         y: centerY + Math.sin(angle) * distance,
         vx: 0,
         vy: 0,
-        radius: 40 + Math.random() * 60,
+        radius: baseRadius + Math.random() * randomRadius,
         color: pastelColors[i % pastelColors.length],
         targetX: centerX,
         targetY: centerY,
@@ -202,11 +220,13 @@ export default function Home() {
           left: 0,
           zIndex: 1,
           pointerEvents: "none",
+          touchAction: "none",
         }}
       />
 
       {/* 타이틀 */}
       <div
+        className="intro-text-container"
         style={{
           position: "absolute",
           top: 0,
@@ -215,41 +235,47 @@ export default function Home() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: "flex-end",
-          paddingRight: "10%",
+          justifyContent: isMobile ? "center" : "flex-end",
+          padding: isMobile ? "0 5%" : "0 10% 0 0",
           zIndex: 10,
           opacity: showText ? 1 : 0,
           transition: "opacity 0.5s ease",
           pointerEvents: "none",
         }}
       >
-        <div style={{ textAlign: "right" }}>
+        <div style={{ textAlign: isMobile ? "center" : "right" }}>
           <h1
+            className="intro-title"
             style={{
               fontFamily: "Poppins, sans-serif",
-              fontSize: "3.5rem",
+              fontSize: isMobile ? "2rem" : "3.5rem",
               fontWeight: 700,
               color: "#FF6B9D",
               marginBottom: "1rem",
               textShadow: "2px 2px 8px rgba(255, 107, 157, 0.3)",
+              lineHeight: 1.2,
             }}
           >
             Celina&apos;s Dopamine Studio
           </h1>
           <p
+            className="intro-subtitle"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: "1.2rem",
+              fontSize: isMobile ? "0.9rem" : "1.2rem",
               color: "#666",
               fontWeight: 300,
+              lineHeight: 1.5,
+              padding: isMobile ? "0 10px" : "0",
             }}
           >
             Where Diversity Reacts Into Warm Technology
           </p>
           <p
+            className="intro-author"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: "1rem",
+              fontSize: isMobile ? "0.8rem" : "1rem",
               color: "#999",
               fontWeight: 300,
               marginTop: "0.5rem",
@@ -259,6 +285,57 @@ export default function Home() {
           </p>
         </div>
       </div>
+
+      {/* Mobile-specific styles */}
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .intro-title {
+            font-size: 2rem !important;
+            padding: 0 20px;
+          }
+
+          .intro-subtitle {
+            font-size: 0.9rem !important;
+            padding: 0 20px !important;
+          }
+
+          .intro-author {
+            font-size: 0.8rem !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .intro-title {
+            font-size: 1.6rem !important;
+            padding: 0 15px;
+          }
+
+          .intro-subtitle {
+            font-size: 0.85rem !important;
+            padding: 0 15px !important;
+          }
+
+          .intro-author {
+            font-size: 0.75rem !important;
+          }
+        }
+
+        @media (orientation: landscape) and (max-height: 500px) {
+          .intro-title {
+            font-size: 1.8rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+
+          .intro-subtitle {
+            font-size: 0.85rem !important;
+          }
+
+          .intro-author {
+            font-size: 0.75rem !important;
+            margin-top: 0.3rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }

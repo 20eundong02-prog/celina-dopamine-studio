@@ -26,6 +26,7 @@ export default function PhosphorPerovskitePage() {
       {/* Header Section */}
       <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
+          className="page-title"
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
@@ -39,6 +40,7 @@ export default function PhosphorPerovskitePage() {
           Phosphor & Perovskite
         </h1>
         <p
+          className="page-subtitle"
           style={{
             fontSize: "1.2rem",
             color: "#7A7A7A",
@@ -53,8 +55,8 @@ export default function PhosphorPerovskitePage() {
         </p>
       </header>
 
-      {/* Timeline Section - Cleaner Design */}
-      <div style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
+      {/* Timeline Section */}
+      <div className="timeline-section" style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
         <div style={{ position: "relative", padding: "0 20px" }}>
           {/* Timeline Line */}
           <div
@@ -264,8 +266,9 @@ export default function PhosphorPerovskitePage() {
         </div>
       </div>
 
-      {/* Quick Overview Section - Semi-transparent Cards */}
+      {/* Quick Overview Section */}
       <div
+        className="overview-grid"
         style={{
           maxWidth: "1100px",
           margin: "0 auto 60px",
@@ -277,6 +280,7 @@ export default function PhosphorPerovskitePage() {
         {/* Card 1: Perovskite */}
         <div
           onClick={() => scrollToSection('perovskite')}
+          className="overview-card"
           style={{
             ...overviewCardStyle,
             background: "rgba(255, 255, 255, 0.6)",
@@ -307,6 +311,7 @@ export default function PhosphorPerovskitePage() {
         {/* Card 2: Oxide Phosphor */}
         <div
           onClick={() => scrollToSection('phosphor')}
+          className="overview-card"
           style={{
             ...overviewCardStyle,
             background: "rgba(255, 255, 255, 0.6)",
@@ -337,6 +342,7 @@ export default function PhosphorPerovskitePage() {
         {/* Card 3: 2D LDH */}
         <div
           onClick={() => scrollToSection('ldh')}
+          className="overview-card"
           style={{
             ...overviewCardStyle,
             background: "rgba(255, 255, 255, 0.6)",
@@ -376,34 +382,34 @@ export default function PhosphorPerovskitePage() {
         }}
       >
         {/* 1. PEROVSKITE SECTION */}
-        <section id="project-perovskite" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-perovskite" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>💎</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Perovskite Photoluminescence Stability</h2>
+              <h2 style={titleStyle} className="section-title">Perovskite Photoluminescence Stability</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Under Review in Advanced Optical Materials
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={contentBoxStyle}>
+          <div style={contentBoxStyle} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Optical Performance & Stability</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Optical Performance & Stability</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 Cs₄PbBr₆ 페로브스카이트는 우수한 발광 특성(PLQY 90%+)을 보유하지만, 
                 <b> 수분 및 산소에 극도로 민감</b>하여 상용화가 어려움. 
                 본 연구에서는 <b>Al₂O₃ 원자층 코팅</b>과 <b>MOF 템플릿 기반 크기 제어</b>를 통해 
                 대기 안정성을 3배 향상시키면서도 높은 발광 효율을 유지.
               </p>
 
-              <h3 style={headingStyle}>Photoluminescence Properties</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Photoluminescence Properties</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#FF6B9D" }}>Emission Wavelength:</strong> 
                   {" "}520nm (Deep Green) - ZIF-8 템플릿 효과로 552nm → 520nm 청색편이(Blue shift).
@@ -426,7 +432,7 @@ export default function PhosphorPerovskitePage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#F3E5F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #6C5CE7" }}>
+              <div style={{ marginTop: "30px", background: "#F3E5F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #6C5CE7" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#6C5CE7" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ 고효율 녹색 발광 (PLQY 85%+) 및 색순도 향상<br />
@@ -436,13 +442,13 @@ export default function PhosphorPerovskitePage() {
               </div>
 
               <div style={{marginTop: "20px"}}>
-                <a href="/research/synthesis" style={linkButtonStyle}>
+                <a href="/research/synthesis" style={linkButtonStyle} className="link-button">
                   → Go to Synthesis
                 </a>
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={flexColumnImageGridStyle}>
                 {/* 세로 이미지들 (2열) */}
                 <div style={twoColumnGridStyle}>
@@ -458,36 +464,36 @@ export default function PhosphorPerovskitePage() {
         </section>
 
         {/* 2. OXIDE PHOSPHOR SECTION */}
-        <section id="project-phosphor" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-phosphor" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>🌈</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Multi-color Oxide Phosphor Engineering</h2>
+              <h2 style={titleStyle} className="section-title">Multi-color Oxide Phosphor Engineering</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2022 - 2023 | Silla Univ
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📌 Poster at GCIM 2023
                 </span>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Published in 한국재료학회
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={contentBoxStyle}>
+          <div style={contentBoxStyle} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Luminescence Mechanism & Color Control</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Luminescence Mechanism & Color Control</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 CaNb₂O₆ 모체에 <b>희토류 이온(Rare Earth Ions)</b>을 도핑하여 
                 발광 파장을 정밀 제어하고, <b>에너지 전달 메커니즘</b>을 통한 백색광 구현 연구. 
                 UV 여기(254nm, 365nm)에서 높은 발광 효율과 색순도를 확보.
               </p>
 
-              <h3 style={headingStyle}>Emission Characteristics</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Emission Characteristics</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#FF6B9D" }}>Tb³⁺ Doping (Green):</strong> 
                   {" "}545nm 주발광 (<sup>5</sup>D<sub>4</sub> → <sup>7</sup>F<sub>5</sub> transition). 
@@ -510,7 +516,7 @@ export default function PhosphorPerovskitePage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#FFF0F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FF6B9D" }}>
+              <div style={{ marginTop: "30px", background: "#FFF0F5", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #FF6B9D" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#FF6B9D" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ Red/Green/Orange 다색 발광 소재 라이브러리 구축<br />
@@ -519,17 +525,17 @@ export default function PhosphorPerovskitePage() {
                 </p>
               </div>
 
-              <div style={{marginTop: "20px", display: "flex", gap: "15px"}}>
-                <a href="/research/synthesis" style={linkButtonStyle}>
+              <div style={{marginTop: "20px", display: "flex", gap: "15px", flexWrap: "wrap"}}>
+                <a href="/research/synthesis" style={linkButtonStyle} className="link-button">
                   → Go to Synthesis
                 </a>
-                <a href="/research/deposition" style={linkButtonStyle}>
+                <a href="/research/deposition" style={linkButtonStyle} className="link-button">
                   → Go to Deposition
                 </a>
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={flexColumnImageGridStyle}>
                 {/* 단일 가로 이미지 */}
                 <img src="/research/phosphor-perovskite/pho2/pho2-1.jpg" alt="Oxide Phosphor PL" style={galleryImageStyle} />
@@ -539,34 +545,34 @@ export default function PhosphorPerovskitePage() {
         </section>
 
         {/* 3. 2D LAYERED LDH SECTION */}
-        <section id="project-ldh" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        <section id="project-ldh" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>🧪</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>2D Layered Phosphor with RE Doping</h2>
+              <h2 style={titleStyle} className="section-title">2D Layered Phosphor with RE Doping</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2020 - 2021 | Silla Univ
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📌 Poster at 제129회 대한화학회
                 </span>
               </div>
             </div>
           </div>
 
-          <div style={contentBoxStyle}>
+          <div style={contentBoxStyle} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>2D Nanostructure Photoluminescence</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">2D Nanostructure Photoluminescence</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 층상 이중 수산화물(LDH)의 <b>2D 나노구조</b>를 활용하여 
                 <b>희토류 발광 이온을 층간에 삽입</b>하고, 
                 양자 구속 효과(Quantum Confinement)와 층간 전하 이동(Interlayer Charge Transfer)을 통해 
                 발광 특성을 향상. 표면 코팅으로 화학적 안정성 확보.
               </p>
 
-              <h3 style={headingStyle}>Photoluminescence of 2D LDH</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Photoluminescence of 2D LDH</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#FF6B9D" }}>Eu³⁺-doped LDH (Red):</strong> 
                   {" "}615nm 적색 발광 (<sup>5</sup>D<sub>0</sub> → <sup>7</sup>F<sub>2</sub>). 
@@ -590,7 +596,7 @@ export default function PhosphorPerovskitePage() {
                 </li>
               </ul>
 
-              <div style={{ marginTop: "30px", background: "#E0F2F1", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #009688" }}>
+              <div style={{ marginTop: "30px", background: "#E0F2F1", padding: "15px 20px", borderRadius: "10px", borderLeft: "4px solid #009688" }} className="impact-box">
                 <h4 style={{ margin: "0 0 5px", fontSize: "1rem", color: "#009688" }}>🚀 Impact</h4>
                 <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
                   ✓ 2D 나노구조 기반 발광 소재 플랫폼 구축<br />
@@ -600,13 +606,13 @@ export default function PhosphorPerovskitePage() {
               </div>
 
               <div style={{marginTop: "20px"}}>
-                <a href="/research/synthesis" style={linkButtonStyle}>
+                <a href="/research/synthesis" style={linkButtonStyle} className="link-button">
                   → Go to Synthesis
                 </a>
               </div>
             </div>
 
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={flexColumnImageGridStyle}>
                 {/* 가로 이미지들 (1열씩) */}
                 <img src="/research/phosphor-perovskite/pho3/pho3-1.jpg" alt="LDH PL 1" style={galleryImageStyle} />
@@ -619,15 +625,154 @@ export default function PhosphorPerovskitePage() {
 
       {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-          <a href="/research" style={primaryBtnStyle}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research" style={primaryBtnStyle} className="footer-btn">
             Back to Research
           </a>
-          <a href="/research/deposition" style={secondaryBtnStyle}>
+          <a href="/research/deposition" style={secondaryBtnStyle} className="footer-btn">
             Next: Deposition →
           </a>
         </div>
       </div>
+
+      {/* Mobile Responsive Styles */}
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 2rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 1rem !important;
+            padding: 0 15px;
+          }
+
+          .timeline-section {
+            display: none !important;
+          }
+
+          .overview-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+            padding: 0 10px;
+          }
+
+          .overview-card {
+            padding: 20px !important;
+          }
+
+          .project-section {
+            padding: 25px 20px !important;
+            border-radius: 20px !important;
+          }
+
+          .project-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 15px !important;
+            padding-bottom: 15px !important;
+          }
+
+          .project-header span {
+            font-size: 2rem !important;
+          }
+
+          .section-title {
+            font-size: 1.4rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .publication-badge {
+            font-size: 0.75rem !important;
+            padding: 4px 10px !important;
+          }
+
+          .content-box {
+            flex-direction: column !important;
+            gap: 25px !important;
+          }
+
+          .content-heading {
+            font-size: 1rem !important;
+            margin-top: 20px !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+
+          .content-list {
+            font-size: 0.9rem !important;
+            padding-left: 15px !important;
+          }
+
+          .image-gallery {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            padding: 12px !important;
+          }
+
+          .impact-box {
+            padding: 12px 15px !important;
+            margin-top: 20px !important;
+          }
+
+          .impact-box h4 {
+            font-size: 0.95rem !important;
+          }
+
+          .impact-box p {
+            font-size: 0.85rem !important;
+          }
+
+          .link-button {
+            font-size: 0.85rem !important;
+            padding: 8px 16px !important;
+          }
+
+          .footer-buttons {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 0 20px;
+          }
+
+          .footer-btn {
+            width: 100% !important;
+            text-align: center !important;
+            padding: 12px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.6rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .project-section {
+            padding: 20px 15px !important;
+          }
+
+          .section-title {
+            font-size: 1.2rem !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.9rem !important;
+          }
+
+          .content-list {
+            font-size: 0.85rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -690,7 +835,7 @@ const contentBoxStyle: React.CSSProperties = {
   display: "flex",
   gap: "40px",
   flexWrap: "wrap",
-  alignItems: "flex-start", // ** Added Shrink-to-fit logic **
+  alignItems: "flex-start",
 };
 
 const headingStyle: React.CSSProperties = {
@@ -763,10 +908,9 @@ const imageGalleryContainerStyle: React.CSSProperties = {
   boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   border: "1px solid #E0E0E0",
   width: "100%",
-  height: "auto", // ** Added Shrink-to-fit logic **
+  height: "auto",
 };
 
-// 새로운 레이아웃: 세로로 쌓이는 구조
 const flexColumnImageGridStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
@@ -774,7 +918,6 @@ const flexColumnImageGridStyle: React.CSSProperties = {
   width: "100%",
 };
 
-// 세로 이미지 2개를 나란히 배치
 const twoColumnGridStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",

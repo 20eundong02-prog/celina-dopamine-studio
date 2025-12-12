@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image"; // Next.js 이미지 컴포넌트 import
+import Image from "next/image";
 
 export default function ThermalManagementPage() {
   const [activeProject, setActiveProject] = useState<string>("smartglass");
@@ -24,9 +24,10 @@ export default function ThermalManagementPage() {
         color: "#444",
       }}
     >
-      {/* ---------------- Header Section ---------------- */}
+      {/* Header Section */}
       <header style={{ textAlign: "center", marginBottom: "60px" }}>
         <h1
+          className="page-title"
           style={{
             fontSize: "3rem",
             color: "#FF6B9D",
@@ -40,6 +41,7 @@ export default function ThermalManagementPage() {
           Thermal Management
         </h1>
         <p
+          className="page-subtitle"
           style={{
             fontSize: "1.2rem",
             color: "#7A7A7A",
@@ -54,10 +56,9 @@ export default function ThermalManagementPage() {
         </p>
       </header>
 
-      {/* ---------------- Timeline Section (Simplified) ---------------- */}
-      <div style={{ maxWidth: "600px", margin: "0 auto 60px" }}>
+      {/* Timeline Section */}
+      <div className="timeline-section" style={{ maxWidth: "600px", margin: "0 auto 60px" }}>
         <div style={{ position: "relative", padding: "0 20px" }}>
-          {/* Timeline Line */}
           <div
             style={{
               position: "absolute",
@@ -71,7 +72,6 @@ export default function ThermalManagementPage() {
             }}
           />
          
-          {/* Timeline Points */}
           <div
             style={{
               display: "flex",
@@ -80,7 +80,6 @@ export default function ThermalManagementPage() {
               zIndex: 1,
             }}
           >
-            {/* 2024-2025 Single Node */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div
                 style={{
@@ -107,8 +106,9 @@ export default function ThermalManagementPage() {
         </div>
       </div>
 
-      {/* ---------------- Quick Overview Section ---------------- */}
+      {/* Quick Overview Section */}
       <div
+        className="overview-grid"
         style={{
           maxWidth: "1100px",
           margin: "0 auto 60px",
@@ -117,8 +117,8 @@ export default function ThermalManagementPage() {
           gap: "20px",
         }}
       >
-        {/* Card 1: Smart Glass */}
         <div
+          className="overview-card"
           onClick={() => scrollToSection('smartglass')}
           style={{
             ...overviewCardStyle,
@@ -147,8 +147,8 @@ export default function ThermalManagementPage() {
           </p>
         </div>
 
-        {/* Card 2: Color Cooling */}
         <div
+          className="overview-card"
           onClick={() => scrollToSection('cooling')}
           style={{
             ...overviewCardStyle,
@@ -177,8 +177,8 @@ export default function ThermalManagementPage() {
           </p>
         </div>
 
-        {/* Card 3: Optical Analysis (Semi-transparent) */}
         <div
+          className="overview-card"
           onClick={() => scrollToSection('optical')}
           style={{
             ...overviewCardStyle,
@@ -209,7 +209,7 @@ export default function ThermalManagementPage() {
         </div>
       </div>
 
-      {/* ---------------- Main Content ---------------- */}
+      {/* Main Content */}
       <div
         style={{
           maxWidth: "1100px",
@@ -219,35 +219,34 @@ export default function ThermalManagementPage() {
           gap: "60px",
         }}
       >
-        {/* === Project 1: Smart Glass (the1) === */}
-        <section id="project-smartglass" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        {/* Project 1: Smart Glass */}
+        <section id="project-smartglass" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>☀️</span>
             <div style={{ flex: 1 }}>
-              <h2 style={titleStyle}>Smart Glass for Thermal Management</h2>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }}>
+              <h2 style={titleStyle} className="section-title">Smart Glass for Thermal Management</h2>
+              <div className="publication-container" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET
                 </p>
-                <span style={publicationBadgeStyle}>
+                <span style={publicationBadgeStyle} className="publication-badge">
                   📄 Published in Advanced Science
                 </span>
               </div>
             </div>
           </div>
 
-          {/* 박스 정렬 수정: alignItems를 flex-start로 변경하여 높이를 내용물에 맞춤 */}
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
             <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Research Focus</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Research Focus</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 소다라임 글라스 위에 Ag 기반 다층 박막을 형성하여, 열처리 온도 조절을 통해 
                 투명도를 유지하면서 외부 열 차단(Photothermal Heating) 또는 내부 열 방출(Radiative Cooling) 
                 기능을 선택적으로 구현하는 스마트 윈도우 개발.
               </p>
 
-              <h3 style={headingStyle}>Key Engineering</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Key Engineering</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#FF6B9D" }}>Phase Change Control:</strong> 
                   {" "}E-beam으로 증착된 Ag/TiO₂/Ag 박막을 RTP(Rapid Thermal Processing)로 열처리하여 
@@ -265,6 +264,7 @@ export default function ThermalManagementPage() {
               </ul>
 
               <div
+                className="impact-box"
                 style={{
                   background: "#FFF8E1",
                   padding: "15px 20px",
@@ -283,19 +283,18 @@ export default function ThermalManagementPage() {
               </div>
 
               <div>
-                 <a href="/research/deposition" style={linkButtonStyle}>
+                 <a href="/research/deposition" style={linkButtonStyle} className="link-button">
                    → Go to Deposition
                  </a>
               </div>
             </div>
             
-            {/* Image Gallery for the1 */}
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={imageGridStyle}>
                 <Image 
                   src="/research/thermal-management/the1/the1-1.jpg" 
                   alt="Smart Glass 1"
-                  width={400} // 원본 비율에 맞게 적절히 지정
+                  width={400}
                   height={300}
                   style={galleryImageStyle} 
                 />
@@ -311,28 +310,28 @@ export default function ThermalManagementPage() {
           </div>
         </section>
 
-        {/* === Project 2: Radiative Cooling (the2) === */}
-        <section id="project-cooling" style={projectSectionStyle}>
-          <div style={projectHeaderStyle}>
+        {/* Project 2: Radiative Cooling */}
+        <section id="project-cooling" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>❄️</span>
             <div>
-              <h2 style={titleStyle}>Radiative Cooling Color Filters</h2>
-              <p style={subTitleStyle}>
+              <h2 style={titleStyle} className="section-title">Radiative Cooling Color Filters</h2>
+              <p style={subTitleStyle} className="section-subtitle">
                 2024 - 2025 | KICET | Experimental Study
               </p>
             </div>
           </div>
 
-          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }}>
+          <div style={{ ...contentBoxStyle, alignItems: "flex-start" }} className="content-box">
              <div style={{ flex: 1 }}>
-              <h3 style={headingStyle}>Research Focus</h3>
-              <p style={paragraphStyle}>
+              <h3 style={headingStyle} className="content-heading">Research Focus</h3>
+              <p style={paragraphStyle} className="content-paragraph">
                 기존의 흰색/은색 위주의 복사 냉각 소재의 심미적 한계를 극복하기 위해, 
                 다양한 색상을 구현하면서도 냉각 성능을 유지하는 PDMS 기반 컬러 필터 연구.
               </p>
 
-              <h3 style={headingStyle}>Key Engineering</h3>
-              <ul style={listStyle}>
+              <h3 style={headingStyle} className="content-heading">Key Engineering</h3>
+              <ul style={listStyle} className="content-list">
                 <li>
                   <strong style={{ color: "#2196F3" }}>Fabry-Perot Resonance:</strong> 
                   {" "}Au 기판 위에 Ge 박막 두께(5~70nm)를 조절하여 빛의 간섭 효과를 이용한 다채로운 색상 구현.
@@ -348,6 +347,7 @@ export default function ThermalManagementPage() {
               </ul>
 
               <div
+                className="impact-box"
                 style={{
                   background: "#E3F2FD",
                   padding: "15px 20px",
@@ -366,14 +366,13 @@ export default function ThermalManagementPage() {
               </div>
 
               <div>
-                 <a href="/research/deposition" style={{...linkButtonStyle, color: "#2196F3", borderColor: "#2196F3"}}>
+                 <a href="/research/deposition" style={{...linkButtonStyle, color: "#2196F3", borderColor: "#2196F3"}} className="link-button">
                    → Go to Deposition
                  </a>
               </div>
             </div>
 
-            {/* Image Gallery for the2 */}
-            <div style={imageGalleryContainerStyle}>
+            <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={imageGridStyle}>
                 <Image 
                   src="/research/thermal-management/the2/the2-1.jpg" 
@@ -394,9 +393,10 @@ export default function ThermalManagementPage() {
           </div>
         </section>
 
-        {/* === Section 3: Optical Analysis (the3) === */}
+        {/* Section 3: Optical Analysis */}
         <section 
           id="project-optical" 
+          className="optical-section"
           style={{
             ...projectSectionStyle, 
             background: "rgba(255, 255, 255, 0.6)",
@@ -406,20 +406,20 @@ export default function ThermalManagementPage() {
           }}
         >
            <div style={{marginBottom: "20px"}}>
-              <h2 style={{...titleStyle, fontSize: "1.6rem", color: "#6A1B9A"}}>🔬 Optical Characterization Methods</h2>
+              <h2 className="optical-title" style={{...titleStyle, fontSize: "1.6rem", color: "#6A1B9A"}}>🔬 Optical Characterization Methods</h2>
            </div>
 
           <div style={{ marginBottom: "30px" }}>
-            <h3 style={{...headingStyle, color: "#9C27B0"}}>Analytical Equipment & Methods</h3>
-            <p style={{...paragraphStyle, fontSize: "0.95rem"}}>
+            <h3 style={{...headingStyle, color: "#9C27B0"}} className="content-heading">Analytical Equipment & Methods</h3>
+            <p style={{...paragraphStyle, fontSize: "0.95rem"}} className="content-paragraph">
               광학 소재의 정확한 특성 분석을 위해 다양한 분광 분석 장비를 활용하여 가시광선부터 적외선 영역까지 
               포괄적인 광학 데이터를 확보.
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
-             {/* Equipment 1: UV-vis-NIR (the3-1) */}
-             <div>
+          <div className="equipment-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "30px" }}>
+             {/* Equipment 1 */}
+             <div className="equipment-item">
                <div style={equipmentImageContainerStyle}>
                  <Image 
                    src="/research/thermal-management/the3/the3-1.jpg" 
@@ -429,16 +429,16 @@ export default function ThermalManagementPage() {
                    style={equipmentImageStyle} 
                  />
                </div>
-               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>UV-vis-NIR Spectroscopy</h3>
-               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}} className="equipment-heading">UV-vis-NIR Spectroscopy</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}} className="equipment-text">
                  • 적분구(Integrating Sphere) 장착으로 산란광 포함 정확한 측정<br/>
                  • 가시광선~근적외선 영역 (400-2500nm) 분석<br/>
                  • 색상 및 투명도 특성 평가
                </p>
              </div>
 
-             {/* Equipment 2: FT-IR (the3-2) */}
-             <div>
+             {/* Equipment 2 */}
+             <div className="equipment-item">
                <div style={equipmentImageContainerStyle}>
                  <Image 
                    src="/research/thermal-management/the3/the3-2.jpg" 
@@ -448,16 +448,16 @@ export default function ThermalManagementPage() {
                    style={equipmentImageStyle} 
                  />
                </div>
-               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>FT-IR Spectroscopy</h3>
-               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}} className="equipment-heading">FT-IR Spectroscopy</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}} className="equipment-text">
                  • 대기창(8-13μm) 영역 방사율 측정<br/>
                  • 복사 냉각/단열 성능 평가<br/>
                  • 온도 제어 없는 실온 측정
                </p>
              </div>
 
-             {/* Equipment 3: Field Testing (the3-3) */}
-             <div>
+             {/* Equipment 3 */}
+             <div className="equipment-item">
                <div style={equipmentImageContainerStyle}>
                  <Image 
                    src="/research/thermal-management/the3/the3-3.jpg" 
@@ -467,8 +467,8 @@ export default function ThermalManagementPage() {
                    style={equipmentImageStyle} 
                  />
                </div>
-               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}}>Field Testing</h3>
-               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}}>
+               <h3 style={{...headingStyle, marginTop: "15px", color: "#8E24AA"}} className="equipment-heading">Field Testing</h3>
+               <p style={{...paragraphStyle, fontSize: "0.9rem", marginBottom: "0"}} className="equipment-text">
                  • 태양광 복사 강도(Pyranometer) 실시간 측정<br/>
                  • 실제 환경 온도 변화 검증<br/>
                  • 열 카메라를 통한 표면 온도 분포 확인
@@ -476,9 +476,9 @@ export default function ThermalManagementPage() {
              </div>
           </div>
 
-          <div style={{marginTop: "30px", background: "rgba(243, 229, 245, 0.7)", padding: "20px", borderRadius: "15px"}}>
-            <h3 style={{...headingStyle, color: "#7B1FA2"}}>Analytical Support</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px" }}>
+          <div className="analytical-support" style={{marginTop: "30px", background: "rgba(243, 229, 245, 0.7)", padding: "20px", borderRadius: "15px"}}>
+            <h3 style={{...headingStyle, color: "#7B1FA2"}} className="content-heading">Analytical Support</h3>
+            <div className="support-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px" }}>
               <div>
                 <h4 style={{fontSize: "1rem", fontWeight: 700, color: "#4A148C", marginBottom: "8px"}}>
                   💻 RSoft Optical Simulation
@@ -504,17 +504,194 @@ export default function ThermalManagementPage() {
 
       </div>
 
-      {/* ---------------- Footer Navigation ---------------- */}
+      {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
-          <a href="/research/phosphor-perovskite" style={secondaryBtnStyle}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <a href="/research/phosphor-perovskite" style={secondaryBtnStyle} className="footer-btn">
             ← Prev: Phosphor & Perovskite
           </a>
-          <a href="/research/programming" style={primaryBtnStyle}>
+          <a href="/research/programming" style={primaryBtnStyle} className="footer-btn">
             Next: Programming →
           </a>
         </div>
       </div>
+
+      {/* Mobile Responsive Styles */}
+      <style jsx global>{`
+        @media (max-width: 768px) {
+          .page-title {
+            font-size: 2rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 1rem !important;
+            padding: 0 15px;
+          }
+
+          .timeline-section {
+            display: none !important;
+          }
+
+          .overview-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+            padding: 0 10px;
+          }
+
+          .overview-card {
+            padding: 20px !important;
+          }
+
+          .project-section {
+            padding: 25px 20px !important;
+            border-radius: 20px !important;
+          }
+
+          .project-header {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 15px !important;
+            padding-bottom: 15px !important;
+          }
+
+          .project-header span {
+            font-size: 2rem !important;
+          }
+
+          .section-title {
+            font-size: 1.4rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .publication-container {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+          }
+
+          .publication-badge {
+            font-size: 0.75rem !important;
+            padding: 4px 10px !important;
+          }
+
+          .content-box {
+            flex-direction: column !important;
+            gap: 25px !important;
+          }
+
+          .content-heading {
+            font-size: 1rem !important;
+            margin-top: 20px !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+          }
+
+          .content-list {
+            font-size: 0.9rem !important;
+            padding-left: 15px !important;
+          }
+
+          .image-gallery {
+            flex: 0 0 100% !important;
+            max-width: 100% !important;
+            padding: 12px !important;
+          }
+
+          .impact-box {
+            padding: 12px 15px !important;
+          }
+
+          .impact-box p {
+            font-size: 0.85rem !important;
+          }
+
+          .link-button {
+            font-size: 0.85rem !important;
+            padding: 8px 16px !important;
+          }
+
+          .optical-section {
+            padding: 25px 20px !important;
+          }
+
+          .optical-title {
+            font-size: 1.3rem !important;
+          }
+
+          .equipment-grid {
+            grid-template-columns: 1fr !important;
+            gap: 20px !important;
+          }
+
+          .equipment-heading {
+            font-size: 0.95rem !important;
+          }
+
+          .equipment-text {
+            font-size: 0.85rem !important;
+          }
+
+          .analytical-support {
+            padding: 15px !important;
+          }
+
+          .support-grid {
+            grid-template-columns: 1fr !important;
+            gap: 15px !important;
+          }
+
+          .footer-buttons {
+            flex-direction: column !important;
+            gap: 15px !important;
+            padding: 0 20px;
+          }
+
+          .footer-btn {
+            width: 100% !important;
+            text-align: center !important;
+            padding: 12px 20px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .page-title {
+            font-size: 1.6rem !important;
+          }
+
+          .page-subtitle {
+            font-size: 0.9rem !important;
+          }
+
+          .project-section {
+            padding: 20px 15px !important;
+          }
+
+          .section-title {
+            font-size: 1.2rem !important;
+          }
+
+          .content-paragraph {
+            font-size: 0.9rem !important;
+          }
+
+          .content-list {
+            font-size: 0.85rem !important;
+          }
+
+          .optical-title {
+            font-size: 1.15rem !important;
+          }
+
+          .equipment-text {
+            font-size: 0.8rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -577,8 +754,6 @@ const contentBoxStyle: React.CSSProperties = {
   display: "flex",
   gap: "40px",
   flexWrap: "wrap",
-  // align-items를 기본(stretch)에서 flex-start로 변경
-  // 이렇게 하면 내용물이 적을 때 박스가 억지로 늘어나지 않고 내용물 크기만큼만 잡힙니다.
   alignItems: "flex-start", 
 };
 
@@ -640,8 +815,6 @@ const secondaryBtnStyle: React.CSSProperties = {
   display: "inline-block",
 };
 
-/* --- Image & Grid Styles --- */
-
 const imageGalleryContainerStyle: React.CSSProperties = {
   flex: "0 0 320px",
   background: "#F8F9FA",
@@ -649,15 +822,12 @@ const imageGalleryContainerStyle: React.CSSProperties = {
   padding: "15px",
   display: "flex",
   flexDirection: "column",
-  // justifyContent: "center"를 삭제 또는 flex-start로 변경하면 내용물 위쪽부터 채워집니다.
   justifyContent: "flex-start",
   alignItems: "center",
   boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   border: "1px solid #E0E0E0",
   width: "100%",
-  // minHeight를 삭제하거나 줄여서, 이미지가 작을 때 박스가 과도하게 커지지 않게 함
-  // minHeight: "280px", // 삭제됨
-  height: "auto", // 내용물에 맞춤
+  height: "auto",
 };
 
 const imageGridStyle: React.CSSProperties = {
@@ -679,8 +849,6 @@ const galleryImageStyle: React.CSSProperties = {
 
 const equipmentImageContainerStyle: React.CSSProperties = {
   width: "100%",
-  // 높이를 auto로 하거나, 이미지 비율에 맞게 조정
-  // 여기서는 균일함을 위해 고정 높이를 유지하되, 필요시 "auto"로 변경 가능
   height: "200px", 
   background: "white",
   borderRadius: "15px",
@@ -693,5 +861,5 @@ const equipmentImageContainerStyle: React.CSSProperties = {
 const equipmentImageStyle: React.CSSProperties = {
   width: "100%",
   height: "100%",
-  objectFit: "cover", // 컨테이너에 꽉 차게 (잘릴 수 있음). 다 보여주려면 "contain"
+  objectFit: "cover",
 };
