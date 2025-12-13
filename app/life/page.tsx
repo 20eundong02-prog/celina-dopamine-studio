@@ -3,7 +3,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
-// --- 타입 ---
 interface Photo {
   id: number;
 }
@@ -11,18 +10,15 @@ interface Photo {
 export default function Life() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-
   const [rotations, setRotations] = useState<number[]>([]);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // 서버에서 랜덤 사용 금지 → 클라이언트에서 회전값 생성
   useEffect(() => {
     const randomRotations = Array.from({ length: 32 }, (_, i) => {
       const base = (i % 2 === 0 ? 1 : -1);
-      const tilt = Math.random() * 4 + 2; // 2~6도
+      const tilt = Math.random() * 4 + 2;
       return base * tilt;
     });
     setRotations(randomRotations);
@@ -67,7 +63,6 @@ export default function Life() {
 
   return (
     <>
-      {/* Google Fonts */}
       <link
         href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Baloo+2:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
@@ -82,8 +77,9 @@ export default function Life() {
           paddingBottom: "80px",
         }}
       >
-        {/* ---------------- 상단 (비디오 + 텍스트) ---------------- */}
+        {/* 상단 (비디오 + 텍스트) */}
         <section
+          className="video-text-section"
           style={{
             padding: "6rem 2rem 4rem",
             display: "flex",
@@ -91,7 +87,7 @@ export default function Life() {
           }}
         >
           <div
-            className="top-section-container"
+            className="video-text-container"
             style={{
               display: "flex",
               flexDirection: "row",
@@ -105,7 +101,7 @@ export default function Life() {
           >
             {/* 비디오 */}
             <div
-              className="video-container"
+              className="video-wrapper"
               style={{
                 position: "relative",
                 flex: "0 0 360px",
@@ -139,6 +135,7 @@ export default function Life() {
                   }}
                 >
                   <div
+                    className="play-button"
                     style={{
                       fontSize: "3rem",
                       color: "white",
@@ -159,6 +156,7 @@ export default function Life() {
               )}
 
               <button
+                className="mute-button"
                 style={{
                   position: "absolute",
                   top: "20px",
@@ -195,7 +193,7 @@ export default function Life() {
               }}
             >
               <h1
-                className="main-title"
+                className="text-box-title"
                 style={{
                   fontFamily: "'Fredoka One', cursive",
                   color: "#FF6B9D",
@@ -207,16 +205,16 @@ export default function Life() {
                 All the Sparkling Moments<br />That Made Me 💕
               </h1>
 
-              <p className="text-content" style={{ fontSize: "1.35rem", color: "#666", fontWeight: 600 }}>
+              <p className="text-box-paragraph" style={{ fontSize: "1.35rem", color: "#666", fontWeight: 600 }}>
                 Walking through life with fierce resilience<br />and an ever-burning passion 🔥
               </p>
 
-              <p className="text-content" style={{ fontSize: "1.35rem", color: "#666", fontWeight: 600 }}>
+              <p className="text-box-paragraph" style={{ fontSize: "1.35rem", color: "#666", fontWeight: 600 }}>
                 Always reaching for the next spark,<br />guided by relentless curiosity ⚡️
               </p>
 
               <p
-                className="text-content text-highlight"
+                className="text-box-highlight"
                 style={{
                   fontSize: "1.35rem",
                   color: "#FF6B9D",
@@ -229,7 +227,7 @@ export default function Life() {
           </div>
         </section>
 
-        {/* ---------------- 로프 사진 갤러리 ---------------- */}
+        {/* 로프 사진 갤러리 */}
         <section className="gallery-section" style={{ maxWidth: "1200px", margin: "0 auto", padding: "1rem 0" }}>
           {chunkArray(photos, 4).map((rowPhotos, rowIndex) => (
             <div
@@ -268,7 +266,7 @@ export default function Life() {
               </svg>
 
               {/* 사진들 */}
-              <div className="photos-container" style={{ display: "flex", justifyContent: "space-around", width: "90%", zIndex: 2, flexWrap: "wrap" }}>
+              <div className="photos-container" style={{ display: "flex", justifyContent: "space-around", width: "90%", zIndex: 2 }}>
                 {rowPhotos.map((photo) => (
                   <div
                     key={photo.id}
@@ -284,12 +282,12 @@ export default function Life() {
                     onClick={() => openLightbox(photo.id - 1)}
                   >
                     <div
-                      className="photo-wrapper"
                       style={{
                         width: "260px",
                         height: "200px",
                         position: "relative",
                         background: "transparent",
+                        overflow: "hidden",
                       }}
                     >
                       <Image
@@ -297,12 +295,14 @@ export default function Life() {
                         alt={`Memory ${photo.id}`}
                         width={260}
                         height={200}
-                        loading="lazy"
-                        quality={85}
                         style={{
                           objectFit: "contain",
+                          width: "100%",
+                          height: "100%",
                           backgroundColor: "transparent",
                         }}
+                        loading="lazy"
+                        quality={85}
                       />
                     </div>
                   </div>
@@ -312,9 +312,9 @@ export default function Life() {
           ))}
         </section>
 
-        {/* ---------------- 하단 메시지 ---------------- */}
+        {/* 하단 메시지 */}
         <footer
-          className="footer-section"
+          className="footer-message"
           style={{
             textAlign: "center",
             marginTop: "4rem",
@@ -332,7 +332,7 @@ export default function Life() {
               justifyContent: "center",
             }}
           >
-            <div className="footer-emoji" style={{ fontSize: "4rem", animation: "bounce 2s ease-in-out infinite" }}>
+            <div style={{ fontSize: "4rem", animation: "bounce 2s ease-in-out infinite" }}>
               🏃‍♀️
             </div>
           </div>
@@ -341,12 +341,12 @@ export default function Life() {
             And the journey continues... 🚀
           </p>
 
-          <p className="footer-text" style={{ fontSize: "1.25rem", color: "#888", fontWeight: 600 }}>
+          <p className="footer-subtitle" style={{ fontSize: "1.25rem", color: "#888", fontWeight: 600 }}>
             Still searching for new dopamine,<br />growing every single day 💕
           </p>
         </footer>
 
-        {/* 애니메이션 및 전체 반응형 스타일 */}
+        {/* 애니메이션 & 모바일 스타일 */}
         <style jsx global>{`
           @keyframes bounce {
             0%, 100% { transform: translateY(0px); }
@@ -362,42 +362,66 @@ export default function Life() {
             z-index: 10;
           }
 
-          /* Mobile Responsive Styles */
+          /* 모바일 반응형 */
           @media (max-width: 768px) {
-            .top-section-container {
+            .video-text-section {
+              padding: 5rem 1rem 2rem !important;
+            }
+
+            .video-text-container {
               flex-direction: column !important;
               height: auto !important;
               gap: 20px !important;
             }
 
-            .video-container {
+            .video-wrapper {
               flex: 0 0 auto !important;
               width: 100% !important;
               height: 400px !important;
+              border-radius: 20px !important;
+            }
+
+            .play-button {
+              width: 60px !important;
+              height: 60px !important;
+              font-size: 2rem !important;
+            }
+
+            .mute-button {
+              width: 40px !important;
+              height: 40px !important;
+              font-size: 1.1rem !important;
+              top: 15px !important;
+              right: 15px !important;
             }
 
             .text-box {
+              padding: 2rem 1.5rem !important;
               height: auto !important;
-              padding: 2rem !important;
+              border-radius: 20px !important;
             }
 
-            .main-title {
-              font-size: 2rem !important;
+            .text-box-title {
+              font-size: 1.8rem !important;
               margin-bottom: 1.5rem !important;
             }
 
-            .text-content {
-              font-size: 1.1rem !important;
+            .text-box-paragraph {
+              font-size: 1rem !important;
+              margin-bottom: 1rem;
             }
 
-            .text-highlight {
-              font-size: 1.15rem !important;
+            .text-box-highlight {
+              font-size: 1rem !important;
             }
 
-            /* Gallery */
+            .gallery-section {
+              padding: 1rem 0.5rem !important;
+            }
+
             .gallery-row {
-              height: auto !important;
-              margin-bottom: 20px !important;
+              height: 200px !important;
+              margin-bottom: -20px !important;
               padding-top: 20px !important;
             }
 
@@ -407,47 +431,54 @@ export default function Life() {
             }
 
             .photos-container {
-              width: 100% !important;
-              padding: 0 10px !important;
-              justify-content: center !important;
+              flex-wrap: wrap !important;
+              gap: 15px !important;
+              width: 95% !important;
             }
 
             .photo-item {
-              margin: 10px 5px !important;
+              transform: rotate(0deg) !important;
             }
 
-            .photo-wrapper {
-              width: 180px !important;
-              height: 140px !important;
+            .photo-item > div {
+              width: 160px !important;
+              height: 120px !important;
             }
 
-            /* Footer */
-            .footer-section {
+            .footer-message {
               padding: 2rem 1rem !important;
               margin-top: 2rem !important;
             }
 
-            .footer-emoji {
-              font-size: 3rem !important;
-            }
-
             .footer-title {
-              font-size: 1.8rem !important;
+              font-size: 1.6rem !important;
             }
 
-            .footer-text {
-              font-size: 1.1rem !important;
+            .footer-subtitle {
+              font-size: 1rem !important;
             }
 
-            /* Lightbox */
+            /* 라이트박스 모바일 스타일 */
             .lightbox-close {
               font-size: 1.5rem !important;
               top: 10px !important;
               right: 10px !important;
             }
 
-            .lightbox-prev, .lightbox-next {
+            .lightbox-counter {
+              font-size: 1rem !important;
+            }
+
+            .lightbox-prev,
+            .lightbox-next {
               font-size: 2rem !important;
+              width: 50px !important;
+              height: 50px !important;
+              background: rgba(0,0,0,0.5) !important;
+              border-radius: 50% !important;
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
             }
 
             .lightbox-prev {
@@ -457,41 +488,42 @@ export default function Life() {
             .lightbox-next {
               right: 10px !important;
             }
-
-            .lightbox-counter {
-              font-size: 1rem !important;
-            }
           }
 
           @media (max-width: 480px) {
-            .main-title {
-              font-size: 1.6rem !important;
-            }
-
-            .text-content {
-              font-size: 1rem !important;
-            }
-
-            .video-container {
+            .video-wrapper {
               height: 300px !important;
             }
 
-            .photo-wrapper {
-              width: 150px !important;
-              height: 120px !important;
-            }
-
-            .footer-title {
+            .text-box-title {
               font-size: 1.5rem !important;
             }
 
-            .footer-text {
-              font-size: 1rem !important;
+            .text-box-paragraph,
+            .text-box-highlight {
+              font-size: 0.9rem !important;
+            }
+
+            .gallery-row {
+              height: 150px !important;
+            }
+
+            .photo-item > div {
+              width: 140px !important;
+              height: 100px !important;
+            }
+
+            .footer-title {
+              font-size: 1.4rem !important;
+            }
+
+            .footer-subtitle {
+              font-size: 0.9rem !important;
             }
           }
         `}</style>
 
-        {/* ---------------- 라이트박스 ---------------- */}
+        {/* 라이트박스 */}
         {lightboxOpen && (
           <div
             style={{
@@ -502,7 +534,6 @@ export default function Life() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "20px",
             }}
             onClick={closeLightbox}
           >
@@ -517,7 +548,6 @@ export default function Life() {
                 color: "white",
                 fontSize: "2rem",
                 cursor: "pointer",
-                zIndex: 10000,
               }}
             >
               ✕

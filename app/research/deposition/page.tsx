@@ -21,6 +21,9 @@ export default function DepositionPage() {
         minHeight: "100vh",
         padding: "100px 20px 60px",
         color: "#444",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
+        position: "relative",
       }}
     >
       {/* Header */}
@@ -698,6 +701,11 @@ export default function DepositionPage() {
 
       {/* Mobile Responsive Styles */}
       <style jsx global>{`
+        body {
+          -webkit-overflow-scrolling: touch !important;
+          overflow-y: auto !important;
+        }
+
         @media (max-width: 768px) {
           .page-title {
             font-size: 2rem !important;
@@ -743,9 +751,18 @@ export default function DepositionPage() {
             font-size: 0.9rem !important;
           }
 
-          .publication-badge {
-            font-size: 0.75rem !important;
-            padding: 4px 10px !important;
+          /* Publication Badge - 강력하게 적용 */
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.7rem !important;
+            padding: 4px 8px !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+            word-break: keep-all !important;
+            display: inline-block !important;
+            max-width: 100% !important;
+            margin-top: 5px !important;
           }
 
           .content-box {
@@ -766,6 +783,10 @@ export default function DepositionPage() {
           .content-list {
             font-size: 0.9rem !important;
             padding-left: 15px !important;
+          }
+
+          .content-list li {
+            margin-bottom: 10px !important;
           }
 
           .image-gallery {
@@ -820,6 +841,14 @@ export default function DepositionPage() {
 
           .section-title {
             font-size: 1.2rem !important;
+          }
+
+          /* Publication Badge - 더 작게 */
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.65rem !important;
+            padding: 3px 6px !important;
           }
 
           .content-paragraph {
@@ -958,8 +987,10 @@ const publicationBadgeStyle: React.CSSProperties = {
   fontSize: "0.85rem",
   fontWeight: 700,
   color: "#F57F17",
-  whiteSpace: "nowrap",
+  whiteSpace: "normal",
   display: "inline-block",
+  lineHeight: "1.4",
+  wordBreak: "keep-all",
 };
 
 const grayPublicationBadgeStyle: React.CSSProperties = {
@@ -970,8 +1001,10 @@ const grayPublicationBadgeStyle: React.CSSProperties = {
   fontSize: "0.85rem",
   fontWeight: 700,
   color: "#757575",
-  whiteSpace: "nowrap",
+  whiteSpace: "normal",
   display: "inline-block",
+  lineHeight: "1.4",
+  wordBreak: "keep-all",
 };
 
 const contentBoxStyle: React.CSSProperties = {
