@@ -73,7 +73,6 @@ export default function Life() {
           minHeight: "100vh",
           backgroundColor: "#FFE5EC",
           fontFamily: "'Baloo 2', cursive",
-          overflowX: "hidden",
           paddingBottom: "80px",
         }}
       >

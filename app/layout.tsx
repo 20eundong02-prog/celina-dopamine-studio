@@ -377,7 +377,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             padding: "5rem 2rem 2rem",
             boxShadow: mobileMenuOpen ? "-4px 0 20px rgba(0, 0, 0, 0.1)" : "none",
             transition: "right 0.4s ease",
-            overflowY: "auto",
             display: "none",
           }}
         >

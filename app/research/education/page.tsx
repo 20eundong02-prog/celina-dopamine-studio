@@ -396,7 +396,7 @@ export default function OthersPage() {
 
       {/* ---------------- Footer Navigation ---------------- */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
           <a href="/research/programming" style={secondaryBtnStyle} className="footer-btn">
             ← Prev: Programming
           </a>

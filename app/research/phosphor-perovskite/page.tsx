@@ -21,6 +21,9 @@ export default function PhosphorPerovskitePage() {
         minHeight: "100vh",
         padding: "100px 20px 60px",
         color: "#444",
+        overflowY: "auto",
+        WebkitOverflowScrolling: "touch",
+        position: "relative",
       }}
     >
       {/* Header Section */}
@@ -451,7 +454,7 @@ export default function PhosphorPerovskitePage() {
             <div style={imageGalleryContainerStyle} className="image-gallery">
               <div style={flexColumnImageGridStyle}>
                 {/* 세로 이미지들 (2열) */}
-                <div style={twoColumnGridStyle}>
+                <div style={twoColumnGridStyle} className="image-grid-2col">
                   <img src="/research/phosphor-perovskite/pho1/pho1-1.jpg" alt="Perovskite PL 1" style={galleryImageStyle} />
                   <img src="/research/phosphor-perovskite/pho1/pho1-2.jpg" alt="Perovskite PL 2" style={galleryImageStyle} />
                 </div>
@@ -625,7 +628,7 @@ export default function PhosphorPerovskitePage() {
 
       {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
           <a href="/research" style={primaryBtnStyle} className="footer-btn">
             Back to Research
           </a>
@@ -637,6 +640,11 @@ export default function PhosphorPerovskitePage() {
 
       {/* Mobile Responsive Styles */}
       <style jsx global>{`
+        body {
+          -webkit-overflow-scrolling: touch !important;
+          overflow-y: auto !important;
+        }
+
         @media (max-width: 768px) {
           .page-title {
             font-size: 2rem !important;
@@ -685,9 +693,17 @@ export default function PhosphorPerovskitePage() {
             font-size: 0.9rem !important;
           }
 
-          .publication-badge {
-            font-size: 0.75rem !important;
-            padding: 4px 10px !important;
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.7rem !important;
+            padding: 4px 8px !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+            word-break: keep-all !important;
+            display: inline-block !important;
+            max-width: 100% !important;
+            margin-top: 5px !important;
           }
 
           .content-box {
@@ -710,10 +726,18 @@ export default function PhosphorPerovskitePage() {
             padding-left: 15px !important;
           }
 
+          .content-list li {
+            margin-bottom: 10px !important;
+          }
+
           .image-gallery {
             flex: 0 0 100% !important;
             max-width: 100% !important;
             padding: 12px !important;
+          }
+
+          .image-grid-2col {
+            grid-template-columns: 1fr !important;
           }
 
           .impact-box {
@@ -762,6 +786,13 @@ export default function PhosphorPerovskitePage() {
 
           .section-title {
             font-size: 1.2rem !important;
+          }
+
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.65rem !important;
+            padding: 3px 6px !important;
           }
 
           .content-paragraph {
@@ -827,8 +858,10 @@ const publicationBadgeStyle: React.CSSProperties = {
   fontSize: "0.85rem",
   fontWeight: 700,
   color: "#F57F17",
-  whiteSpace: "nowrap",
+  whiteSpace: "normal",
   display: "inline-block",
+  lineHeight: "1.4",
+  wordBreak: "keep-all",
 };
 
 const contentBoxStyle: React.CSSProperties = {

@@ -1,14 +1,14 @@
 /* intro.css - 인트로 애니메이션용 스타일 */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
+/* 인트로 페이지 전용 스타일 - 다른 페이지에 영향 주지 않도록 .intro-page로 스코핑 */
+.intro-page {
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   
   /* 모바일 최적화 */
   -webkit-text-size-adjust: 100%;
@@ -17,7 +17,6 @@ body {
   
   /* 모바일에서 바운스 효과 방지 */
   overscroll-behavior: none;
-  -webkit-overflow-scrolling: touch;
   
   /* 터치 이벤트 최적화 */
   touch-action: none;
@@ -27,73 +26,8 @@ body {
   user-select: none;
 }
 
-/* Canvas는 page.tsx에서 inline style로 제어 */
-
-/* 모바일 디바이스 대응 */
-@media (max-width: 768px) {
-  body {
-    /* 모바일에서 주소창/툴바 높이 고려 */
-    height: 100vh;
-    height: 100dvh; /* Dynamic Viewport Height (최신 브라우저) */
-  }
-}
-
-/* 작은 모바일 화면 (iPhone SE 등) */
-@media (max-width: 375px) {
-  body {
-    min-height: 100vh;
-    min-height: 100dvh;
-  }
-}
-
-/* 가로 모드 대응 */
-@media (orientation: landscape) and (max-height: 500px) {
-  body {
-    height: 100vh;
-  }
-}
-
-/* 터치 디바이스 최적화 */
-@media (hover: none) and (pointer: coarse) {
-  body {
-    /* 터치 디바이스에서 스크롤 차단 */
-    position: fixed;
-    width: 100%;
-  }
-}
-
-/* 고해상도 디바이스 (Retina) 대응 */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  body {
-    /* 고해상도 화면에서 렌더링 최적화 */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
-/* 접근성: 애니메이션 감소 설정 존중 */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* iOS Safari 특정 이슈 해결 */
-@supports (-webkit-touch-callout: none) {
-  body {
-    /* iOS에서 바운스 스크롤 완전 방지 */
-    position: fixed;
-    width: 100%;
-    height: 100%;
-  }
-}
-
 /* 로딩 중 깜빡임 방지 */
-body::before {
+.intro-page::before {
   content: '';
   position: fixed;
   top: 0;
@@ -102,4 +36,46 @@ body::before {
   height: 100%;
   background: #fff;
   z-index: -1;
+}
+
+/* 모바일 디바이스 대응 */
+@media (max-width: 768px) {
+  .intro-page {
+    height: 100vh;
+    height: 100dvh; /* Dynamic Viewport Height (최신 브라우저) */
+  }
+}
+
+/* 작은 모바일 화면 (iPhone SE 등) */
+@media (max-width: 375px) {
+  .intro-page {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* 가로 모드 대응 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .intro-page {
+    height: 100vh;
+  }
+}
+
+/* 고해상도 디바이스 (Retina) 대응 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .intro-page {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 접근성: 애니메이션 감소 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  .intro-page *,
+  .intro-page *::before,
+  .intro-page *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

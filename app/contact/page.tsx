@@ -45,8 +45,8 @@ export default function Contact() {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", backgroundColor: "#FFE5EC", paddingTop: "100px" }}>
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "calc(100vh - 100px)", padding: "2rem" }}>
+    <div style={{ minHeight: "100vh", backgroundColor: "#FFE5EC", padding: "6rem 2rem 4rem" }}>
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", minHeight: "calc(100vh - 10rem)" }}>
         {/* Title Section */}
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <h1 
@@ -238,6 +238,7 @@ export default function Contact() {
           }}
         >
           <div 
+            onClick={(e) => e.stopPropagation()}
             className="kakao-modal"
             style={{ 
               backgroundColor: "white", 
@@ -278,6 +279,32 @@ export default function Contact() {
             >
               Scan to add on KakaoTalk 💛
             </p>
+            <button
+              onClick={() => setShowKakaoQR(false)}
+              style={{
+                marginTop: "1rem",
+                padding: "0.8rem 2rem",
+                backgroundColor: "#FF6B9D",
+                color: "white",
+                border: "none",
+                borderRadius: "15px",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: "1rem",
+                fontWeight: 600,
+                cursor: "pointer",
+                transition: "all 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#FF5A8C";
+                e.currentTarget.style.transform = "scale(1.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "#FF6B9D";
+                e.currentTarget.style.transform = "scale(1)";
+              }}
+            >
+              Close
+            </button>
           </div>
         </div>
       )}

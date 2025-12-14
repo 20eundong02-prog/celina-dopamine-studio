@@ -133,7 +133,7 @@ export default function About() {
           </h2>
 
           {/* Timeline */}
-          <div style={{ position: "relative", paddingLeft: "2rem", maxWidth: "1100px", margin: "0 auto", overflowX: "hidden" }}>
+          <div style={{ position: "relative", paddingLeft: "2rem", maxWidth: "1100px", margin: "0 auto" }}>
             {/* Vertical Line */}
             <div
               style={{

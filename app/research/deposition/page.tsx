@@ -21,8 +21,6 @@ export default function DepositionPage() {
         minHeight: "100vh",
         padding: "100px 20px 60px",
         color: "#444",
-        overflowY: "auto",
-        WebkitOverflowScrolling: "touch",
         position: "relative",
       }}
     >
@@ -701,11 +699,6 @@ export default function DepositionPage() {
 
       {/* Mobile Responsive Styles */}
       <style jsx global>{`
-        body {
-          -webkit-overflow-scrolling: touch !important;
-          overflow-y: auto !important;
-        }
-
         @media (max-width: 768px) {
           .page-title {
             font-size: 2rem !important;

@@ -203,6 +203,7 @@ export default function Home() {
 
   return (
     <div
+      className="intro-page"
       style={{
         position: "relative",
         width: "100vw",

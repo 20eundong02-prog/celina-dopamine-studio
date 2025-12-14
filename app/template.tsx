@@ -16,7 +16,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
         width: "100%",
         minHeight: "100vh",
         // 모바일 최적화
-        WebkitOverflowScrolling: "touch",
         overscrollBehavior: "none",
       }}
     >
