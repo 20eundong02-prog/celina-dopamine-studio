@@ -53,7 +53,7 @@ export default function About() {
             {/* 상단: 이름 및 직함 */}
             <div>
               <h2
-                className="about-name" // [추가] 모바일 제어를 위한 클래스명
+                className="about-name"
                 style={{
                   fontFamily: "'Fredoka', 'Poppins', sans-serif",
                   fontSize: "3rem",
@@ -62,7 +62,7 @@ export default function About() {
                   marginBottom: "0.5rem",
                 }}
               >
-                {/* [수정] 이름 표기 변경 */}
+                {/* [수정됨] 이름 표기 변경 */}
                 Seonkyeong Kim
               </h2>
               <p
@@ -78,19 +78,19 @@ export default function About() {
               </p>
             </div>
 
-            {/* Dopamine Studio Section - 우측 하단 배치 */}
+            {/* Dopamine Studio Section */}
             <div
               className="dopamine-studio-section"
               style={{
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-end", // 오른쪽 정렬
+                alignItems: "flex-end", // PC: 오른쪽 정렬
                 textAlign: "right",
                 marginTop: "5rem", 
               }}
             >
               <h3
-                className="dopamine-title" // [추가] 모바일 제어를 위한 클래스명
+                className="dopamine-title"
                 style={{
                   fontFamily: "var(--font-shrikhand), cursive",
                   fontSize: "2.8rem", 
@@ -117,12 +117,14 @@ export default function About() {
                 </p>
                 <p style={{ marginBottom: "0.4rem" }}>
                   Dopamine Studio is a small universe where curiosity sparks ideas,
-                  <br />
+                  {/* [수정됨] PC에서는 줄바꿈(br)이 작동하고, 모바일에서는 무시되도록 클래스 추가 */}
+                  <br className="pc-only" />
                   and ideas grow into warm technology. 💡
                 </p>
                 <p>
                   Different colors and shapes come together here,
-                  <br />
+                  {/* [수정됨] PC에서는 줄바꿈(br)이 작동하고, 모바일에서는 무시되도록 클래스 추가 */}
+                  <br className="pc-only" />
                   fusing creativity with diversity – to build innovations that feel gentle and human. 🌸
                 </p>
               </div>
@@ -319,16 +321,19 @@ export default function About() {
             margin-top: 3rem !important; /* 모바일에서는 간격 약간 축소 */
           }
 
-          /* [추가됨] 모바일에서 이름 폰트 줄이기 & 한 줄 유지 */
           .about-name {
             font-size: 2.2rem !important;
             white-space: nowrap;
           }
 
-          /* [추가됨] 모바일에서 스튜디오 타이틀 폰트 줄이기 & 한 줄 유지 */
           .dopamine-title {
             font-size: 2.0rem !important;
             white-space: nowrap;
+          }
+
+          /* [핵심] 모바일에서는 pc-only 클래스를 숨겨서 줄바꿈 없이 쭉 이어지게 함 */
+          .pc-only {
+            display: none;
           }
         }
       `}</style>
