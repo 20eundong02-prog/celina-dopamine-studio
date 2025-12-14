@@ -1,7 +1,8 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { Poppins, Montserrat } from "next/font/google";
+// [변경사항 1] Shrikhand 폰트 불러오기
+import { Poppins, Montserrat, Shrikhand } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 
@@ -15,6 +16,13 @@ const montserrat = Montserrat({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-montserrat",
+});
+
+// [변경사항 2] Shrikhand 폰트 설정
+const shrikhand = Shrikhand({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-shrikhand",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -43,9 +51,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   };
 
   return (
-    <html lang="ko" className={`${poppins.variable} ${montserrat.variable}`}>
+    // [변경사항 3] html 태그에 shrikhand 변수 추가
+    <html lang="ko" className={`${poppins.variable} ${montserrat.variable} ${shrikhand.variable}`}>
       <head>
-        <title>Celina's Dopamine Studio</title>
+        <title>Celina&apos;s Dopamine Studio</title>
         <meta name="description" content="Research & Life Portfolio - Finding dopamine in every moment" />
         <meta name="theme-color" content="#FF6B9D" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -72,9 +81,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link
             href="/"
             style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "1.1rem",
-              fontWeight: 600,
+              // [변경사항 4] 메인 메뉴 폰트 변경 (Poppins -> Shrikhand)
+              fontFamily: "var(--font-shrikhand), cursive",
+              fontSize: "1.3rem", // Shrikhand는 조금 작아보일 수 있어 사이즈 약간 키움 (1.1 -> 1.3)
+              fontWeight: 400, // Shrikhand는 weight가 하나뿐이라 400으로 설정
               color: "#FFB6C1",
               textDecoration: "none",
               transition: "all 0.3s ease",
@@ -95,9 +105,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link
             href="/about"
             style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "1.1rem",
-              fontWeight: 600,
+              fontFamily: "var(--font-shrikhand), cursive", // 폰트 변경
+              fontSize: "1.3rem",
+              fontWeight: 400,
               color: "#FFD4A3",
               textDecoration: "none",
               transition: "all 0.3s ease",
@@ -124,9 +134,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Link
               href="/research"
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-shrikhand), cursive", // 폰트 변경
+                fontSize: "1.3rem",
+                fontWeight: 400,
                 color: "#B4E7CE",
                 textDecoration: "none",
                 transition: "all 0.3s ease",
@@ -170,6 +180,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                     gap: "0.3rem"
                   }}
                 >
+                  {/* 드롭다운 내부 아이템은 가독성을 위해 Poppins 유지 */}
                   <Link href="/research/synthesis" style={{ display: "block", padding: "0.7rem 1rem", fontFamily: "Poppins, sans-serif", fontSize: "0.95rem", fontWeight: 500, color: "#666", textDecoration: "none", borderRadius: "10px", transition: "all 0.2s ease" }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.backgroundColor = "#B4E7CE20";
@@ -267,9 +278,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link
             href="/life"
             style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "1.1rem",
-              fontWeight: 600,
+              fontFamily: "var(--font-shrikhand), cursive", // 폰트 변경
+              fontSize: "1.3rem",
+              fontWeight: 400,
               color: "#C5A3FF",
               textDecoration: "none",
               transition: "all 0.3s ease",
@@ -290,9 +301,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Link
             href="/contact"
             style={{
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "1.1rem",
-              fontWeight: 600,
+              fontFamily: "var(--font-shrikhand), cursive", // 폰트 변경
+              fontSize: "1.3rem",
+              fontWeight: 400,
               color: "#FFB3E6",
               textDecoration: "none",
               transition: "all 0.3s ease",
@@ -389,9 +400,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               href="/"
               onClick={closeMobileMenu}
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-shrikhand), cursive", // 모바일 메뉴도 변경
+                fontSize: "1.2rem",
+                fontWeight: 400,
                 color: "#FFB6C1",
                 textDecoration: "none",
                 padding: "1rem",
@@ -406,9 +417,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               href="/about"
               onClick={closeMobileMenu}
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-shrikhand), cursive",
+                fontSize: "1.2rem",
+                fontWeight: 400,
                 color: "#FFD4A3",
                 textDecoration: "none",
                 padding: "1rem",
@@ -426,9 +437,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 style={{
                   width: "100%",
                   textAlign: "left",
-                  fontFamily: "Poppins, sans-serif",
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
+                  fontFamily: "var(--font-shrikhand), cursive", // 리서치 버튼 폰트 변경
+                  fontSize: "1.2rem",
+                  fontWeight: 400,
                   color: "#B4E7CE",
                   background: "none",
                   border: "none",
@@ -457,6 +468,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   gap: "0.3rem",
                   marginTop: "0.5rem",
                 }}>
+                  {/* 모바일 하위 메뉴도 가독성 위해 Poppins 유지 */}
                   <Link href="/research/synthesis" onClick={closeMobileMenu} style={{ display: "block", padding: "0.7rem 1rem", fontFamily: "Poppins, sans-serif", fontSize: "0.95rem", fontWeight: 500, color: "#666", textDecoration: "none", borderRadius: "10px" }}>
                     Synthesis
                   </Link>
@@ -483,9 +495,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               href="/life"
               onClick={closeMobileMenu}
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-shrikhand), cursive",
+                fontSize: "1.2rem",
+                fontWeight: 400,
                 color: "#C5A3FF",
                 textDecoration: "none",
                 padding: "1rem",
@@ -500,9 +512,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               href="/contact"
               onClick={closeMobileMenu}
               style={{
-                fontFamily: "Poppins, sans-serif",
-                fontSize: "1.1rem",
-                fontWeight: 600,
+                fontFamily: "var(--font-shrikhand), cursive",
+                fontSize: "1.2rem",
+                fontWeight: 400,
                 color: "#FFB3E6",
                 textDecoration: "none",
                 padding: "1rem",

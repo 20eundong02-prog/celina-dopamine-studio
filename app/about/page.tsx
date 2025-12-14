@@ -49,44 +49,53 @@ export default function About() {
           </div>
 
           {/* Name and Dopamine Studio Description */}
-          <div style={{ flex: "1 1 300px", minWidth: "280px" }}>
-            <h2
-              style={{
-                fontFamily: "'Fredoka', 'Poppins', sans-serif",
-                fontSize: "3rem",
-                fontWeight: 700,
-                color: "#FF6B9D",
-                marginBottom: "0.5rem",
-              }}
-            >
-              Kim Seon Kyeong
-            </h2>
-            <p
-              style={{
-                fontFamily: "Montserrat, sans-serif",
-                fontSize: "1.2rem",
-                color: "#666",
-                fontWeight: 500,
-                marginBottom: "2rem",
-              }}
-            >
-              Materials Science & Engineering Researcher
-            </p>
+          <div style={{ flex: "1 1 300px", minWidth: "280px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            {/* 상단: 이름 및 직함 */}
+            <div>
+              <h2
+                style={{
+                  fontFamily: "'Fredoka', 'Poppins', sans-serif",
+                  fontSize: "3rem",
+                  fontWeight: 700,
+                  color: "#FF6B9D",
+                  marginBottom: "0.5rem",
+                }}
+              >
+                Kim Seon Kyeong
+              </h2>
+              <p
+                style={{
+                  fontFamily: "Montserrat, sans-serif",
+                  fontSize: "1.2rem",
+                  color: "#666",
+                  fontWeight: 500,
+                  marginBottom: "0", // 여기서 마진을 없애고 아래 섹션의 marginTop으로 간격 조절
+                }}
+              >
+                Materials Science & Engineering Researcher
+              </p>
+            </div>
 
-            {/* Dopamine Studio Description - Right Aligned on Desktop */}
+            {/* [수정됨] Dopamine Studio Section - 우측 하단 배치 */}
             <div
               className="dopamine-studio-section"
               style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end", // 오른쪽 정렬
                 textAlign: "right",
+                // [핵심 수정] 위쪽 여백을 크게 주어 아래로 밀어냄 (우측 하단 느낌)
+                marginTop: "5rem", 
               }}
             >
               <h3
                 style={{
-                  fontFamily: "'Fredoka', 'Comic Sans MS', cursive",
-                  fontSize: "2.2rem",
-                  fontWeight: 700,
-                  color: "#FF6B9D",
-                  marginBottom: "1rem",
+                  fontFamily: "var(--font-shrikhand), cursive",
+                  fontSize: "2.8rem", 
+                  fontWeight: 400,
+                  color: "#ff4785",
+                  marginBottom: "0.2rem", 
+                  lineHeight: 1.0,
                 }}
               >
                 Dopamine Studio
@@ -94,15 +103,17 @@ export default function About() {
               <div
                 style={{
                   fontFamily: "'Quicksand', 'Montserrat', sans-serif",
-                  fontSize: "1rem",
-                  lineHeight: "1.8",
+                  fontSize: "1.05rem",
+                  fontWeight: 500,
+                  lineHeight: "1.5", 
+                  letterSpacing: "-0.5px", 
                   color: "#555",
                 }}
               >
-                <p style={{ marginBottom: "0.8rem" }}>
+                <p style={{ marginBottom: "0.4rem" }}>
                   Dopamine helps us move, learn, create, and pursue what excites us. ✨
                 </p>
-                <p style={{ marginBottom: "0.8rem" }}>
+                <p style={{ marginBottom: "0.4rem" }}>
                   Dopamine Studio is a small universe where curiosity sparks ideas,
                   <br />
                   and ideas grow into warm technology. 💡
@@ -302,6 +313,8 @@ export default function About() {
         @media (max-width: 768px) {
           .dopamine-studio-section {
             text-align: left !important;
+            align-items: flex-start !important; /* 모바일에서는 왼쪽 정렬 */
+            margin-top: 3rem !important; /* 모바일에서는 간격 약간 축소 */
           }
         }
       `}</style>

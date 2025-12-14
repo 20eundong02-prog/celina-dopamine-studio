@@ -1,19 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import "./intro.css";
+// import "./intro.css"; // 필요시 주석 해제
 
 interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
   radius: number;
   color: string;
-  targetX: number;
-  targetY: number;
-  angle: number;
-  rotationSpeed: number;
+  angle: number;      // 현재 각도
+  distance: number;   // 중심으로부터의 거리
+  speed: number;      // 회전 속도
 }
 
 export default function Home() {
@@ -35,149 +30,125 @@ export default function Home() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
+    // [설정] 솜사탕 같은 파스텔 톤 색상 팔레트
     const pastelColors = [
-      "#FFB3BA",
-      "#FFDFBA",
-      "#FFFFBA",
-      "#BAFFC9",
-      "#BAE1FF",
-      "#E0BBE4",
-      "#FFDFD3",
+      "#FF9AA2", // Soft Red
+      "#FFB7B2", // Salmon
+      "#FFDAC1", // Peach
+      "#E2F0CB", // Lime
+      "#B5EAD7", // Mint
+      "#C7CEEA", // Periwinkle
+      "#F8C8DC", // Pink
+      "#AEC6CF", // Pastel Blue
+      "#D4F0F0", // Light Cyan
+      "#E6E6FA", // Lavender
     ];
 
     const particles: Particle[] = [];
-    const particleCount = window.innerWidth <= 768 ? 6 : 8;
+    // [설정] 입자 개수: 모바일은 적게, PC는 많게 (풍성하게 섞이도록)
+    const particleCount = window.innerWidth <= 768 ? 10 : 18;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
     for (let i = 0; i < particleCount; i++) {
       const angle = (Math.PI * 2 * i) / particleCount;
-      const distance = Math.min(canvas.width, canvas.height) * 0.35;
-      
-      const baseRadius = window.innerWidth <= 768 ? 30 : 40;
-      const randomRadius = window.innerWidth <= 768 ? 40 : 60;
+      // 화면 밖에서 시작하도록 거리 설정
+      const maxDistance = Math.max(canvas.width, canvas.height) * 0.6; 
       
       particles.push({
-        x: centerX + Math.cos(angle) * distance,
-        y: centerY + Math.sin(angle) * distance,
-        vx: 0,
-        vy: 0,
-        radius: baseRadius + Math.random() * randomRadius,
+        // [중요] 반지름을 아주 크게 설정하여 솜사탕 덩어리처럼 보이게 함
+        radius: window.innerWidth <= 768 ? 50 + Math.random() * 40 : 80 + Math.random() * 60,
         color: pastelColors[i % pastelColors.length],
-        targetX: centerX,
-        targetY: centerY,
         angle: angle,
-        rotationSpeed: (Math.random() - 0.5) * 0.02,
+        distance: maxDistance,
+        // 회전 속도를 랜덤하게 주어 자연스럽게 섞이도록 함
+        speed: 0.02 + Math.random() * 0.02, 
       });
     }
 
     let startTime = Date.now();
     let animationPhase: "gathering" | "flash" | "complete" = "gathering";
-    const gatherDuration = 1200;
-    const flashDuration = 200;
-
-    const drawFluffyParticle = (
-      particle: Particle,
-      opacity: number = 1
-    ) => {
-      const { x, y, radius, color } = particle;
-
-      ctx.save();
-
-      for (let i = 3; i > 0; i--) {
-        const r = radius * (0.6 + i * 0.2);
-        const alpha = (0.15 * i * opacity);
-        
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = `${color}${Math.floor(alpha * 255).toString(16).padStart(2, '0')}`;
-        ctx.fill();
-      }
-
-      const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
-      gradient.addColorStop(0, color);
-      gradient.addColorStop(0.5, `${color}AA`);
-      gradient.addColorStop(1, `${color}00`);
-
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = gradient;
-      ctx.fill();
-
-      ctx.restore();
-    };
+    const gatherDuration = 2200; // 뭉치는 시간 (천천히)
+    const flashDuration = 400;
 
     const animate = () => {
       const elapsed = Date.now() - startTime;
 
+      // 캔버스 초기화
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // [핵심 효과 1] 캔버스 전체 블러 처리 -> 공 느낌을 없애고 안개처럼 만듦
+      // 모바일 성능 고려하여 블러 양 조절
+      ctx.filter = window.innerWidth <= 768 ? "blur(25px)" : "blur(50px)";
+      
+      // [핵심 효과 2] 색상 혼합 모드 -> 색이 겹치면 빛처럼 밝아짐 (수채화 느낌)
+      ctx.globalCompositeOperation = "screen"; // 또는 "lighter"
 
       if (animationPhase === "gathering") {
         const progress = Math.min(elapsed / gatherDuration, 1);
-        const easeProgress = progress * progress * progress;
+        // easeOutCubic: 끝으로 갈수록 천천히 도착
+        const ease = 1 - Math.pow(1 - progress, 3); 
 
-        particles.forEach((particle) => {
-          const currentDistance = Math.sqrt(
-            Math.pow(particle.x - centerX, 2) + 
-            Math.pow(particle.y - centerY, 2)
-          );
+        particles.forEach((p) => {
+          // 1. 거리 줄이기 (밖 -> 안으로 빨려들어옴)
+          // 150px 정도까지만 모이고 너무 작게 뭉치지 않게 함 (배경 원형 느낌 유지)
+          const minDistance = 50;
+          const currentDist = p.distance - (p.distance - minDistance) * ease;
           
-          particle.angle += particle.rotationSpeed * (1 + easeProgress * 3);
-          
-          const spiralRadius = currentDistance * (1 - easeProgress);
-          const targetX = centerX + Math.cos(particle.angle) * spiralRadius;
-          const targetY = centerY + Math.sin(particle.angle) * spiralRadius;
-          
-          particle.x += (targetX - particle.x) * 0.15;
-          particle.y += (targetY - particle.y) * 0.15;
+          // 2. 회전 시키기 (소용돌이)
+          // 시간이 지날수록 더 빨리 돎 (빨려들어가는 느낌)
+          p.angle += p.speed * (1 + progress * 1.5); 
 
-          drawFluffyParticle(particle);
+          const x = centerX + Math.cos(p.angle) * currentDist;
+          const y = centerY + Math.sin(p.angle) * currentDist;
+
+          // 그리기
+          ctx.beginPath();
+          ctx.arc(x, y, p.radius, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
         });
 
-        const allNearCenter = particles.every((p) => {
-          const dx = p.x - centerX;
-          const dy = p.y - centerY;
-          const r = Math.sqrt(dx * dx + dy * dy);
-          return r < 80;
-        });
-
-        if (allNearCenter || progress >= 1) {
+        // 애니메이션 종료 조건
+        if (progress >= 1) {
           animationPhase = "flash";
           startTime = Date.now();
         }
+
       } else if (animationPhase === "flash") {
+        // 플래시 단계에서는 블러를 끄고 하얗게 덮음
+        ctx.filter = "none";
+        ctx.globalCompositeOperation = "source-over"; // 기본 모드로 복귀
+
         const flashProgress = elapsed / flashDuration;
-
+        
         if (flashProgress < 0.5) {
-          const brightness = flashProgress * 2;
-          ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // 밝아짐 (White Flash)
+            const opacity = flashProgress * 2;
+            ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
         } else {
-          const fadeProgress = (flashProgress - 0.5) * 2;
-          ctx.fillStyle = `rgba(255, 255, 255, ${1 - fadeProgress})`;
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-          if (fadeProgress > 0.8) {
-            animationPhase = "complete";
-            setBgColor("#FFE5EC");
-            setShowText(true);
-          }
+            // 화이트아웃 -> 배경색으로 전환
+            const fadeOut = (flashProgress - 0.5) * 2;
+            ctx.fillStyle = `rgba(255, 255, 255, ${1 - fadeOut})`;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            if(fadeOut > 0.6 && !showText) {
+                 setBgColor("#FFE5EC");
+                 setShowText(true);
+            }
         }
-
-        particles.forEach((particle) => {
-          drawFluffyParticle(particle, 1 - flashProgress);
-        });
 
         if (elapsed >= flashDuration) {
           animationPhase = "complete";
           setBgColor("#FFE5EC");
           setShowText(true);
         }
-      } else {
-        return;
       }
 
-      requestAnimationFrame(animate);
+      if (animationPhase !== "complete") {
+        requestAnimationFrame(animate);
+      }
     };
 
     animate();
@@ -196,9 +167,13 @@ export default function Home() {
         height: "100dvh",
         overflow: "hidden",
         backgroundColor: bgColor,
-        transition: "background-color 0.3s ease",
+        transition: "background-color 0.5s ease",
       }}
     >
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Poppins:wght@700&family=Shrikhand&display=swap');
+      `}</style>
+
       <canvas
         ref={canvasRef}
         style={{
@@ -225,29 +200,35 @@ export default function Home() {
           padding: "0 10%",
           zIndex: 10,
           opacity: showText ? 1 : 0,
-          transition: "opacity 0.5s ease",
+          transition: "opacity 1s ease",
           pointerEvents: "none",
           boxSizing: "border-box",
         }}
       >
-        <div className="intro-content" style={{ textAlign: "center", width: "100%" }}>
+        <div
+          className="intro-content"
+          style={{ textAlign: "center", width: "100%", position: "relative" }}
+        >
+          {/* 타이틀 뒤 배경 (애니메이션 끝난 후 나타나는 정적인 배경) */}
+          <div className="title-bg-blob"></div>
+
           <h1
             className="intro-title"
             style={{
-              fontFamily: "Poppins, sans-serif",
+              fontFamily: "'Shrikhand', cursive", // layout.tsx에 import 되어있다면 var(--font-shrikhand) 사용 가능
               fontSize: "5rem",
-              fontWeight: 700,
-              color: "#FF6B9D",
+              fontWeight: 400,
+              color: "#ff4785",
               marginBottom: "1.5rem",
-              textShadow: "2px 2px 8px rgba(255, 107, 157, 0.3)",
-              lineHeight: 1.2,
+              lineHeight: 1.1,
+              position: "relative",
+              zIndex: 2,
             }}
           >
             Celina&apos;s
-            {/* 모바일에서만 작동하는 줄바꿈 태그 */}
-            <br className="mobile-break" />
+            <br />
             Dopamine
-            <br className="mobile-break" />
+            <br />
             Studio
           </h1>
           <p
@@ -260,6 +241,8 @@ export default function Home() {
               lineHeight: 1.5,
               padding: "0",
               marginBottom: "0.8rem",
+              position: "relative",
+              zIndex: 2,
             }}
           >
             Where Diversity Reacts Into Warm Technology
@@ -272,6 +255,8 @@ export default function Home() {
               color: "#999",
               fontWeight: 300,
               marginTop: 0,
+              position: "relative",
+              zIndex: 2,
             }}
           >
             – Powered by Seon Kyeong
@@ -280,68 +265,58 @@ export default function Home() {
       </div>
 
       <style jsx>{`
-        /* PC 기본: 모바일 줄바꿈 태그 숨김 */
-        .mobile-break {
-          display: none;
+        /* 배경 Blob 스타일 (애니메이션 끝난 뒤 고정 배경) */
+        .title-bg-blob {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 800px;
+          height: 800px;
+          background-color: #CCDEED;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.9;
+          z-index: 1;
+          pointer-events: none;
         }
 
         @media (max-width: 768px) {
-          /* 모바일: 줄바꿈 활성화 */
-          .mobile-break {
-            display: block;
-          }
-          
           .intro-text-container {
-            /* 폰트가 커졌으므로 하단 여백을 조금 줄여(12vh) 균형을 맞춤 */
             padding: 0 5% 12vh 5% !important;
           }
-
+          .title-bg-blob {
+            width: 500px;
+            height: 500px;
+            filter: blur(40px);
+            opacity: 0.85;
+          }
           .intro-title {
-            /* 폰트 크기 대폭 확대 및 줄간격 조정 */
-            font-size: 4rem !important; 
+            font-size: 4rem !important;
             line-height: 1.1 !important;
             padding: 0 10px;
             margin-bottom: 1rem !important;
           }
-
           .intro-subtitle {
             font-size: 1rem !important;
             padding: 0 20px !important;
             margin-bottom: 0.5rem !important;
           }
-
           .intro-author {
             font-size: 0.9rem !important;
           }
         }
 
         @media (max-width: 480px) {
+          .title-bg-blob {
+            width: 350px;
+            height: 350px;
+          }
           .intro-title {
-            /* 매우 작은 화면에서는 폰트 조금 조절 */
-            font-size: 3.2rem !important; 
+            font-size: 3.2rem !important;
           }
           .intro-subtitle {
             font-size: 0.9rem !important;
-          }
-        }
-
-        @media (orientation: landscape) and (max-height: 500px) {
-          .intro-text-container {
-             padding-bottom: 5vh !important;
-          }
-          .mobile-break {
-             display: none; /* 가로 모드에서는 줄바꿈 안 함 */
-          }
-          .intro-title {
-            font-size: 1.8rem !important;
-            margin-bottom: 0.6rem !important;
-          }
-          .intro-subtitle {
-            font-size: 0.85rem !important;
-            margin-bottom: 0.3rem !important;
-          }
-          .intro-author {
-            font-size: 0.75rem !important;
           }
         }
       `}</style>
