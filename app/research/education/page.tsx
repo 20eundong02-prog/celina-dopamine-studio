@@ -40,7 +40,7 @@ export default function OthersPage() {
             lineHeight: "1.6",
           }}
         >
-          <b>Leadership, Entrepreneurship</b>, and <b>AI/Data Skills</b>.<br />
+          연구실 밖에서 펼친 또 다른 도전.<br />
           리더십, 창업, 그리고 데이터 기반 문제 해결 역량.
         </p>
       </header>
@@ -476,7 +476,7 @@ export default function OthersPage() {
 
           .activity-row {
             flex-direction: column !important;
-            padding: 15px !important;
+            padding: 12px !important;
             gap: 0 !important;
           }
 
@@ -484,8 +484,19 @@ export default function OthersPage() {
             border-right: none !important;
             border-bottom: 2px solid #FFF0F5 !important;
             padding-right: 0 !important;
-            padding-bottom: 10px !important;
-            margin-bottom: 10px !important;
+            padding-bottom: 6px !important;
+            margin-bottom: 8px !important;
+            min-height: auto !important;
+          }
+
+          .activity-row-period span {
+            font-size: 0.9rem !important;
+            line-height: 1.3 !important;
+          }
+
+          .activity-row-period span:last-child {
+            font-size: 0.8rem !important;
+            margin-top: 2px !important;
           }
 
           .activity-row-content {
@@ -493,16 +504,19 @@ export default function OthersPage() {
           }
 
           .activity-row-title {
-            font-size: 1.1rem !important;
+            font-size: 1.05rem !important;
+            margin-bottom: 8px !important;
           }
 
           .activity-row-desc {
             font-size: 0.85rem !important;
+            line-height: 1.6 !important;
           }
 
           .award-badge {
             font-size: 0.75rem !important;
             padding: 3px 8px !important;
+            margin-bottom: 6px !important;
           }
 
           .tool-badges {
@@ -555,8 +569,22 @@ export default function OthersPage() {
             font-size: 0.95rem !important;
           }
 
+          .activity-row {
+            padding: 10px !important;
+          }
+
+          .activity-row-period {
+            padding-bottom: 5px !important;
+            margin-bottom: 6px !important;
+          }
+
           .activity-row-title {
             font-size: 1rem !important;
+            margin-bottom: 6px !important;
+          }
+
+          .activity-row-desc {
+            font-size: 0.8rem !important;
           }
         }
       `}</style>
