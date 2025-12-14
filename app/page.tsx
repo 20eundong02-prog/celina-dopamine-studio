@@ -139,7 +139,8 @@ export default function Home() {
         const allNearCenter = particles.every((p) => {
           const dx = p.x - centerX;
           const dy = p.y - centerY;
-          return Math.sqrt(dx * dx + dy * dy) < 80;
+          const r = Math.sqrt(dx * dx + dy * dy);
+          return r < 80;
         });
 
         if (allNearCenter || progress >= 1) {
@@ -194,7 +195,8 @@ export default function Home() {
       style={{
         position: "relative",
         width: "100vw",
-        height: "100vh",
+        // 수정됨: 모바일 주소창 대응을 위해 100vh -> 100dvh로 변경
+        height: "100dvh", 
         overflow: "hidden",
         backgroundColor: bgColor,
         transition: "background-color 0.3s ease",
