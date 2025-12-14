@@ -20,19 +20,6 @@ export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [showText, setShowText] = useState(false);
   const [bgColor, setBgColor] = useState("transparent");
-  const [isMobile, setIsMobile] = useState(false);
-
-  // 모바일 감지
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -237,22 +224,22 @@ export default function Home() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: isMobile ? "0 5%" : "0 10%",
+          padding: "0 10%",
           zIndex: 10,
           opacity: showText ? 1 : 0,
           transition: "opacity 0.5s ease",
           pointerEvents: "none",
         }}
       >
-        <div style={{ textAlign: "center", width: "100%", transform: isMobile ? "translateY(-10%)" : "none" }}>
+        <div className="intro-content" style={{ textAlign: "center", width: "100%" }}>
           <h1
             className="intro-title"
             style={{
               fontFamily: "Poppins, sans-serif",
-              fontSize: isMobile ? "2.5rem" : "5rem",
+              fontSize: "5rem",
               fontWeight: 700,
               color: "#FF6B9D",
-              marginBottom: isMobile ? "1rem" : "1.5rem",
+              marginBottom: "1.5rem",
               textShadow: "2px 2px 8px rgba(255, 107, 157, 0.3)",
               lineHeight: 1.2,
             }}
@@ -263,12 +250,12 @@ export default function Home() {
             className="intro-subtitle"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "1rem" : "1.4rem",
+              fontSize: "1.4rem",
               color: "#666",
               fontWeight: 300,
               lineHeight: 1.5,
-              padding: isMobile ? "0 10px" : "0",
-              marginBottom: isMobile ? "0.5rem" : "0.8rem",
+              padding: "0",
+              marginBottom: "0.8rem",
             }}
           >
             Where Diversity Reacts Into Warm Technology
@@ -277,7 +264,7 @@ export default function Home() {
             className="intro-author"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "0.9rem" : "1.1rem",
+              fontSize: "1.1rem",
               color: "#999",
               fontWeight: 300,
               marginTop: 0,
@@ -291,6 +278,14 @@ export default function Home() {
       {/* Mobile-specific styles */}
       <style jsx>{`
         @media (max-width: 768px) {
+          .intro-text-container {
+            padding: 0 5% !important;
+          }
+
+          .intro-content {
+            transform: translateY(-10%);
+          }
+
           .intro-title {
             font-size: 2.5rem !important;
             padding: 0 20px;
