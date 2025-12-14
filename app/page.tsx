@@ -193,7 +193,7 @@ export default function Home() {
       style={{
         position: "relative",
         width: "100vw",
-        height: "100dvh", // 모바일 주소창 대응
+        height: "100dvh",
         overflow: "hidden",
         backgroundColor: bgColor,
         transition: "background-color 0.3s ease",
@@ -211,7 +211,6 @@ export default function Home() {
         }}
       />
 
-      {/* 타이틀 컨테이너 */}
       <div
         className="intro-text-container"
         style={{
@@ -228,7 +227,7 @@ export default function Home() {
           opacity: showText ? 1 : 0,
           transition: "opacity 0.5s ease",
           pointerEvents: "none",
-          boxSizing: "border-box", // 패딩이 레이아웃 깨뜨리지 않도록 설정
+          boxSizing: "border-box",
         }}
       >
         <div className="intro-content" style={{ textAlign: "center", width: "100%" }}>
@@ -244,7 +243,12 @@ export default function Home() {
               lineHeight: 1.2,
             }}
           >
-            Celina&apos;s Dopamine Studio
+            Celina&apos;s
+            {/* 모바일에서만 작동하는 줄바꿈 태그 */}
+            <br className="mobile-break" />
+            Dopamine
+            <br className="mobile-break" />
+            Studio
           </h1>
           <p
             className="intro-subtitle"
@@ -275,17 +279,28 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Mobile-specific styles */}
       <style jsx>{`
+        /* PC 기본: 모바일 줄바꿈 태그 숨김 */
+        .mobile-break {
+          display: none;
+        }
+
         @media (max-width: 768px) {
+          /* 모바일: 줄바꿈 활성화 */
+          .mobile-break {
+            display: block;
+          }
+          
           .intro-text-container {
-            /* 하단에 20vh만큼의 공간을 강제로 비워, 중심점을 위로 끌어올림 */
-            padding: 0 5% 20vh 5% !important;
+            /* 폰트가 커졌으므로 하단 여백을 조금 줄여(12vh) 균형을 맞춤 */
+            padding: 0 5% 12vh 5% !important;
           }
 
           .intro-title {
-            font-size: 2.5rem !important;
-            padding: 0 20px;
+            /* 폰트 크기 대폭 확대 및 줄간격 조정 */
+            font-size: 4rem !important; 
+            line-height: 1.1 !important;
+            padding: 0 10px;
             margin-bottom: 1rem !important;
           }
 
@@ -302,36 +317,29 @@ export default function Home() {
 
         @media (max-width: 480px) {
           .intro-title {
-            font-size: 2rem !important;
-            padding: 0 15px;
-            margin-bottom: 0.8rem !important;
+            /* 매우 작은 화면에서는 폰트 조금 조절 */
+            font-size: 3.2rem !important; 
           }
-
           .intro-subtitle {
             font-size: 0.9rem !important;
-            padding: 0 15px !important;
-            margin-bottom: 0.4rem !important;
-          }
-
-          .intro-author {
-            font-size: 0.8rem !important;
           }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
           .intro-text-container {
-             padding-bottom: 5vh !important; /* 가로 모드에서는 여백 줄임 */
+             padding-bottom: 5vh !important;
+          }
+          .mobile-break {
+             display: none; /* 가로 모드에서는 줄바꿈 안 함 */
           }
           .intro-title {
             font-size: 1.8rem !important;
             margin-bottom: 0.6rem !important;
           }
-
           .intro-subtitle {
             font-size: 0.85rem !important;
             margin-bottom: 0.3rem !important;
           }
-
           .intro-author {
             font-size: 0.75rem !important;
           }
