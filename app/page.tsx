@@ -46,7 +46,6 @@ export default function Home() {
     ];
 
     const particles: Particle[] = [];
-    // 모바일에서 파티클 수 감소
     const particleCount = window.innerWidth <= 768 ? 6 : 8;
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
@@ -55,7 +54,6 @@ export default function Home() {
       const angle = (Math.PI * 2 * i) / particleCount;
       const distance = Math.min(canvas.width, canvas.height) * 0.35;
       
-      // 모바일에서 파티클 크기 감소
       const baseRadius = window.innerWidth <= 768 ? 30 : 40;
       const randomRadius = window.innerWidth <= 768 ? 40 : 60;
       
@@ -195,8 +193,7 @@ export default function Home() {
       style={{
         position: "relative",
         width: "100vw",
-        // 수정됨: 모바일 주소창 대응을 위해 100vh -> 100dvh로 변경
-        height: "100dvh", 
+        height: "100dvh", // 모바일 주소창 대응
         overflow: "hidden",
         backgroundColor: bgColor,
         transition: "background-color 0.3s ease",
@@ -214,7 +211,7 @@ export default function Home() {
         }}
       />
 
-      {/* 타이틀 */}
+      {/* 타이틀 컨테이너 */}
       <div
         className="intro-text-container"
         style={{
@@ -231,6 +228,7 @@ export default function Home() {
           opacity: showText ? 1 : 0,
           transition: "opacity 0.5s ease",
           pointerEvents: "none",
+          boxSizing: "border-box", // 패딩이 레이아웃 깨뜨리지 않도록 설정
         }}
       >
         <div className="intro-content" style={{ textAlign: "center", width: "100%" }}>
@@ -281,11 +279,8 @@ export default function Home() {
       <style jsx>{`
         @media (max-width: 768px) {
           .intro-text-container {
-            padding: 0 5% !important;
-          }
-
-          .intro-content {
-            transform: translateY(-10%);
+            /* 하단에 20vh만큼의 공간을 강제로 비워, 중심점을 위로 끌어올림 */
+            padding: 0 5% 20vh 5% !important;
           }
 
           .intro-title {
@@ -324,6 +319,9 @@ export default function Home() {
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
+          .intro-text-container {
+             padding-bottom: 5vh !important; /* 가로 모드에서는 여백 줄임 */
+          }
           .intro-title {
             font-size: 1.8rem !important;
             margin-bottom: 0.6rem !important;
