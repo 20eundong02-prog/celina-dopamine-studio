@@ -24,22 +24,29 @@ export default function Contact() {
     {
       icon: "📝",
       label: "Blog",
-      value: "blog.naver.com/sueksk",
-      link: "https://blog.naver.com/sueksk",
+      value: "blog.naver.com/ksk_celina",
+      link: "https://blog.naver.com/ksk_celina",
       color: "#B4E7CE"
+    },
+    {
+      icon: "💻",
+      label: "GitHub",
+      value: "20eundong02-prog",
+      link: "https://github.com/20eundong02-prog",
+      color: "#C8B6E2"
     },
     {
       icon: "📷",
       label: "Instagram",
-      value: "@ks_9ye5",
-      link: "https://www.instagram.com/ks_9ye5",
+      value: "@ksk_celina",
+      link: "https://www.instagram.com/ksk_celina",
       color: "#FFAEC9"
     },
     {
       icon: "💭",
       label: "Threads",
-      value: "@ks_9ye5",
-      link: "https://www.threads.net/@ks_9ye5",
+      value: "@ksk_celina",
+      link: "https://www.threads.net/@ksk_celina",
       color: "#E0BBE4"
     }
   ];

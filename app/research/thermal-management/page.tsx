@@ -316,14 +316,9 @@ export default function ThermalManagementPage() {
             <span style={{ fontSize: "2.5rem" }}>❄️</span>
             <div style={{ flex: 1 }}>
               <h2 style={titleStyle} className="section-title">Radiative Cooling Color Filters</h2>
-              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
-                  2024 - 2025 | KICET
-                </p>
-                <span style={publicationBadgeStyle} className="publication-badge">
-                  🧪 Experimental Study
-                </span>
-              </div>
+              <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle experimental-text">
+                2024 - 2025 | KICET | Experimental Study
+              </p>
             </div>
           </div>
 
@@ -571,6 +566,10 @@ export default function ThermalManagementPage() {
             font-size: 0.9rem !important;
           }
 
+          .experimental-text {
+            font-size: 0.85rem !important;
+          }
+
           .publication-container {
             flex-direction: column !important;
             align-items: flex-start !important;
@@ -686,6 +685,14 @@ export default function ThermalManagementPage() {
 
           .section-title {
             font-size: 1.2rem !important;
+          }
+
+          .section-subtitle {
+            font-size: 0.85rem !important;
+          }
+
+          .experimental-text {
+            font-size: 0.8rem !important;
           }
 
           .content-paragraph {

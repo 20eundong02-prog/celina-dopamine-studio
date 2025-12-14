@@ -236,23 +236,23 @@ export default function Home() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          justifyContent: isMobile ? "center" : "flex-end",
-          padding: isMobile ? "0 5%" : "0 10% 0 0",
+          justifyContent: "center",
+          padding: isMobile ? "0 5%" : "0 10%",
           zIndex: 10,
           opacity: showText ? 1 : 0,
           transition: "opacity 0.5s ease",
           pointerEvents: "none",
         }}
       >
-        <div style={{ textAlign: isMobile ? "center" : "right" }}>
+        <div style={{ textAlign: "center", width: "100%" }}>
           <h1
             className="intro-title"
             style={{
               fontFamily: "Poppins, sans-serif",
-              fontSize: isMobile ? "2rem" : "3.5rem",
+              fontSize: isMobile ? "2.8rem" : "5rem",
               fontWeight: 700,
               color: "#FF6B9D",
-              marginBottom: "1rem",
+              marginBottom: "1.5rem",
               textShadow: "2px 2px 8px rgba(255, 107, 157, 0.3)",
               lineHeight: 1.2,
             }}
@@ -263,7 +263,7 @@ export default function Home() {
             className="intro-subtitle"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "0.9rem" : "1.2rem",
+              fontSize: isMobile ? "1.1rem" : "1.4rem",
               color: "#666",
               fontWeight: 300,
               lineHeight: 1.5,
@@ -276,10 +276,10 @@ export default function Home() {
             className="intro-author"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "0.8rem" : "1rem",
+              fontSize: isMobile ? "0.95rem" : "1.1rem",
               color: "#999",
               fontWeight: 300,
-              marginTop: "0.5rem",
+              marginTop: "0.8rem",
             }}
           >
             – Powered by Seon Kyeong
@@ -291,49 +291,49 @@ export default function Home() {
       <style jsx>{`
         @media (max-width: 768px) {
           .intro-title {
-            font-size: 2rem !important;
+            font-size: 2.8rem !important;
             padding: 0 20px;
           }
 
           .intro-subtitle {
-            font-size: 0.9rem !important;
+            font-size: 1.1rem !important;
             padding: 0 20px !important;
           }
 
           .intro-author {
-            font-size: 0.8rem !important;
+            font-size: 0.95rem !important;
           }
         }
 
         @media (max-width: 480px) {
           .intro-title {
-            font-size: 1.6rem !important;
+            font-size: 2.2rem !important;
             padding: 0 15px;
           }
 
           .intro-subtitle {
-            font-size: 0.85rem !important;
+            font-size: 1rem !important;
             padding: 0 15px !important;
           }
 
           .intro-author {
-            font-size: 0.75rem !important;
+            font-size: 0.85rem !important;
           }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
           .intro-title {
-            font-size: 1.8rem !important;
-            margin-bottom: 0.5rem !important;
+            font-size: 2rem !important;
+            margin-bottom: 0.8rem !important;
           }
 
           .intro-subtitle {
-            font-size: 0.85rem !important;
+            font-size: 0.95rem !important;
           }
 
           .intro-author {
-            font-size: 0.75rem !important;
-            margin-top: 0.3rem !important;
+            font-size: 0.8rem !important;
+            margin-top: 0.5rem !important;
           }
         }
       `}</style>

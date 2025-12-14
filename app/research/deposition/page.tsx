@@ -383,13 +383,12 @@ export default function DepositionPage() {
 
           {/* PART 1: Phosphor Sputtering */}
           <div style={{marginBottom: "50px"}}>
-            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header">
+            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header subsection-header">
               <span style={{ fontSize: "2rem" }}>🔶</span>
               <div style={{ flex: 1 }}>
-                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Phosphor Sputtering</h3>
+                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title subsection-title">Phosphor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  {/* 수정된 부분: class 추가 및 inline style */}
-                  <span className="project-meta-text" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
+                  <span className="project-meta-text subsection-meta" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
                     2022 - 2023 | Silla Univ
                   </span>
                   <span style={publicationBadgeStyle} className="publication-badge">
@@ -482,13 +481,12 @@ export default function DepositionPage() {
 
           {/* PART 2: Semiconductor Sputtering */}
           <div id="project-semiconductor">
-            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header">
+            <div style={{...projectHeaderStyle, borderBottom: "none", paddingBottom: "10px", marginBottom: "20px"}} className="project-header subsection-header">
               <span style={{ fontSize: "2rem" }}>💠</span>
               <div style={{ flex: 1 }}>
-                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Semiconductor Sputtering</h3>
+                <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title subsection-title">Semiconductor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  {/* 수정된 부분: class 추가 */}
-                  <span className="project-meta-text" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
+                  <span className="project-meta-text subsection-meta" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
                     2023 - 2024 | Korea Univ
                   </span>
                 </div>
@@ -746,15 +744,28 @@ export default function DepositionPage() {
             font-size: 0.9rem !important;
           }
 
-          /* New Class for Project Meta Text (Date/Location) */
+          /* Main Section Meta Text (Original) */
           .project-meta-text {
-            font-size: 0.85rem !important; /* 모바일에서 폰트 사이즈 강제 줄임 */
+            font-size: 0.85rem !important;
             width: 100% !important;
             display: block !important;
             margin-bottom: 5px !important;
           }
 
-          /* Publication Badge - 강력하게 적용 */
+          /* Subsection Title - 더 작게 */
+          .subsection-title {
+            font-size: 1.2rem !important;
+          }
+
+          /* Subsection Meta Text - 훨씬 더 작게 */
+          .subsection-meta,
+          .subsection-header .project-meta-text,
+          .subsection-header span.project-meta-text {
+            font-size: 0.75rem !important;
+            line-height: 1.3 !important;
+          }
+
+          /* Publication Badge */
           .publication-badge,
           span.publication-badge,
           .project-header .publication-badge {
@@ -844,6 +855,18 @@ export default function DepositionPage() {
 
           .section-title {
             font-size: 1.2rem !important;
+          }
+
+          /* Subsection Title - 더욱 작게 */
+          .subsection-title {
+            font-size: 1.1rem !important;
+          }
+
+          /* Subsection Meta - 더욱 작게 */
+          .subsection-meta,
+          .subsection-header .project-meta-text,
+          .subsection-header span.project-meta-text {
+            font-size: 0.7rem !important;
           }
 
           /* Publication Badge - 더 작게 */
