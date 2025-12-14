@@ -13,8 +13,13 @@ export default function Life() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [rotations, setRotations] = useState<number[]>([]);
+  
+  // 반응형 컬럼 상태 추가 (기본값 4)
+  const [columns, setColumns] = useState(4);
+  
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // 1. 초기 로테이션 랜덤 설정
   useEffect(() => {
     const randomRotations = Array.from({ length: 32 }, (_, i) => {
       const base = (i % 2 === 0 ? 1 : -1);
@@ -22,6 +27,20 @@ export default function Life() {
       return base * tilt;
     });
     setRotations(randomRotations);
+  }, []);
+
+  // 2. 화면 크기에 따라 컬럼 수 변경 (모바일 2개, 데스크탑 4개)
+  useEffect(() => {
+    const handleResize = () => {
+      // 768px 이하(모바일)에서는 2개, 그 외에는 4개
+      setColumns(window.innerWidth <= 768 ? 2 : 4);
+    };
+
+    // 초기 실행
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const photos: Photo[] = Array.from({ length: 32 }, (_, i) => ({
@@ -228,7 +247,8 @@ export default function Life() {
 
         {/* 로프 사진 갤러리 */}
         <section className="gallery-section" style={{ maxWidth: "1200px", margin: "0 auto", padding: "1rem 0" }}>
-          {chunkArray(photos, 4).map((rowPhotos, rowIndex) => (
+          {/* columns 상태값을 사용하여 배열을 나눔 (모바일: 2, 데스크탑: 4) */}
+          {chunkArray(photos, columns).map((rowPhotos, rowIndex) => (
             <div
               key={rowIndex}
               className="gallery-row"
@@ -253,7 +273,9 @@ export default function Life() {
                   height: "90px",
                 }}
                 viewBox="0 0 1200 90"
+                preserveAspectRatio="none" 
               >
+                {/* preserveAspectRatio="none"를 추가하여 SVG가 가로폭에 맞춰 자연스럽게 늘어나도록 함 */}
                 <path
                   d="M0,40 Q600,10 1200,40"
                   fill="none"
@@ -419,29 +441,24 @@ export default function Life() {
             }
 
             .gallery-row {
-              height: 200px !important;
-              margin-bottom: -20px !important;
+              height: 180px !important; /* 모바일 높이 조정 */
+              margin-bottom: -10px !important;
               padding-top: 20px !important;
             }
 
             .rope-svg {
-              top: 30px !important;
-              height: 60px !important;
+              top: 35px !important;
+              height: 50px !important; /* 로프 높이 조정 */
             }
 
             .photos-container {
-              flex-wrap: wrap !important;
-              gap: 15px !important;
               width: 95% !important;
-            }
-
-            .photo-item {
-              transform: rotate(0deg) !important;
+              gap: 5px !important; /* 간격 조정 */
             }
 
             .photo-item > div {
-              width: 160px !important;
-              height: 120px !important;
+              width: 140px !important; /* 모바일 사진 크기 조정 */
+              height: 110px !important;
             }
 
             .footer-message {
@@ -503,12 +520,9 @@ export default function Life() {
               font-size: 0.9rem !important;
             }
 
-            .gallery-row {
-              height: 150px !important;
-            }
-
+            /* 아주 작은 화면에서 사진 크기 더 줄이기 */
             .photo-item > div {
-              width: 140px !important;
+              width: 130px !important;
               height: 100px !important;
             }
 

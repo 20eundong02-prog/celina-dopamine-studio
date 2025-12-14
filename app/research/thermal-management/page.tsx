@@ -71,7 +71,7 @@ export default function ThermalManagementPage() {
               borderRadius: "2px",
             }}
           />
-         
+          
           <div
             style={{
               display: "flex",
@@ -225,7 +225,7 @@ export default function ThermalManagementPage() {
             <span style={{ fontSize: "2.5rem" }}>☀️</span>
             <div style={{ flex: 1 }}>
               <h2 style={titleStyle} className="section-title">Smart Glass for Thermal Management</h2>
-              <div className="publication-container" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
                 <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
                   2024 - 2025 | KICET
                 </p>
@@ -314,11 +314,16 @@ export default function ThermalManagementPage() {
         <section id="project-cooling" style={projectSectionStyle} className="project-section">
           <div style={projectHeaderStyle} className="project-header">
             <span style={{ fontSize: "2.5rem" }}>❄️</span>
-            <div>
+            <div style={{ flex: 1 }}>
               <h2 style={titleStyle} className="section-title">Radiative Cooling Color Filters</h2>
-              <p style={subTitleStyle} className="section-subtitle">
-                2024 - 2025 | KICET | Experimental Study
-              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
+                  2024 - 2025 | KICET
+                </p>
+                <span style={publicationBadgeStyle} className="publication-badge">
+                  🧪 Experimental Study
+                </span>
+              </div>
             </div>
           </div>
 
@@ -571,9 +576,17 @@ export default function ThermalManagementPage() {
             align-items: flex-start !important;
           }
 
-          .publication-badge {
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
             font-size: 0.75rem !important;
-            padding: 4px 10px !important;
+            padding: 4px 8px !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+            word-break: keep-all !important;
+            display: inline-block !important;
+            max-width: 100% !important;
+            margin-top: 5px !important;
           }
 
           .content-box {
@@ -746,8 +759,10 @@ const publicationBadgeStyle: React.CSSProperties = {
   fontSize: "0.85rem",
   fontWeight: 700,
   color: "#F57F17",
-  whiteSpace: "nowrap",
+  whiteSpace: "normal",
   display: "inline-block",
+  lineHeight: "1.4",
+  wordBreak: "keep-all",
 };
 
 const contentBoxStyle: React.CSSProperties = {

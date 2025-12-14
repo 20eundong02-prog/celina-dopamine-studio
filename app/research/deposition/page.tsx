@@ -254,7 +254,7 @@ export default function DepositionPage() {
             <div style={{ flex: 1 }}>
               <h2 style={titleStyle} className="section-title">E-beam Evaporator</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
+                <p style={{ ...subTitleStyle, margin: 0 }} className="project-meta-text">
                   2024 - 2025 | KICET
                 </p>
                 <span style={publicationBadgeStyle} className="publication-badge">
@@ -388,14 +388,15 @@ export default function DepositionPage() {
               <div style={{ flex: 1 }}>
                 <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Phosphor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}} className="section-subtitle">
+                  {/* 수정된 부분: class 추가 및 inline style */}
+                  <span className="project-meta-text" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
                     2022 - 2023 | Silla Univ
                   </span>
                   <span style={publicationBadgeStyle} className="publication-badge">
                     📌 Poster at GCIM 2023
                   </span>
                   <span style={publicationBadgeStyle} className="publication-badge">
-                    📄 Published in Korean Journal of Materials Research
+                    📄 Published in 한국재료학회
                   </span>
                 </div>
               </div>
@@ -486,7 +487,8 @@ export default function DepositionPage() {
               <div style={{ flex: 1 }}>
                 <h3 style={{...titleStyle, fontSize: "1.5rem", marginBottom: "8px"}} className="section-title">Semiconductor Sputtering</h3>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                  <span style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}} className="section-subtitle">
+                  {/* 수정된 부분: class 추가 */}
+                  <span className="project-meta-text" style={{fontSize: "0.9rem", color: "#888", fontWeight: 600}}>
                     2023 - 2024 | Korea Univ
                   </span>
                 </div>
@@ -638,7 +640,7 @@ export default function DepositionPage() {
             <div style={{ flex: 1 }}>
               <h2 style={{...titleStyle, color: "#757575"}} className="section-title">Powder ALD (P-ALD)</h2>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-                <p style={{ ...subTitleStyle, margin: 0 }} className="section-subtitle">
+                <p style={{ ...subTitleStyle, margin: 0 }} className="project-meta-text">
                   2024 - 2025 | KICET | Collaboration
                 </p>
                 <span style={grayPublicationBadgeStyle} className="publication-badge">
@@ -742,6 +744,14 @@ export default function DepositionPage() {
 
           .section-subtitle {
             font-size: 0.9rem !important;
+          }
+
+          /* New Class for Project Meta Text (Date/Location) */
+          .project-meta-text {
+            font-size: 0.85rem !important; /* 모바일에서 폰트 사이즈 강제 줄임 */
+            width: 100% !important;
+            display: block !important;
+            margin-bottom: 5px !important;
           }
 
           /* Publication Badge - 강력하게 적용 */
