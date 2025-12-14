@@ -40,8 +40,8 @@ export default function OthersPage() {
             lineHeight: "1.6",
           }}
         >
-          <b>Leadership</b>, <b>Entrepreneurship</b>, and <b>AI/Data Skills</b>.<br />
-          
+          <b>Leadership, Entrepreneurship</b>, and <b>AI/Data Skills</b>.<br />
+          리더십, 창업, 그리고 데이터 기반 문제 해결 역량.
         </p>
       </header>
 
@@ -477,14 +477,15 @@ export default function OthersPage() {
           .activity-row {
             flex-direction: column !important;
             padding: 15px !important;
+            gap: 0 !important;
           }
 
           .activity-row-period {
             border-right: none !important;
             border-bottom: 2px solid #FFF0F5 !important;
             padding-right: 0 !important;
-            padding-bottom: 15px !important;
-            margin-bottom: 15px !important;
+            padding-bottom: 10px !important;
+            margin-bottom: 10px !important;
           }
 
           .activity-row-content {
@@ -587,8 +588,8 @@ function ActivityRow({ title, role, period, awards, desc }: any) {
     return (
         <div style={rowStyle} className="activity-row">
             <div className="activity-row-period" style={{ flex: "0 0 150px", borderRight: "2px solid #FFF0F5", paddingRight: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <span style={{ fontWeight: 700, color: "#FF6B9D" }}>{period}</span>
-                <span style={{ fontSize: "0.9rem", color: "#888", marginTop: "5px" }}>{role}</span>
+                <span style={{ fontWeight: 700, color: "#FF6B9D", fontSize: "1rem" }}>{period}</span>
+                <span style={{ fontSize: "0.85rem", color: "#888", marginTop: "3px" }}>{role}</span>
             </div>
             <div className="activity-row-content" style={{ flex: 1, paddingLeft: "20px" }}>
                 <h3 className="activity-row-title" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#333", marginBottom: "10px" }}>

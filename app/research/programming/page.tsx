@@ -42,7 +42,7 @@ export default function ProgrammingPage() {
           }}
         >
           <b>Accelerating Research</b> through Code.<br />
-          
+          데이터 자동화, 광학 시뮬레이션, 그리고 이미지 분석.
         </p>
       </header>
 

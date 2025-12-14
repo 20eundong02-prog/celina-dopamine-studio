@@ -244,15 +244,15 @@ export default function Home() {
           pointerEvents: "none",
         }}
       >
-        <div style={{ textAlign: "center", width: "100%" }}>
+        <div style={{ textAlign: "center", width: "100%", transform: isMobile ? "translateY(-10%)" : "none" }}>
           <h1
             className="intro-title"
             style={{
               fontFamily: "Poppins, sans-serif",
-              fontSize: isMobile ? "2.8rem" : "5rem",
+              fontSize: isMobile ? "2.5rem" : "5rem",
               fontWeight: 700,
               color: "#FF6B9D",
-              marginBottom: "1.5rem",
+              marginBottom: isMobile ? "1rem" : "1.5rem",
               textShadow: "2px 2px 8px rgba(255, 107, 157, 0.3)",
               lineHeight: 1.2,
             }}
@@ -263,11 +263,12 @@ export default function Home() {
             className="intro-subtitle"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "1.1rem" : "1.4rem",
+              fontSize: isMobile ? "1rem" : "1.4rem",
               color: "#666",
               fontWeight: 300,
               lineHeight: 1.5,
               padding: isMobile ? "0 10px" : "0",
+              marginBottom: isMobile ? "0.5rem" : "0.8rem",
             }}
           >
             Where Diversity Reacts Into Warm Technology
@@ -276,10 +277,10 @@ export default function Home() {
             className="intro-author"
             style={{
               fontFamily: "Montserrat, sans-serif",
-              fontSize: isMobile ? "0.95rem" : "1.1rem",
+              fontSize: isMobile ? "0.9rem" : "1.1rem",
               color: "#999",
               fontWeight: 300,
-              marginTop: "0.8rem",
+              marginTop: 0,
             }}
           >
             – Powered by Seon Kyeong
@@ -291,49 +292,53 @@ export default function Home() {
       <style jsx>{`
         @media (max-width: 768px) {
           .intro-title {
-            font-size: 2.8rem !important;
+            font-size: 2.5rem !important;
             padding: 0 20px;
+            margin-bottom: 1rem !important;
           }
 
           .intro-subtitle {
-            font-size: 1.1rem !important;
+            font-size: 1rem !important;
             padding: 0 20px !important;
+            margin-bottom: 0.5rem !important;
           }
 
           .intro-author {
-            font-size: 0.95rem !important;
+            font-size: 0.9rem !important;
           }
         }
 
         @media (max-width: 480px) {
           .intro-title {
-            font-size: 2.2rem !important;
+            font-size: 2rem !important;
             padding: 0 15px;
+            margin-bottom: 0.8rem !important;
           }
 
           .intro-subtitle {
-            font-size: 1rem !important;
+            font-size: 0.9rem !important;
             padding: 0 15px !important;
+            margin-bottom: 0.4rem !important;
           }
 
           .intro-author {
-            font-size: 0.85rem !important;
+            font-size: 0.8rem !important;
           }
         }
 
         @media (orientation: landscape) and (max-height: 500px) {
           .intro-title {
-            font-size: 2rem !important;
-            margin-bottom: 0.8rem !important;
+            font-size: 1.8rem !important;
+            margin-bottom: 0.6rem !important;
           }
 
           .intro-subtitle {
-            font-size: 0.95rem !important;
+            font-size: 0.85rem !important;
+            margin-bottom: 0.3rem !important;
           }
 
           .intro-author {
-            font-size: 0.8rem !important;
-            margin-top: 0.5rem !important;
+            font-size: 0.75rem !important;
           }
         }
       `}</style>
