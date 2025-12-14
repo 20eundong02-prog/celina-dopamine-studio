@@ -638,7 +638,7 @@ export default function SynthesisPage() {
 
       {/* Footer Navigation */}
       <div style={{ textAlign: "center", marginTop: "80px" }}>
-        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+        <div className="footer-buttons" style={{ display: "flex", justifyContent: "center", gap: "20px", flexWrap: "wrap" }}>
           <a href="/research" style={primaryBtnStyle} className="footer-btn">
             Back to Research
           </a>
@@ -699,9 +699,17 @@ export default function SynthesisPage() {
             align-items: flex-start !important;
           }
 
-          .publication-badge {
-            font-size: 0.75rem !important;
-            padding: 4px 10px !important;
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.7rem !important;
+            padding: 4px 8px !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+            word-break: keep-all !important;
+            display: inline-block !important;
+            max-width: 100% !important;
+            margin-top: 5px !important;
           }
 
           .content-box {
@@ -778,16 +786,19 @@ export default function SynthesisPage() {
             font-size: 1.2rem !important;
           }
 
+          .publication-badge,
+          span.publication-badge,
+          .project-header .publication-badge {
+            font-size: 0.65rem !important;
+            padding: 3px 6px !important;
+          }
+
           .content-paragraph {
             font-size: 0.9rem !important;
           }
 
           .content-list {
             font-size: 0.85rem !important;
-          }
-
-          .publication-badge {
-            font-size: 0.7rem !important;
           }
         }
       `}</style>
@@ -888,8 +899,10 @@ const publicationBadgeStyle: React.CSSProperties = {
   fontSize: "0.85rem",
   fontWeight: 700,
   color: "#F57F17",
-  whiteSpace: "nowrap",
+  whiteSpace: "normal",
   display: "inline-block",
+  lineHeight: "1.4",
+  wordBreak: "keep-all",
 };
 
 const contentBoxStyle: React.CSSProperties = {
