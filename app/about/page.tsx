@@ -53,6 +53,7 @@ export default function About() {
             {/* 상단: 이름 및 직함 */}
             <div>
               <h2
+                className="about-name" // [추가] 모바일 제어를 위한 클래스명
                 style={{
                   fontFamily: "'Fredoka', 'Poppins', sans-serif",
                   fontSize: "3rem",
@@ -61,7 +62,8 @@ export default function About() {
                   marginBottom: "0.5rem",
                 }}
               >
-                Kim Seon Kyeong
+                {/* [수정] 이름 표기 변경 */}
+                Seonkyeong Kim
               </h2>
               <p
                 style={{
@@ -69,14 +71,14 @@ export default function About() {
                   fontSize: "1.2rem",
                   color: "#666",
                   fontWeight: 500,
-                  marginBottom: "0", // 여기서 마진을 없애고 아래 섹션의 marginTop으로 간격 조절
+                  marginBottom: "0",
                 }}
               >
                 Materials Science & Engineering Researcher
               </p>
             </div>
 
-            {/* [수정됨] Dopamine Studio Section - 우측 하단 배치 */}
+            {/* Dopamine Studio Section - 우측 하단 배치 */}
             <div
               className="dopamine-studio-section"
               style={{
@@ -84,11 +86,11 @@ export default function About() {
                 flexDirection: "column",
                 alignItems: "flex-end", // 오른쪽 정렬
                 textAlign: "right",
-                // [핵심 수정] 위쪽 여백을 크게 주어 아래로 밀어냄 (우측 하단 느낌)
                 marginTop: "5rem", 
               }}
             >
               <h3
+                className="dopamine-title" // [추가] 모바일 제어를 위한 클래스명
                 style={{
                   fontFamily: "var(--font-shrikhand), cursive",
                   fontSize: "2.8rem", 
@@ -315,6 +317,18 @@ export default function About() {
             text-align: left !important;
             align-items: flex-start !important; /* 모바일에서는 왼쪽 정렬 */
             margin-top: 3rem !important; /* 모바일에서는 간격 약간 축소 */
+          }
+
+          /* [추가됨] 모바일에서 이름 폰트 줄이기 & 한 줄 유지 */
+          .about-name {
+            font-size: 2.2rem !important;
+            white-space: nowrap;
+          }
+
+          /* [추가됨] 모바일에서 스튜디오 타이틀 폰트 줄이기 & 한 줄 유지 */
+          .dopamine-title {
+            font-size: 2.0rem !important;
+            white-space: nowrap;
           }
         }
       `}</style>
