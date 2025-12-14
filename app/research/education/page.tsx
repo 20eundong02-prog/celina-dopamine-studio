@@ -40,7 +40,7 @@ export default function OthersPage() {
             lineHeight: "1.6",
           }}
         >
-          연구실 밖에서 펼친 또 다른 도전.<br />
+          <b>Leadership, Entrepreneurship</b>, and <b>AI/Data Skills</b>.<br />
           리더십, 창업, 그리고 데이터 기반 문제 해결 역량.
         </p>
       </header>
@@ -474,29 +474,19 @@ export default function OthersPage() {
             padding-left: 15px !important;
           }
 
+          /* 모바일: 연도/역할을 인라인으로 변경 */
           .activity-row {
             flex-direction: column !important;
             padding: 12px !important;
             gap: 0 !important;
           }
 
-          .activity-row-period {
-            border-right: none !important;
-            border-bottom: 2px solid #FFF0F5 !important;
-            padding-right: 0 !important;
-            padding-bottom: 6px !important;
-            margin-bottom: 8px !important;
-            min-height: auto !important;
+          .desktop-period {
+            display: none !important;
           }
 
-          .activity-row-period span {
-            font-size: 0.9rem !important;
-            line-height: 1.3 !important;
-          }
-
-          .activity-row-period span:last-child {
-            font-size: 0.8rem !important;
-            margin-top: 2px !important;
+          .mobile-period-inline {
+            display: block !important;
           }
 
           .activity-row-content {
@@ -573,11 +563,6 @@ export default function OthersPage() {
             padding: 10px !important;
           }
 
-          .activity-row-period {
-            padding-bottom: 5px !important;
-            margin-bottom: 6px !important;
-          }
-
           .activity-row-title {
             font-size: 1rem !important;
             margin-bottom: 6px !important;
@@ -615,11 +600,19 @@ function CertCard({ title, issuer, date, desc, tags }: any) {
 function ActivityRow({ title, role, period, awards, desc }: any) {
     return (
         <div style={rowStyle} className="activity-row">
-            <div className="activity-row-period" style={{ flex: "0 0 150px", borderRight: "2px solid #FFF0F5", paddingRight: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            {/* PC용 - 왼쪽 연도/역할 박스 */}
+            <div className="desktop-period" style={{ flex: "0 0 150px", borderRight: "2px solid #FFF0F5", paddingRight: "20px", display: "flex", flexDirection: "column", justifyContent: "center" }}>
                 <span style={{ fontWeight: 700, color: "#FF6B9D", fontSize: "1rem" }}>{period}</span>
                 <span style={{ fontSize: "0.85rem", color: "#888", marginTop: "3px" }}>{role}</span>
             </div>
+            
             <div className="activity-row-content" style={{ flex: 1, paddingLeft: "20px" }}>
+                {/* 모바일용 - 인라인 연도/역할 */}
+                <div className="mobile-period-inline" style={{ display: "none", marginBottom: "6px", fontSize: "0.85rem" }}>
+                    <span style={{ fontWeight: 700, color: "#FF6B9D" }}>{period}</span>
+                    <span style={{ color: "#888", marginLeft: "6px" }}>| {role}</span>
+                </div>
+                
                 <h3 className="activity-row-title" style={{ fontSize: "1.2rem", fontWeight: 700, color: "#333", marginBottom: "10px" }}>
                     {title}
                 </h3>
