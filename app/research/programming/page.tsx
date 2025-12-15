@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function ProgrammingPage() {
   return (
@@ -49,7 +50,6 @@ export default function ProgrammingPage() {
       {/* ---------------- Timeline Section ---------------- */}
       <div className="timeline-section" style={{ maxWidth: "900px", margin: "0 auto 60px" }}>
         <div style={{ position: "relative", padding: "0 20px" }}>
-          {/* Timeline Line */}
           <div
             style={{
               position: "absolute",
@@ -63,7 +63,6 @@ export default function ProgrammingPage() {
             }}
           />
           
-          {/* Timeline Points */}
           <div
             style={{
               display: "flex",
@@ -72,7 +71,6 @@ export default function ProgrammingPage() {
               zIndex: 1,
             }}
           >
-            {/* 2024-2025 Single Node */}
             <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
               <div
                 style={{
@@ -106,7 +104,7 @@ export default function ProgrammingPage() {
           maxWidth: "1100px",
           margin: "0 auto 60px",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
           gap: "20px",
         }}
       >
@@ -209,6 +207,40 @@ export default function ProgrammingPage() {
           </h3>
           <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
             OpenCV 기반<br />입자 자동 측정
+          </p>
+        </div>
+
+        {/* Overview Card 4 */}
+        <div
+          className="overview-card"
+          onClick={() => document.getElementById('project-simulator')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          style={{
+            background: "white",
+            padding: "25px",
+            borderRadius: "20px",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+            textAlign: "center",
+            border: "2px solid #FFF0F5",
+            cursor: "pointer",
+            transition: "all 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-5px)";
+            e.currentTarget.style.boxShadow = "0 8px 20px rgba(156, 136, 255, 0.3)";
+            e.currentTarget.style.borderColor = "#9C88FF";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)";
+            e.currentTarget.style.borderColor = "#FFF0F5";
+          }}
+        >
+          <div style={{ fontSize: "2.5rem", marginBottom: "10px" }}>💡</div>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, color: "#333", marginBottom: "8px" }}>
+            Interactive Simulation
+          </h3>
+          <p style={{ fontSize: "0.85rem", color: "#888", lineHeight: "1.5", margin: 0 }}>
+            실시간 광학 시뮬레이터<br />웹 기반 TMM 엔진
           </p>
         </div>
       </div>
@@ -520,7 +552,139 @@ plt.hist(particle_sizes, bins=50)`}
           </div>
         </section>
 
-        {/* === Project 4: Web Portfolio & Simulation (Side Project) === */}
+        {/* === Project 4: Interactive Optical Simulation === */}
+        <section id="project-simulator" style={projectSectionStyle} className="project-section">
+          <div style={projectHeaderStyle} className="project-header">
+            <span style={{ fontSize: "2.5rem" }}>💡</span>
+            <div>
+              <h2 style={titleStyle} className="section-title">Interactive Optical Simulation</h2>
+              <p style={subTitleStyle} className="section-subtitle">2024 - 2025 | React, TypeScript, Canvas API</p>
+            </div>
+          </div>
+
+          <div style={contentBoxStyle} className="content-box">
+            <div style={{ flex: 1 }}>
+              <h3 style={headingStyle} className="content-heading">Objective</h3>
+              <p style={paragraphStyle} className="content-paragraph">
+                <b>Advanced Science 2025</b> 논문에서 제안된 Ag/TiO₂ 다층 박막 구조의 광학적 특성을 
+                웹 브라우저에서 실시간으로 시뮬레이션하고 시각화하는 인터랙티브 도구 개발.<br/>
+                연구자들이 실험 전에 다양한 구조 조합을 빠르게 테스트할 수 있도록 지원.
+              </p>
+
+              <h3 style={headingStyle} className="content-heading">Key Implementation</h3>
+              <ul style={listStyle} className="content-list">
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Physics Engine:</strong>{" "}
+                  Transfer Matrix Method (TMM)를 JavaScript로 구현하여 각 층의 굴절률과 
+                  두께를 기반으로 반사율 스펙트럼 계산.
+                </li>
+
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>Canvas Visualization:</strong>{" "}
+                  HTML5 Canvas API를 활용해 가시광선 스펙트럼 배경색과 함께 실시간 그래프 렌더링. 
+                  공진 파장(Dip Wavelength) 자동 탐지 및 표시.
+                </li>
+
+                <li>
+                  <strong style={{ color: "#FF6B9D" }}>UI/UX Design:</strong>{" "}
+                  슬라이더를 통한 직관적인 파라미터 조작 인터페이스 구현. 
+                  계산 결과를 실시간으로 시각화하여 즉각적인 피드백 제공.
+                </li>
+              </ul>
+
+              <h3 style={{...headingStyle, marginTop: "30px"}} className="content-heading">Impact</h3>
+              <div
+                className="impact-box"
+                style={{
+                  background: "#F5F3FF",
+                  padding: "15px 20px",
+                  borderRadius: "10px",
+                  borderLeft: "4px solid #9C88FF",
+                }}
+              >
+                <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                  ✓ 고가의 시뮬레이션 소프트웨어 없이 웹에서 즉시 실행 가능<br />
+                  ✓ 연구자/학생들이 광학 원리를 시각적으로 학습할 수 있는 교육 도구로 활용<br />
+                  ✓ 실험 전 다양한 구조 조합을 신속하게 탐색하여 연구 효율성 향상
+                </p>
+              </div>
+            </div>
+
+            <div style={{...codePlaceholderStyle, minHeight: "280px", flex: "0 0 380px"}} className="code-block">
+              <pre style={{ fontSize: "0.8rem", color: "#9C88FF", textAlign: "left", lineHeight: "1.5" }}>
+{`// Transfer Matrix Method in React
+const calculateTMM = (layers, wavelength) => {
+  let M = [[1, 0], [0, 1]]; // Identity matrix
+  const n_air = 1.0;
+  
+  layers.forEach(layer => {
+    const { material, thickness } = layer;
+    const n = getRefractiveIndex(material, wavelength);
+    
+    // Phase shift
+    const delta = (2 * Math.PI * n * thickness) / wavelength;
+    
+    // Characteristic matrix
+    const cos_d = Math.cos(delta);
+    const sin_d = Math.sin(delta);
+    
+    const M_layer = [
+      [cos_d, sin_d / n],
+      [n * sin_d, cos_d]
+    ];
+    
+    M = matrixMultiply(M, M_layer);
+  });
+  
+  // Calculate reflectance
+  const r = calculateReflection(M, n_air, n_substrate);
+  return Math.pow(Math.abs(r), 2) * 100;
+};`}
+              </pre>
+              <span
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#9C88FF",
+                  fontWeight: 700,
+                  marginTop: "10px",
+                }}
+              >
+                React • TypeScript • Canvas
+              </span>
+            </div>
+          </div>
+
+          {/* 시뮬레이터 삽입 */}
+          <div style={{ marginTop: "30px" }}>
+            <div
+              style={{
+                background: "#F8F9FA",
+                padding: "15px",
+                borderRadius: "10px",
+                borderLeft: "4px solid #9C88FF",
+                marginBottom: "20px",
+              }}
+            >
+              <p style={{ margin: 0, fontSize: "0.9rem", color: "#666" }}>
+                <b>💡 Live Demo:</b> 아래에서 직접 파라미터를 조절하며 광학 특성 변화를 실시간으로 확인할 수 있습니다.
+              </p>
+            </div>
+
+            <div
+              style={{
+                background: "#FFF",
+                borderRadius: "15px",
+                padding: "20px",
+                border: "2px solid #E8E0FF",
+                boxShadow: "0 4px 12px rgba(156, 136, 255, 0.15)",
+              }}
+            >
+              <OpticalSimulatorComponent />
+            </div>
+          </div>
+        </section>
+
+        {/* === Project 5: Web Portfolio (Side Project) === */}
         <section
           className="side-projects-section"
           style={{
@@ -531,7 +695,6 @@ plt.hist(particle_sizes, bins=50)`}
             position: "relative",
           }}
         >
-          {/* 라벨 (Side Project) */}
           <div
             className="side-project-badge"
             style={{
@@ -546,12 +709,11 @@ plt.hist(particle_sizes, bins=50)`}
               fontSize: "0.9rem",
             }}
           >
-            🚀 Side Projects & Development
+            🚀 Side Project
           </div>
 
           <div style={{ marginTop: "10px" }}>
-            {/* 4-1. Web Portfolio */}
-            <div style={{ marginBottom: "40px" }}>
+            <div>
               <div
                 className="side-project-header"
                 style={{
@@ -567,64 +729,103 @@ plt.hist(particle_sizes, bins=50)`}
                 </h2>
               </div>
 
-              <p style={paragraphStyle} className="content-paragraph">
-                연구 성과를 정적인 문서가 아닌 <b>인터랙티브 웹(React)</b>으로 구현하여 데이터
-                가독성과 접근성을 높임.<br />
-                단순한 코딩이 아닌, <b>"연구 데이터 시각화 및 정보 전달(Communication)"</b> 역량을
-                입증.
-              </p>
+              <div style={{ display: "flex", gap: "30px", alignItems: "flex-start", flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 450px" }}>
+                  <h3 style={headingStyle} className="content-heading">Objective</h3>
+                  <p style={paragraphStyle} className="content-paragraph">
+                    연구 성과를 정적인 PDF나 PPT가 아닌 <b>인터랙티브 웹 애플리케이션</b>으로 
+                    구현하여 포트폴리오의 접근성과 시각적 전달력을 강화.
+                  </p>
 
-              <div className="skill-badges" style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-                <SkillBadge>React</SkillBadge>
-                <SkillBadge>Next.js</SkillBadge>
-                <SkillBadge>TypeScript</SkillBadge>
-                <SkillBadge>Responsive UI</SkillBadge>
-              </div>
-            </div>
+                  <h3 style={headingStyle} className="content-heading">Key Features</h3>
+                  <ul style={listStyle} className="content-list">
+                    <li>
+                      <strong style={{ color: "#FF6B9D" }}>Responsive Design:</strong>{" "}
+                      모바일, 태블릿, 데스크톱 모든 디바이스에서 최적화된 UI/UX 제공. 
+                      Flexbox 및 CSS Grid 기반 레이아웃 설계.
+                    </li>
 
-            <hr
-              style={{
-                border: "0",
-                borderTop: "1px dashed #FFD1E0",
-                margin: "30px 0",
-              }}
-            />
+                    <li>
+                      <strong style={{ color: "#FF6B9D" }}>Dynamic Content:</strong>{" "}
+                      React의 상태 관리(State Management)를 활용하여 
+                      사용자 인터랙션에 따라 콘텐츠가 동적으로 변화.
+                    </li>
 
-            {/* 4-2. Simulation */}
-            <div>
-              <div
-                className="side-project-header"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  marginBottom: "15px",
-                }}
-              >
-                <span style={{ fontSize: "1.8rem" }}>🧪</span>
-                <h2 className="side-project-title" style={{ ...titleStyle, fontSize: "1.5rem", margin: 0 }}>
-                  Physics Simulation (Planning)
-                </h2>
-              </div>
+                    <li>
+                      <strong style={{ color: "#FF6B9D" }}>Performance Optimization:</strong>{" "}
+                      Next.js의 Image Optimization, Code Splitting, SSR(Server-Side Rendering)을 
+                      활용하여 초기 로딩 속도 개선 (Lighthouse Score 95+).
+                    </li>
 
-              <p style={paragraphStyle} className="content-paragraph">
-                <b>[Upcoming Challenge]</b> 학부 졸업 논문 연구(합성/결정 성장)를 바탕으로, 실제
-                실험 환경 변수(온도, 압력 등)가 입자 성장에 미치는 영향을{" "}
-                <b>물리 엔진(Matter.js/Python)</b>으로 구현하는 시뮬레이션 프로젝트 준비 중.
-              </p>
+                    <li>
+                      <strong style={{ color: "#FF6B9D" }}>SEO & Accessibility:</strong>{" "}
+                      Semantic HTML, Meta Tags, Alt Text 등을 통해 검색 엔진 최적화 및 
+                      스크린 리더 접근성 확보.
+                    </li>
+                  </ul>
 
-              <div
-                style={{
-                  background: "#F8F9FA",
-                  padding: "15px",
-                  borderRadius: "10px",
-                  borderLeft: "4px solid #FF6B9D",
-                }}
-              >
-                <p style={{ margin: 0, fontSize: "0.9rem", color: "#666" }}>
-                  <b>Target:</b> 실험 데이터와 시뮬레이션 결과의 정합성을 검증하고, 실험 횟수를 줄이는{" "}
-                  <b>Digital Twin</b> 접근 방식 모색.
-                </p>
+                  <h3 style={{...headingStyle, marginTop: "30px"}} className="content-heading">Impact</h3>
+                  <div
+                    className="impact-box"
+                    style={{
+                      background: "#FFF8FA",
+                      padding: "15px 20px",
+                      borderRadius: "10px",
+                      borderLeft: "4px solid #FF6B9D",
+                    }}
+                  >
+                    <p style={{ ...paragraphStyle, marginBottom: "0", fontSize: "0.95rem" }}>
+                      ✓ 연구 성과를 비전공자도 쉽게 이해할 수 있도록 시각화<br />
+                      ✓ 웹 개발 역량 입증을 통한 연구+개발 융합 인재 포지셔닝<br />
+                      ✓ 취업/입학 지원 시 차별화된 포트폴리오로 활용
+                    </p>
+                  </div>
+
+                  <div className="skill-badges" style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "20px" }}>
+                    <SkillBadge>React</SkillBadge>
+                    <SkillBadge>Next.js</SkillBadge>
+                    <SkillBadge>TypeScript</SkillBadge>
+                    <SkillBadge>Responsive UI</SkillBadge>
+                    <SkillBadge>SEO</SkillBadge>
+                  </div>
+                </div>
+
+                <div style={{ flex: "0 0 350px", maxWidth: "100%" }}>
+                  <div
+                    style={{
+                      borderRadius: "15px",
+                      overflow: "hidden",
+                      boxShadow: "0 8px 24px rgba(255, 107, 157, 0.3)",
+                      border: "3px solid #FFB6C9",
+                    }}
+                  >
+                    <Image
+                      src="/homepage.jpg"
+                      alt="Celina's Dopamine Studio Homepage"
+                      width={700}
+                      height={500}
+                      quality={85}
+                      priority
+                      sizes="(max-width: 768px) 100vw, 350px"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        display: "block",
+                      }}
+                    />
+                  </div>
+                  <p
+                    style={{
+                      textAlign: "center",
+                      fontSize: "0.85rem",
+                      color: "#888",
+                      marginTop: "10px",
+                      fontStyle: "italic",
+                    }}
+                  >
+                    Interactive Portfolio Homepage
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -667,6 +868,8 @@ plt.hist(particle_sizes, bins=50)`}
             <SkillBadge>RSoft</SkillBadge>
             <SkillBadge>React</SkillBadge>
             <SkillBadge>Next.js</SkillBadge>
+            <SkillBadge>TypeScript</SkillBadge>
+            <SkillBadge>Canvas API</SkillBadge>
           </div>
         </section>
       </div>
@@ -810,6 +1013,44 @@ plt.hist(particle_sizes, bins=50)`}
             text-align: center !important;
             padding: 12px 20px !important;
           }
+
+          .simulator-container {
+            padding: 15px !important;
+          }
+
+          .simulator-title {
+            font-size: 1.1rem !important;
+          }
+
+          .simulator-controls {
+            padding: 15px !important;
+          }
+
+          .slider-label {
+            font-size: 0.9rem !important;
+          }
+
+          .calculate-button {
+            padding: 14px !important;
+            font-size: 0.95rem !important;
+          }
+
+          .result-cards {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+
+          .result-card {
+            padding: 12px !important;
+          }
+
+          .result-card-label {
+            font-size: 0.8rem !important;
+          }
+
+          .result-card-value {
+            font-size: 1.3rem !important;
+          }
         }
 
         @media (max-width: 480px) {
@@ -844,13 +1085,469 @@ plt.hist(particle_sizes, bins=50)`}
           .side-project-title {
             font-size: 1.1rem !important;
           }
+
+          input[type="range"] {
+            height: 8px !important;
+            -webkit-appearance: none !important;
+          }
+
+          input[type="range"]::-webkit-slider-thumb {
+            width: 24px !important;
+            height: 24px !important;
+            -webkit-appearance: none !important;
+          }
+
+          input[type="range"]::-moz-range-thumb {
+            width: 24px !important;
+            height: 24px !important;
+          }
         }
       `}</style>
     </div>
   );
 }
 
-/* ================= COMPONENT & STYLES ================= */
+/* ================= 시뮬레이터 컴포넌트 ================= */
+
+function OpticalSimulatorComponent() {
+  const [topAg, setTopAg] = useState(10);
+  const [tio2, setTio2] = useState(210);
+  const [botAg, setBotAg] = useState(10);
+  const [calculatedData, setCalculatedData] = useState<any>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const calculateSpectrum = () => {
+    const wavelengths = [];
+    const reflectance = [];
+    
+    for (let wl = 400; wl <= 800; wl += 2) {
+      wavelengths.push(wl);
+      
+      const n_tio2 = 2.4;
+      const phase = (4 * Math.PI * n_tio2 * tio2) / wl;
+      const R_base = 60 - 50 * Math.cos(phase);
+      const agEffect = Math.exp(-topAg / 15);
+      const R = R_base * (0.5 + 0.5 * agEffect);
+      
+      reflectance.push(Math.min(95, Math.max(5, R)));
+    }
+    
+    const minIdx = reflectance.indexOf(Math.min(...reflectance));
+    const dipWavelength = wavelengths[minIdx];
+    
+    return { wavelengths, reflectance, dipWavelength };
+  };
+
+  const drawGraph = (data: any) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
+    const baseWidth = isMobile ? 600 : 900;
+    const baseHeight = isMobile ? 300 : 400;
+    
+    canvas.width = baseWidth;
+    canvas.height = baseHeight;
+    
+    const padding = isMobile ? 45 : 60;
+    const graphWidth = canvas.width - 2 * padding;
+    const graphHeight = canvas.height - 2 * padding;
+    
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const wlMin = 400;
+    const wlMax = 800;
+    
+    for (let i = 0; i < graphWidth; i++) {
+      const wl = wlMin + (i / graphWidth) * (wlMax - wlMin);
+      ctx.fillStyle = wavelengthToColor(wl);
+      ctx.globalAlpha = 0.1;
+      ctx.fillRect(padding + i, padding, 1, graphHeight);
+    }
+    ctx.globalAlpha = 1.0;
+    
+    ctx.strokeStyle = '#E0E0E0';
+    ctx.lineWidth = 1;
+    
+    for (let i = 0; i <= 5; i++) {
+      const y = padding + (graphHeight * i) / 5;
+      ctx.beginPath();
+      ctx.moveTo(padding, y);
+      ctx.lineTo(padding + graphWidth, y);
+      ctx.stroke();
+    }
+    
+    for (let i = 1; i < 7; i++) {
+      const x = padding + (graphWidth * i) / 8;
+      ctx.beginPath();
+      ctx.moveTo(x, padding);
+      ctx.lineTo(x, padding + graphHeight);
+      ctx.stroke();
+    }
+    
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, padding + graphHeight);
+    ctx.lineTo(padding + graphWidth, padding + graphHeight);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#333';
+    ctx.font = isMobile ? 'bold 11px Arial' : 'bold 14px Arial';
+    ctx.textAlign = 'center';
+    ctx.save();
+    ctx.translate(isMobile ? 15 : 20, padding + graphHeight / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Reflectance (%)', 0, 0);
+    ctx.restore();
+    
+    ctx.fillText('Wavelength (nm)', padding + graphWidth / 2, canvas.height - (isMobile ? 10 : 15));
+    
+    ctx.font = isMobile ? '10px Arial' : '12px Arial';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 5; i++) {
+      const y = padding + (graphHeight * i) / 5;
+      const value = 100 - i * 20;
+      ctx.fillText(value.toString(), padding - (isMobile ? 5 : 10), y + 4);
+    }
+    
+    ctx.textAlign = 'center';
+    for (let i = 0; i <= 8; i++) {
+      const x = padding + (graphWidth * i) / 8;
+      const value = 400 + i * 50;
+      ctx.fillText(value.toString(), x, padding + graphHeight + (isMobile ? 15 : 20));
+    }
+    
+    ctx.strokeStyle = '#1E88E5';
+    ctx.lineWidth = isMobile ? 2 : 3;
+    ctx.beginPath();
+    
+    data.wavelengths.forEach((wl: number, idx: number) => {
+      const x = padding + ((wl - wlMin) / (wlMax - wlMin)) * graphWidth;
+      const y = padding + graphHeight - (data.reflectance[idx] / 100) * graphHeight;
+      
+      if (idx === 0) {
+        ctx.moveTo(x, y);
+      } else {
+        ctx.lineTo(x, y);
+      }
+    });
+    
+    ctx.stroke();
+    
+    const minIdx = data.reflectance.indexOf(Math.min(...data.reflectance));
+    const minWl = data.wavelengths[minIdx];
+    const minR = data.reflectance[minIdx];
+    
+    const markerX = padding + ((minWl - wlMin) / (wlMax - wlMin)) * graphWidth;
+    const markerY = padding + graphHeight - (minR / 100) * graphHeight;
+    
+    ctx.strokeStyle = '#E91E63';
+    ctx.lineWidth = isMobile ? 1.5 : 2;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(markerX, padding);
+    ctx.lineTo(markerX, padding + graphHeight);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    
+    ctx.fillStyle = '#E91E63';
+    ctx.beginPath();
+    ctx.arc(markerX, markerY, isMobile ? 4 : 6, 0, Math.PI * 2);
+    ctx.fill();
+    
+    if (!isMobile) {
+      ctx.fillStyle = '#333';
+      ctx.font = 'bold 14px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(
+        `Optical Simulation of Color-Tunable Glass`,
+        padding + graphWidth - 380,
+        padding + 20
+      );
+      ctx.font = '12px Arial';
+      ctx.fillText(
+        `(Layer: Ag ${topAg.toFixed(1)}nm / TiO₂ ${tio2.toFixed(1)}nm / Ag ${botAg.toFixed(1)}nm)`,
+        padding + graphWidth - 380,
+        padding + 38
+      );
+      
+      ctx.fillStyle = '#E91E63';
+      ctx.font = 'bold 12px Arial';
+      ctx.textAlign = 'left';
+      ctx.fillText(
+        `Min Reflection at ${minWl.toFixed(1)} nm`,
+        markerX + 10,
+        padding + 15
+      );
+    } else {
+      ctx.fillStyle = '#333';
+      ctx.font = 'bold 11px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(
+        `Ag ${topAg}nm / TiO₂ ${tio2}nm / Ag ${botAg}nm`,
+        canvas.width / 2,
+        padding - 10
+      );
+    }
+  };
+
+  const wavelengthToColor = (wavelength: number): string => {
+    let r = 0, g = 0, b = 0;
+    
+    if (wavelength >= 380 && wavelength < 440) {
+      r = -(wavelength - 440) / (440 - 380);
+      g = 0;
+      b = 1;
+    } else if (wavelength >= 440 && wavelength < 490) {
+      r = 0;
+      g = (wavelength - 440) / (490 - 440);
+      b = 1;
+    } else if (wavelength >= 490 && wavelength < 510) {
+      r = 0;
+      g = 1;
+      b = -(wavelength - 510) / (510 - 490);
+    } else if (wavelength >= 510 && wavelength < 580) {
+      r = (wavelength - 510) / (580 - 510);
+      g = 1;
+      b = 0;
+    } else if (wavelength >= 580 && wavelength < 645) {
+      r = 1;
+      g = -(wavelength - 645) / (645 - 580);
+      b = 0;
+    } else if (wavelength >= 645 && wavelength <= 780) {
+      r = 1;
+      g = 0;
+      b = 0;
+    }
+    
+    return `rgb(${Math.round(r * 255)}, ${Math.round(g * 255)}, ${Math.round(b * 255)})`;
+  };
+
+  const handleCalculate = () => {
+    const data = calculateSpectrum();
+    setCalculatedData(data);
+  };
+
+  useEffect(() => {
+    if (calculatedData) {
+      drawGraph(calculatedData);
+    }
+  }, [calculatedData, isMobile]);
+
+  return (
+    <div className="simulator-container" style={{ padding: "20px" }}>
+      <h3 className="simulator-title" style={{ 
+        fontSize: "1.3rem", 
+        color: "#FF6B9D", 
+        marginBottom: "20px",
+        textAlign: "center" 
+      }}>
+        🎛️ Interactive TMM Simulator
+      </h3>
+
+      <div className="simulator-controls" style={{
+        background: "#FFF8FA",
+        padding: "20px",
+        borderRadius: "12px",
+        marginBottom: "20px",
+        border: "1px solid #FFE8F1"
+      }}>
+        <div style={{ marginBottom: "20px" }}>
+          <label className="slider-label" style={{ 
+            display: "block", 
+            fontSize: "0.95rem", 
+            fontWeight: 600, 
+            color: "#333",
+            marginBottom: "8px" 
+          }}>
+            Top Ag Layer: <span style={{ color: "#FF6B9D" }}>{topAg} nm</span>
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="50"
+            step="1"
+            value={topAg}
+            onChange={(e) => setTopAg(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#FF6B9D" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <label className="slider-label" style={{ 
+            display: "block", 
+            fontSize: "0.95rem", 
+            fontWeight: 600, 
+            color: "#333",
+            marginBottom: "8px" 
+          }}>
+            TiO₂ Layer: <span style={{ color: "#FF6B9D" }}>{tio2} nm</span>
+          </label>
+          <input
+            type="range"
+            min="50"
+            max="300"
+            step="5"
+            value={tio2}
+            onChange={(e) => setTio2(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#FF6B9D" }}
+          />
+        </div>
+
+        <div style={{ marginBottom: "20px" }}>
+          <label className="slider-label" style={{ 
+            display: "block", 
+            fontSize: "0.95rem", 
+            fontWeight: 600, 
+            color: "#333",
+            marginBottom: "8px" 
+          }}>
+            Bottom Ag Layer: <span style={{ color: "#FF6B9D" }}>{botAg} nm</span>
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="50"
+            step="1"
+            value={botAg}
+            onChange={(e) => setBotAg(Number(e.target.value))}
+            style={{ width: "100%", accentColor: "#FF6B9D" }}
+          />
+        </div>
+
+        <button
+          className="calculate-button"
+          onClick={handleCalculate}
+          style={{
+            width: "100%",
+            padding: "12px",
+            background: "linear-gradient(135deg, #FF6B9D 0%, #FF8FAB 100%)",
+            color: "white",
+            border: "none",
+            borderRadius: "8px",
+            fontSize: "1rem",
+            fontWeight: 700,
+            cursor: "pointer",
+            transition: "transform 0.2s",
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.02)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
+        >
+          ▶ Calculate Spectrum
+        </button>
+      </div>
+
+      {calculatedData && (
+        <div style={{
+          background: "white",
+          padding: isMobile ? "15px" : "20px",
+          borderRadius: "12px",
+          border: "2px solid #FFE8F1",
+          marginBottom: "20px",
+          overflow: "auto"
+        }}>
+          <canvas 
+            ref={canvasRef}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              maxWidth: "900px",
+              margin: "0 auto",
+              touchAction: "pan-x pan-y"
+            }}
+          />
+        </div>
+      )}
+
+      {calculatedData && (
+        <div className="result-cards" style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+          gap: "15px"
+        }}>
+          <div className="result-card" style={{
+            background: "#FFF8FA",
+            padding: "15px",
+            borderRadius: "8px",
+            textAlign: "center",
+            border: "2px solid #FFE8F1"
+          }}>
+            <div className="result-card-label" style={{ fontSize: "0.85rem", color: "#888", marginBottom: "5px" }}>
+              Min Reflectance
+            </div>
+            <div className="result-card-value" style={{ fontSize: "1.5rem", fontWeight: 700, color: "#FF6B9D" }}>
+              {Math.min(...calculatedData.reflectance).toFixed(1)}%
+            </div>
+          </div>
+
+          <div className="result-card" style={{
+            background: "#F0FFFF",
+            padding: "15px",
+            borderRadius: "8px",
+            textAlign: "center",
+            border: "2px solid #E0F7FA"
+          }}>
+            <div className="result-card-label" style={{ fontSize: "0.85rem", color: "#888", marginBottom: "5px" }}>
+              Dip Wavelength
+            </div>
+            <div className="result-card-value" style={{ fontSize: "1.5rem", fontWeight: 700, color: "#4ECDC4" }}>
+              {calculatedData.dipWavelength} nm
+            </div>
+          </div>
+
+          <div className="result-card" style={{
+            background: "#FFF5F5",
+            padding: "15px",
+            borderRadius: "8px",
+            textAlign: "center",
+            border: "2px solid #FFEBEE"
+          }}>
+            <div className="result-card-label" style={{ fontSize: "0.85rem", color: "#888", marginBottom: "5px" }}>
+              Avg Reflectance
+            </div>
+            <div className="result-card-value" style={{ fontSize: "1.5rem", fontWeight: 700, color: "#F38181" }}>
+              {(calculatedData.reflectance.reduce((a: number, b: number) => a + b) / calculatedData.reflectance.length).toFixed(1)}%
+            </div>
+          </div>
+        </div>
+      )}
+
+      {!calculatedData && (
+        <div style={{
+          textAlign: "center",
+          padding: isMobile ? "40px 20px" : "60px 20px",
+          color: "#888",
+          fontSize: isMobile ? "0.9rem" : "1rem",
+          background: "#F8F9FA",
+          borderRadius: "12px",
+          border: "2px dashed #E0E0E0"
+        }}>
+          ⬆️ Adjust layer thickness above<br/>
+          <span style={{ fontSize: isMobile ? "0.8rem" : "0.9rem" }}>Then click Calculate to visualize</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ================= COMPONENTS & STYLES ================= */
 
 function SkillBadge({ children }: any) {
   return (
