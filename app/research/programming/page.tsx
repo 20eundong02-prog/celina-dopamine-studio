@@ -886,8 +886,54 @@ const calculateTMM = (layers, wavelength) => {
         </div>
       </div>
 
-      {/* Mobile Responsive Styles */}
+      {/* 🔥 Mobile Responsive Styles - 슬라이더 강화 */}
       <style jsx global>{`
+        /* 🔥 데스크톱 슬라이더 기본 스타일 */
+        input[type="range"].custom-range-slider {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 100%;
+          height: 6px;
+          background: #FFE8F1;
+          border-radius: 10px;
+          outline: none;
+          cursor: pointer;
+        }
+
+        input[type="range"].custom-range-slider::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          background: #FF6B9D;
+          border: 2px solid white;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 2px 6px rgba(255, 107, 157, 0.3);
+          transition: all 0.2s;
+        }
+
+        input[type="range"].custom-range-slider::-webkit-slider-thumb:hover {
+          transform: scale(1.1);
+          box-shadow: 0 3px 10px rgba(255, 107, 157, 0.5);
+        }
+
+        input[type="range"].custom-range-slider::-moz-range-thumb {
+          width: 20px;
+          height: 20px;
+          background: #FF6B9D;
+          border: 2px solid white;
+          border-radius: 50%;
+          cursor: pointer;
+          box-shadow: 0 2px 6px rgba(255, 107, 157, 0.3);
+          transition: all 0.2s;
+        }
+
+        input[type="range"].custom-range-slider::-moz-range-thumb:hover {
+          transform: scale(1.1);
+          box-shadow: 0 3px 10px rgba(255, 107, 157, 0.5);
+        }
+
         @media (max-width: 768px) {
           .page-title {
             font-size: 2rem !important;
@@ -1086,20 +1132,38 @@ const calculateTMM = (layers, wavelength) => {
             font-size: 1.1rem !important;
           }
 
-          input[type="range"] {
-            height: 8px !important;
-            -webkit-appearance: none !important;
+          /* 🔥 모바일 슬라이더 강화 스타일 */
+          input[type="range"].custom-range-slider {
+            height: 10px !important;
+            background: linear-gradient(to right, #FFB6C9 0%, #FFE8F1 100%) !important;
           }
 
-          input[type="range"]::-webkit-slider-thumb {
-            width: 24px !important;
-            height: 24px !important;
-            -webkit-appearance: none !important;
+          input[type="range"].custom-range-slider::-webkit-slider-thumb {
+            width: 28px !important;
+            height: 28px !important;
+            background: #FF6B9D !important;
+            border: 3px solid white !important;
+            box-shadow: 0 3px 10px rgba(255, 107, 157, 0.5) !important;
           }
 
-          input[type="range"]::-moz-range-thumb {
-            width: 24px !important;
-            height: 24px !important;
+          input[type="range"].custom-range-slider::-moz-range-thumb {
+            width: 28px !important;
+            height: 28px !important;
+            background: #FF6B9D !important;
+            border: 3px solid white !important;
+            box-shadow: 0 3px 10px rgba(255, 107, 157, 0.5) !important;
+          }
+
+          input[type="range"].custom-range-slider::-webkit-slider-track {
+            height: 10px !important;
+            background: #FFE8F1 !important;
+            border-radius: 10px !important;
+          }
+
+          input[type="range"].custom-range-slider::-moz-range-track {
+            height: 10px !important;
+            background: #FFE8F1 !important;
+            border-radius: 10px !important;
           }
         }
       `}</style>
@@ -1385,6 +1449,7 @@ function OpticalSimulatorComponent() {
             step="1"
             value={topAg}
             onChange={(e) => setTopAg(Number(e.target.value))}
+            className="custom-range-slider"
             style={{ width: "100%", accentColor: "#FF6B9D" }}
           />
         </div>
@@ -1406,6 +1471,7 @@ function OpticalSimulatorComponent() {
             step="5"
             value={tio2}
             onChange={(e) => setTio2(Number(e.target.value))}
+            className="custom-range-slider"
             style={{ width: "100%", accentColor: "#FF6B9D" }}
           />
         </div>
@@ -1427,6 +1493,7 @@ function OpticalSimulatorComponent() {
             step="1"
             value={botAg}
             onChange={(e) => setBotAg(Number(e.target.value))}
+            className="custom-range-slider"
             style={{ width: "100%", accentColor: "#FF6B9D" }}
           />
         </div>
