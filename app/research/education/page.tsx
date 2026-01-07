@@ -238,7 +238,7 @@ export default function OthersPage() {
              <CertCard 
                 title="데이터 기반 반도체 수율 관리 및 최적화"
                 issuer="고용노동부 / K-Digital Credit"
-                date="2026.01"
+                date="2025.12 - 2026.01"
                 desc="공정 데이터 분석 심화 과정 수료. 반도체 제조 공정의 수율 개선을 위한 데이터 분석 및 최적화 기법 습득."
                 tags={["Semiconductor", "Yield Management", "Process Optimization"]}
              />
