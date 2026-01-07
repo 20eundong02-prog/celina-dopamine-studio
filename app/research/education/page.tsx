@@ -234,35 +234,37 @@ export default function OthersPage() {
                 tags={["Computer Science", "AI Basics"]}
              />
 
-             {/* Card 3: Azure Certifications */}
-             <div style={{...cardStyle, borderLeft: "4px solid #0078D4"}} className="cert-card">
-                <h3 style={cardTitleStyle} className="card-title">Microsoft Azure Certifications</h3>
-                <ul style={{ paddingLeft: "20px", lineHeight: "1.8", color: "#555", fontSize: "0.95rem" }} className="cert-list">
-                    <li>
-                        <b>Azure AI Fundamentals (AI-900)</b> <br/>
-                        <span style={{color:"#888"}}>(2025.11.06 취득)</span>
-                    </li>
-                    <li>
-                        <b>Azure Fundamentals (AZ-900)</b> <br/>
-                        <span style={{color:"#888"}}>(2025.11.22 취득)</span>
-                    </li>
-                      <li>
-                        <b>Azure Data Fundamentals (DP-900)</b> <br/>
-                        <span style={{color:"#FF6B9D", fontWeight:700}}>(2025.12.23 취득 예정)</span>
-                    </li>
-                </ul>
-             </div>
+             {/* Card 3: Semiconductor Yield Management */}
+             <CertCard 
+                title="데이터 기반 반도체 수율 관리 및 최적화"
+                issuer="고용노동부 / K-Digital Credit"
+                date="2026.01"
+                desc="공정 데이터 분석 심화 과정 수료. 반도체 제조 공정의 수율 개선을 위한 데이터 분석 및 최적화 기법 습득."
+                tags={["Semiconductor", "Yield Management", "Process Optimization"]}
+             />
 
-             {/* Card 4: Future Plan */}
-             <div style={{...cardStyle, background: "#FFF0F6", border: "2px dashed #FF6B9D"}} className="cert-card">
-                <h3 style={cardTitleStyle} className="card-title">Upcoming Challenge 🚀</h3>
-                <p style={{ margin: "10px 0", fontWeight: 700, color: "#333" }}>
-                    데이터 기반 반도체 수율 관리 및 최적화
-                </p>
-                <p style={{ fontSize: "0.9rem", color: "#666" }} className="card-desc">
-                    2026.01 수료 예정<br/>
-                    공정 데이터 분석 심화 과정을 통해 현업 데이터 해결 능력 배양 목표.
-                </p>
+             {/* Card 4: Azure Certifications */}
+             <div style={{...cardStyle, borderLeft: "4px solid #0078D4"}} className="cert-card">
+                <div style={{ marginBottom: "10px" }}>
+                    <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#AAA", textTransform: "uppercase" }}>2025.11</span>
+                </div>
+                <h3 style={cardTitleStyle} className="card-title">Microsoft Azure Certifications</h3>
+                <p style={{ fontSize: "0.9rem", color: "#666", marginBottom: "10px", fontWeight: 600 }}></p>
+                <div style={{ marginBottom: "15px" }}>
+                    <div style={{ marginBottom: "12px", paddingBottom: "12px", borderBottom: "1px solid #F0F0F0" }}>
+                        <div style={{ fontWeight: 700, color: "#333", fontSize: "0.95rem", marginBottom: "3px" }}>Azure AI Fundamentals (AI-900)</div>
+                        <div style={{ fontSize: "0.85rem", color: "#888" }}>취득: 2025.11.06</div>
+                    </div>
+                    <div>
+                        <div style={{ fontWeight: 700, color: "#333", fontSize: "0.95rem", marginBottom: "3px" }}>Azure Fundamentals (AZ-900)</div>
+                        <div style={{ fontSize: "0.85rem", color: "#888" }}>취득: 2025.11.22</div>
+                    </div>
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "5px" }}>
+                    <span style={tagStyle}>#Cloud Computing</span>
+                    <span style={tagStyle}>#Azure</span>
+                    <span style={tagStyle}>#AI Fundamentals</span>
+                </div>
              </div>
           </div>
         </section>
@@ -474,7 +476,7 @@ export default function OthersPage() {
             padding-left: 15px !important;
           }
 
-          /* 모바일: 연도/역할을 인라인으로 변경 */
+          /* 모바일: 연도/역할을 인라인으로 변경 */}
           .activity-row {
             flex-direction: column !important;
             padding: 12px !important;
@@ -670,7 +672,7 @@ const headerRowStyle: React.CSSProperties = {
 
 const gridStyle: React.CSSProperties = {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gridTemplateColumns: "repeat(2, 1fr)",
     gap: "20px"
 };
 
