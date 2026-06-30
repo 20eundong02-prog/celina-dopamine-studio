@@ -10,8 +10,8 @@ export default function Contact() {
     {
       icon: "📧",
       label: "Email",
-      value: "sueksk@naver.com / 20eundong02@gmail.com",
-      link: "mailto:sueksk@naver.com",
+      value: "20eundong02@gmail.com",
+      link: "mailto:20eundong02@gmail.com",
       color: "#FFB6C1"
     },
     {
@@ -24,8 +24,8 @@ export default function Contact() {
     {
       icon: "📝",
       label: "Blog",
-      value: "blog.naver.com/ksk_celina",
-      link: "https://blog.naver.com/ksk_celina",
+      value: "celinachapssal-log.tistory.com",
+      link: "https://celinachapssal-log.tistory.com",
       color: "#B4E7CE"
     },
     {
